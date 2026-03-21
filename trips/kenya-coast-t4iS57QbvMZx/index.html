@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kenya Coast | Travel Brochure</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --gold: #D4AF37;
+            --dark: #1a1a2e;
+            --darker: #16213e;
+            --light: #fff;
+            --gray: rgba(255,255,255,0.7);
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--darker) 100%);
+            color: var(--light);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(212,175,55,0.1) 0%, transparent 100%);
+            border-radius: 20px;
+            margin-bottom: 3rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--light), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+        
+        .hero-meta span { display: flex; align-items: center; gap: 0.5rem; }
+        
+        /* Section Styles */
+        section {
+            margin-bottom: 4rem;
+        }
+        
+        section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--gold);
+            border-bottom: 2px solid rgba(212,175,55,0.3);
+            padding-bottom: 0.5rem;
+        }
+        
+        /* Accommodation Cards */
+        .accommodations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .accommodation-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        
+        .accommodation-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+        }
+        
+        .card-image {
+            height: 200px;
+            background: linear-gradient(135deg, #2a2a4e, #1a1a3e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+        
+        .card-content { padding: 1.5rem; }
+        .card-content h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .card-type { color: var(--gold); font-size: 0.9rem; margin-bottom: 0.5rem; }
+        .card-price { font-size: 1.1rem; margin: 1rem 0; }
+        .card-price strong { color: var(--gold); font-size: 1.3rem; }
+        
+        .amenities {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        
+        .amenity {
+            background: rgba(212,175,55,0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+        
+        .card-cta {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--dark);
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: transform 0.2s;
+        }
+        
+        .card-cta:hover { transform: scale(1.05); }
+        
+        /* Experiences Grid */
+        .experiences-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .experience-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .experience-card h4 { color: var(--gold); margin-bottom: 0.5rem; }
+        .experience-meta { color: var(--gray); font-size: 0.9rem; margin-bottom: 0.5rem; }
+        
+        /* Restaurants */
+        .restaurants-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .restaurant-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .restaurant-card h4 { margin-bottom: 0.5rem; }
+        .cuisine-tag {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--dark);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Map */
+        #map {
+            height: 400px;
+            border-radius: 16px;
+            margin: 2rem 0;
+        }
+        
+        /* Share Section */
+        .share-section {
+            text-align: center;
+            padding: 3rem;
+            background: rgba(212,175,55,0.1);
+            border-radius: 16px;
+        }
+        
+        .share-url {
+            background: rgba(0,0,0,0.3);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-family: monospace;
+            margin: 1rem 0;
+            word-break: break-all;
+        }
+        
+        .copy-btn {
+            background: var(--gold);
+            color: var(--dark);
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        footer a { color: var(--gold); text-decoration: none; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero-meta { flex-direction: column; gap: 0.5rem; }
+            .accommodations-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>✈️ Kenya Coast</h1>
+            <div class="hero-meta">
+                <span>📅 2026-07-15 → 2026-07-25 (10 nights)</span>
+                <span>👥 2 travelers</span>
+                <span>💰 Luxury</span>
+            </div>
+            <p style="margin-top: 1.5rem; max-width: 600px; margin-left: auto; margin-right: auto; color: var(--gray);">
+                A curated collection of accommodations, experiences, and restaurants selected just for you.
+            </p>
+        </section>
+        
+        <!-- Vibes -->
+        <section>
+            <h2>🎯 Your Trip Vibes</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+                <span class="amenity">🏖️ Beach</span>
+<span class="amenity">🍽️ Food</span>
+<span class="amenity">🥾 Adventure</span>
+            </div>
+        </section>
+        
+        <!-- Accommodations -->
+        <section>
+            <h2>🏠 Where to Stay</h2>
+            <div class="accommodations-grid">
+                
+        <div class="accommodation-card">
+            <div class="card-image">🏡</div>
+            <div class="card-content">
+                <h3>Seaside Villa Kenya Coast</h3>
+                <p class="card-type">Villa • Beachfront, Kenya Coast</p>
+                <p class="card-price">From <strong>$350</strong>/night</p>
+                <div class="amenities"><span class="amenity">Private Pool</span><span class="amenity">Ocean View</span><span class="amenity">WiFi</span><span class="amenity">Kitchen</span></div>
+                <p style="color: var(--gray); font-size: 0.9rem;">Perfect for your beach vibe with stunning ocean views</p>
+                <a href="https://www.booking.com/searchresults.html?ss=Kenya+Coast" target="_blank" class="card-cta">View & Book →</a>
+            </div>
+        </div>
+        
+
+        <div class="accommodation-card">
+            <div class="card-image">✨</div>
+            <div class="card-content">
+                <h3>Boutique Hotel Kenya Coast</h3>
+                <p class="card-type">Boutique • Town Center, Kenya Coast</p>
+                <p class="card-price">From <strong>$280</strong>/night</p>
+                <div class="amenities"><span class="amenity">Restaurant</span><span class="amenity">Spa</span><span class="amenity">Pool</span><span class="amenity">Bar</span></div>
+                <p style="color: var(--gray); font-size: 0.9rem;">Great location for exploring local food scene</p>
+                <a href="https://www.booking.com/searchresults.html?ss=Kenya+Coast" target="_blank" class="card-cta">View & Book →</a>
+            </div>
+        </div>
+        
+
+        <div class="accommodation-card">
+            <div class="card-image">🏠</div>
+            <div class="card-content">
+                <h3>Eco Lodge Kenya Coast</h3>
+                <p class="card-type">Lodge • Nature Reserve, Kenya Coast</p>
+                <p class="card-price">From <strong>$244</strong>/night</p>
+                <div class="amenities"><span class="amenity">Nature Walks</span><span class="amenity">Organic Restaurant</span><span class="amenity">Yoga</span></div>
+                <p style="color: var(--gray); font-size: 0.9rem;">Perfect for adventure seekers and nature lovers</p>
+                <a href="https://www.booking.com/searchresults.html?ss=Kenya+Coast" target="_blank" class="card-cta">View & Book →</a>
+            </div>
+        </div>
+        
+            </div>
+        </section>
+        
+        <!-- Experiences -->
+        <section>
+            <h2>🌟 Things to Do</h2>
+            <div class="experiences-grid">
+                
+        <div class="experience-card">
+            <h4>Local Food Tour</h4>
+            <p class="experience-meta">
+                ⏱️ 4 hours • 💰 $50-80
+            </p>
+            <p style="color: var(--gray);">Explore hidden foodie spots with a local guide</p>
+        </div>
+        
+
+        <div class="experience-card">
+            <h4>Sunrise Beach Yoga</h4>
+            <p class="experience-meta">
+                ⏱️ 1.5 hours • 💰 $20-30
+            </p>
+            <p style="color: var(--gray);">Start your day with ocean views and meditation</p>
+        </div>
+        
+
+        <div class="experience-card">
+            <h4>Snorkeling Adventure</h4>
+            <p class="experience-meta">
+                ⏱️ 3 hours • 💰 $40-60
+            </p>
+            <p style="color: var(--gray);">Discover vibrant coral reefs and marine life</p>
+        </div>
+        
+
+        <div class="experience-card">
+            <h4>Cooking Class</h4>
+            <p class="experience-meta">
+                ⏱️ 3 hours • 💰 $60-100
+            </p>
+            <p style="color: var(--gray);">Learn to make local dishes with a master chef</p>
+        </div>
+        
+
+        <div class="experience-card">
+            <h4>Sunset Boat Cruise</h4>
+            <p class="experience-meta">
+                ⏱️ 2 hours • 💰 $80-150
+            </p>
+            <p style="color: var(--gray);">Watch the sunset from the water with drinks</p>
+        </div>
+        
+            </div>
+        </section>
+        
+        <!-- Hidden Gems -->
+        <section>
+            <h2>💎 Hidden Gems</h2>
+            <div class="experiences-grid">
+                
+        <div class="experience-card">
+            <h4>Secret Beach</h4>
+            <p class="experience-meta">
+                ⏱️ Half day • 💰 Free
+            </p>
+            <p style="color: var(--gray);">A hidden cove only locals know about</p>
+        </div>
+        
+
+        <div class="experience-card">
+            <h4>Underground Jazz Bar</h4>
+            <p class="experience-meta">
+                ⏱️ Evening • 💰 $30-50
+            </p>
+            <p style="color: var(--gray);">Live jazz in a speakeasy setting</p>
+        </div>
+        
+
+        <div class="experience-card">
+            <h4>Morning Fish Market</h4>
+            <p class="experience-meta">
+                ⏱️ 2 hours • 💰 Free
+            </p>
+            <p style="color: var(--gray);">Watch locals trade at sunrise</p>
+        </div>
+        
+            </div>
+        </section>
+        
+        <!-- Restaurants -->
+        <section>
+            <h2>🍽️ Where to Eat</h2>
+            <div class="restaurants-grid">
+                
+        <div class="restaurant-card">
+            <span class="cuisine-tag">Seafood</span>
+            <h4>Ocean View Restaurant</h4>
+            <p style="color: var(--gray); margin: 0.5rem 0;">
+                💰 $$$ • 📍 Beachfront
+            </p>
+            <p><strong>Must try:</strong> Grilled Lobster, Coconut Ceviche</p>
+        </div>
+        
+
+        <div class="restaurant-card">
+            <span class="cuisine-tag">Traditional</span>
+            <h4>Local Kitchen</h4>
+            <p style="color: var(--gray); margin: 0.5rem 0;">
+                💰 $$ • 📍 Town Center
+            </p>
+            <p><strong>Must try:</strong> House Special Curry, Fresh Fish</p>
+        </div>
+        
+
+        <div class="restaurant-card">
+            <span class="cuisine-tag">International</span>
+            <h4>Rooftop Bar & Grill</h4>
+            <p style="color: var(--gray); margin: 0.5rem 0;">
+                💰 $$$ • 📍 Hotel District
+            </p>
+            <p><strong>Must try:</strong> Wagyu Burger, Sunset Cocktails</p>
+        </div>
+        
+
+        <div class="restaurant-card">
+            <span class="cuisine-tag">Various</span>
+            <h4>Street Food Market</h4>
+            <p style="color: var(--gray); margin: 0.5rem 0;">
+                💰 $ • 📍 Downtown
+            </p>
+            <p><strong>Must try:</strong> Local Tacos, Fresh Fruit</p>
+        </div>
+        
+            </div>
+        </section>
+        
+        <!-- Share -->
+        <section class="share-section">
+            <h2 style="border: none; text-align: center;">📤 Share This Trip</h2>
+            <p>Send this link to your travel buddies:</p>
+            <div class="share-url" id="shareUrl">https://travelplanning.lamaroliphant.com/trips/kenya-coast-t4iS57QbvMZx/</div>
+            <button class="copy-btn" onclick="copyUrl()">📋 Copy Link</button>
+        </section>
+        
+        <footer>
+            <p>Created with ❤️ by <a href="https://travelplanning.lamaroliphant.com">Trip Planner</a></p>
+            <p style="margin-top: 0.5rem;">Generated March 21, 2026</p>
+        </footer>
+    </div>
+    
+    <script>
+        function copyUrl() {
+            const url = document.getElementById('shareUrl').textContent;
+            navigator.clipboard.writeText(url).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                btn.textContent = '✓ Copied!';
+                setTimeout(() => btn.textContent = '📋 Copy Link', 2000);
+            });
+        }
+    </script>
+</body>
+</html>
