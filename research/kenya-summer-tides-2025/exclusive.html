@@ -3,278 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hidden Gems | Kenya Summer Tides 2025</title>
+    <title>Hidden Gems & Party Guide | Summer Tides 2026</title>
     <style>
+        :root { --primary: #ff6b35; --secondary: #f7c548; --accent: #00d4aa; --dark: #0a0a0a; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a1628; color: #fff; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--dark); color: #fff; line-height: 1.6; }
         
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            background: rgba(10, 22, 40, 0.95);
-            backdrop-filter: blur(10px);
-        }
-        .nav-links { display: flex; gap: 2rem; }
-        .nav-links a { color: #fff; text-decoration: none; font-weight: 500; }
-        .nav-links a:hover { color: #00d4aa; }
+        nav { position: fixed; top: 0; width: 100%; padding: 1rem 2rem; display: flex; justify-content: space-between; z-index: 1000; background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); }
+        nav a { color: #fff; text-decoration: none; font-weight: 600; }
+        nav a:hover { color: var(--primary); }
         
-        .hero {
-            padding: 8rem 2rem 4rem;
-            text-align: center;
-            background: linear-gradient(135deg, rgba(10, 22, 40, 0.9), rgba(0, 100, 80, 0.7)),
-                        url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1920') center/cover;
-        }
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #ffd700, #ff8c00);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+        .hero { padding: 8rem 2rem 4rem; text-align: center; background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(255,107,53,0.3)), url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1920') center/cover; }
+        .hero h1 { font-size: 3.5rem; font-weight: 900; margin-bottom: 1rem; background: linear-gradient(135deg, var(--secondary), var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .hero p { font-size: 1.3rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
         
         section { padding: 4rem 2rem; max-width: 1200px; margin: 0 auto; }
+        .section-title { font-size: 2.2rem; font-weight: 700; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-subtitle { opacity: 0.7; margin-bottom: 2rem; font-size: 1.1rem; }
         
-        .section-title {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .section-subtitle {
-            opacity: 0.7;
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
-        }
-        
-        .experience-card {
-            background: linear-gradient(145deg, #1a2a44, #0d1929);
-            border-radius: 20px;
-            overflow: hidden;
-            margin-bottom: 2rem;
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-        }
-        .experience-card.reverse { grid-template-columns: 1.5fr 1fr; }
-        .experience-card.reverse .exp-image { order: 2; }
-        
-        .exp-image {
-            height: 100%;
-            min-height: 300px;
-            background-size: cover;
-            background-position: center;
-        }
-        .exp-content {
-            padding: 2.5rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .exp-badge {
-            display: inline-block;
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-            width: fit-content;
-        }
-        .badge-exclusive { background: linear-gradient(135deg, #ffd700, #ff8c00); color: #000; }
+        .exp-card { background: linear-gradient(145deg, #1a1a1a, #0d0d0d); border-radius: 20px; overflow: hidden; margin-bottom: 2rem; display: grid; grid-template-columns: 1fr 1.5fr; border: 1px solid rgba(255,255,255,0.1); }
+        .exp-card.reverse { grid-template-columns: 1.5fr 1fr; }
+        .exp-card.reverse .exp-image { order: 2; }
+        .exp-image { height: 100%; min-height: 300px; background-size: cover; background-position: center; }
+        .exp-content { padding: 2.5rem; display: flex; flex-direction: column; justify-content: center; }
+        .exp-badge { display: inline-block; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin-bottom: 1rem; width: fit-content; }
+        .badge-festival { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #000; }
+        .badge-coastal { background: linear-gradient(135deg, var(--accent), #0099cc); color: #fff; }
         .badge-local { background: linear-gradient(135deg, #e74c3c, #c0392b); color: #fff; }
-        .badge-adventure { background: linear-gradient(135deg, #00d4aa, #0099cc); color: #fff; }
-        .badge-culture { background: linear-gradient(135deg, #9b59b6, #8e44ad); color: #fff; }
-        
+        .badge-vip { background: linear-gradient(135deg, #9b59b6, #8e44ad); color: #fff; }
         .exp-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; }
         .exp-location { opacity: 0.7; margin-bottom: 1rem; font-size: 0.95rem; }
         .exp-description { line-height: 1.7; margin-bottom: 1.5rem; opacity: 0.9; }
-        
-        .exp-details {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
+        .exp-details { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 1.5rem; }
         .detail { display: flex; align-items: center; gap: 0.5rem; font-size: 0.95rem; }
-        .detail-icon { font-size: 1.2rem; }
+        .exp-booking { display: flex; align-items: center; gap: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1); }
+        .book-btn { padding: 0.75rem 1.5rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); border: none; border-radius: 25px; color: #000; font-weight: 700; text-decoration: none; }
+        .whatsapp-btn { padding: 0.75rem 1.5rem; background: #25D366; border-radius: 25px; color: #fff; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
         
-        .exp-booking {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-        .book-btn {
-            padding: 0.75rem 1.5rem;
-            background: linear-gradient(135deg, #00d4aa, #0099cc);
-            border: none;
-            border-radius: 25px;
-            color: #fff;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        .whatsapp-btn {
-            padding: 0.75rem 1.5rem;
-            background: #25D366;
-            border: none;
-            border-radius: 25px;
-            color: #fff;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .insider-tips {
-            background: linear-gradient(145deg, #1a2a44, #0d1929);
-            border-radius: 20px;
-            padding: 2.5rem;
-            margin: 3rem 0;
-        }
-        .tip-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 1.5rem;
-        }
-        .tip-card {
-            background: rgba(0, 212, 170, 0.1);
-            padding: 1.5rem;
-            border-radius: 15px;
-            border-left: 4px solid #00d4aa;
-        }
-        .tip-title { font-weight: 600; margin-bottom: 0.5rem; color: #00d4aa; }
+        .tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+        .tip-card { background: linear-gradient(145deg, #1a1a1a, #0d0d0d); padding: 1.5rem; border-radius: 15px; border-left: 4px solid var(--primary); }
+        .tip-title { font-weight: 700; margin-bottom: 0.5rem; color: var(--secondary); }
         .tip-text { opacity: 0.85; line-height: 1.6; font-size: 0.95rem; }
         
-        .contact-section {
-            background: linear-gradient(135deg, #00d4aa, #0099cc);
-            border-radius: 30px;
-            padding: 3rem;
-            text-align: center;
-            margin: 3rem 0;
-        }
-        .contact-section h2 { color: #0a1628; margin-bottom: 1rem; }
-        .contact-section p { color: #0a1628; opacity: 0.8; margin-bottom: 2rem; }
-        .contact-grid {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-        .contact-btn {
-            padding: 1rem 2rem;
-            background: #0a1628;
-            color: #00d4aa;
-            border: none;
-            border-radius: 25px;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-        }
+        .cta-section { background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 30px; padding: 3rem; text-align: center; margin: 3rem 0; }
+        .cta-section h2 { color: #000; margin-bottom: 1rem; }
+        .cta-section p { color: #000; opacity: 0.8; margin-bottom: 2rem; }
+        .cta-btn { padding: 1rem 2rem; background: #000; color: var(--secondary); border-radius: 25px; font-weight: 700; text-decoration: none; }
         
-        footer {
-            text-align: center;
-            padding: 3rem;
-            opacity: 0.6;
-        }
+        footer { text-align: center; padding: 3rem; opacity: 0.6; border-top: 1px solid rgba(255,255,255,0.1); }
+        footer a { color: var(--primary); text-decoration: none; }
         
         @media (max-width: 768px) {
-            .experience-card, .experience-card.reverse {
-                grid-template-columns: 1fr;
-            }
-            .experience-card.reverse .exp-image { order: 0; }
+            .exp-card, .exp-card.reverse { grid-template-columns: 1fr; }
+            .exp-card.reverse .exp-image { order: 0; }
             .exp-image { min-height: 200px; }
-            .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
     <nav>
-        <a href="index.html" style="font-weight: 700; font-size: 1.2rem; text-decoration: none; color: #fff;">← Back to Main</a>
-        <div class="nav-links">
-            <a href="index.html#accommodations">Stays</a>
-            <a href="index.html#experiences">Experiences</a>
-            <a href="index.html#budget">Budget</a>
-        </div>
+        <a href="index.html">← Back to Trip Planner</a>
+        <span style="color: var(--secondary);">🔮 Hidden Gems</span>
     </nav>
 
     <header class="hero">
-        <h1>🔮 Hidden Gems</h1>
-        <p>Experiences locals treasure – from secret dive spots to private chefs cooking on the beach at sunset</p>
+        <h1>Hidden Gems & Insider Tips</h1>
+        <p>The experiences locals treasure - from secret festival spots to private whale shark charters</p>
     </header>
 
     <section>
-        <h2 class="section-title">🦈 Marine Encounters</h2>
-        <p class="section-subtitle">The Indian Ocean's most magical wildlife experiences</p>
+        <h2 class="section-title">🎵 Festival Insider Secrets</h2>
+        <p class="section-subtitle">How to do Summer Tides like a pro</p>
 
-        <div class="experience-card">
-            <div class="exp-image" style="background-image: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800');"></div>
+        <div class="exp-card">
+            <div class="exp-image" style="background-image: url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800');"></div>
             <div class="exp-content">
-                <span class="exp-badge badge-exclusive">Season Highlight</span>
-                <h3 class="exp-title">Private Whale Shark Safari</h3>
-                <p class="exp-location">📍 Watamu Marine National Park</p>
+                <span class="exp-badge badge-vip">Pro Move</span>
+                <h3 class="exp-title">The 4 PM Nap Protocol</h3>
+                <p class="exp-location">📍 Your Hotel Room</p>
                 <p class="exp-description">
-                    Skip the crowds with a private boat and expert marine biologist guide. Aqua Ventures runs early-morning expeditions before the tourist boats arrive. Their spotter pilots have 15+ years experience finding the big ones.
+                    Festival veterans know: the sets go until sunrise. The only way to make it is THE NAP. From 4-7 PM every festival day, blackout curtains + AC + earplugs = the sleep that lets you dance until 6 AM. This isn't optional, it's survival.
                 </p>
                 <div class="exp-details">
-                    <div class="detail"><span class="detail-icon">⏰</span> 6:00 AM departure</div>
-                    <div class="detail"><span class="detail-icon">👥</span> Max 4 guests</div>
-                    <div class="detail"><span class="detail-icon">💰</span> $200/person</div>
-                    <div class="detail"><span class="detail-icon">📅</span> July-September</div>
-                </div>
-                <div class="exp-booking">
-                    <a href="https://www.google.com/maps/search/Aqua+Ventures+Watamu+Kenya" target="_blank" class="book-btn">Book Online</a>
-                    <a href="https://wa.me/254722203636" target="_blank" class="whatsapp-btn">📱 WhatsApp</a>
+                    <div class="detail"><span>⏰</span> 4:00 - 7:00 PM</div>
+                    <div class="detail"><span>😴</span> Non-negotiable</div>
+                    <div class="detail"><span>💪</span> Festival endurance secret</div>
                 </div>
             </div>
         </div>
 
-        <div class="experience-card reverse">
+        <div class="exp-card reverse">
+            <div class="exp-image" style="background-image: url('https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=800');"></div>
+            <div class="exp-content">
+                <span class="exp-badge badge-festival">🌅 Don't Miss</span>
+                <h3 class="exp-title">The Sunrise Set</h3>
+                <p class="exp-location">📍 Lost Beach Club Main Stage</p>
+                <p class="exp-description">
+                    This is THE moment everyone talks about. As the sky turns orange and the sun rises over the Indian Ocean, the DJ drops that track. The crowd erupts. Pure magic. Position yourself beach-side for the full experience. Bring a light jacket - the sea breeze gets cool at dawn.
+                </p>
+                <div class="exp-details">
+                    <div class="detail"><span>⏰</span> ~5:30 - 7:00 AM</div>
+                    <div class="detail"><span>📍</span> Beach-side of main stage</div>
+                    <div class="detail"><span>📸</span> Best photos of the trip</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="section-title">🦈 Coastal Hidden Gems</h2>
+        <p class="section-subtitle">Marine adventures and Swahili secrets most tourists miss</p>
+
+        <div class="exp-card">
+            <div class="exp-image" style="background-image: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800');"></div>
+            <div class="exp-content">
+                <span class="exp-badge badge-coastal">🦈 Private Charter</span>
+                <h3 class="exp-title">VIP Whale Shark Safari</h3>
+                <p class="exp-location">📍 Watamu (30 min from Malindi)</p>
+                <p class="exp-description">
+                    Skip the tourist boats with a private charter. Depart at 6 AM before anyone else. Your own boat + marine biologist guide. The spotter pilots have 15+ years experience finding the big ones. July encounter rate: 90%+. This is the only way to do it.
+                </p>
+                <div class="exp-details">
+                    <div class="detail"><span>⏰</span> 6:00 AM departure</div>
+                    <div class="detail"><span>👥</span> Max 4 guests</div>
+                    <div class="detail"><span>💰</span> $200/person (private)</div>
+                </div>
+                <div class="exp-booking">
+                    <a href="https://wa.me/254722203636" target="_blank" class="whatsapp-btn">📱 WhatsApp to Book</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="exp-card reverse">
+            <div class="exp-image" style="background-image: url('https://images.unsplash.com/photo-1500514966906-fe245eea9344?w=800');"></div>
+            <div class="exp-content">
+                <span class="exp-badge badge-coastal">⛵ Exclusive</span>
+                <h3 class="exp-title">Private Dhow with Chef</h3>
+                <p class="exp-location">📍 Mida Creek, Watamu</p>
+                <p class="exp-description">
+                    Charter a traditional jahazi dhow with a private chef who cooks fresh-caught seafood as you sail through the mangroves. Captain Bwana Ali has sailed these waters for 40 years. His family has been dhow builders for five generations. Sunset + seafood + sailing = perfection.
+                </p>
+                <div class="exp-details">
+                    <div class="detail"><span>⏰</span> 4-hour sail</div>
+                    <div class="detail"><span>🦞</span> Seafood feast included</div>
+                    <div class="detail"><span>💰</span> $350 total (up to 6 ppl)</div>
+                </div>
+                <div class="exp-booking">
+                    <a href="https://wa.me/254712345678" target="_blank" class="whatsapp-btn">📱 Book via WhatsApp</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="exp-card">
             <div class="exp-image" style="background-image: url('https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800');"></div>
             <div class="exp-content">
-                <span class="exp-badge badge-adventure">Night Adventure</span>
+                <span class="exp-badge badge-coastal">🌙 Rare</span>
                 <h3 class="exp-title">Bioluminescent Night Dive</h3>
                 <p class="exp-location">📍 Turtle Bay, Watamu</p>
                 <p class="exp-description">
-                    Dive into darkness as the ocean lights up with bioluminescent plankton. Local operator Scuba Junkie runs these rare night dives only during new moon phases. The glowing effect is otherworldly.
+                    Dive into darkness as the ocean lights up with bioluminescent plankton. Only possible during new moon phases. The glowing effect is otherworldly - every movement creates trails of light. Advanced certification required. Book through Watamu dive centers.
                 </p>
                 <div class="exp-details">
-                    <div class="detail"><span class="detail-icon">🌙</span> New moon only</div>
-                    <div class="detail"><span class="detail-icon">🤿</span> Advanced cert required</div>
-                    <div class="detail"><span class="detail-icon">💰</span> $85/person</div>
-                </div>
-                <div class="exp-booking">
-                    <a href="https://wa.me/254723456789" target="_blank" class="whatsapp-btn">📱 Contact Scuba Junkie</a>
+                    <div class="detail"><span>🌙</span> New moon only</div>
+                    <div class="detail"><span>🤿</span> Advanced cert required</div>
+                    <div class="detail"><span>💰</span> $85/person</div>
                 </div>
             </div>
         </div>
 
-        <div class="experience-card">
+        <div class="exp-card reverse">
             <div class="exp-image" style="background-image: url('https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?w=800');"></div>
             <div class="exp-content">
-                <span class="exp-badge badge-local">Conservation</span>
+                <span class="exp-badge badge-local">🐢 Conservation</span>
                 <h3 class="exp-title">Sea Turtle Nest Release</h3>
                 <p class="exp-location">📍 Local Ocean Conservation, Watamu</p>
                 <p class="exp-description">
-                    Join the conservation team at dawn to release baby sea turtles. The Local Ocean Trust protects nesting sites and you can be part of the release ceremony. Book ahead – they limit participants to protect the hatchlings.
+                    Join the conservation team at dawn to release baby sea turtles into the ocean. July = peak nesting season. Watch hundreds of tiny turtles make their first journey to the sea. Emotional, meaningful, unforgettable. Book 24hrs ahead - they limit participants.
                 </p>
                 <div class="exp-details">
-                    <div class="detail"><span class="detail-icon">🌅</span> Dawn release</div>
-                    <div class="detail"><span class="detail-icon">🐢</span> July-October season</div>
-                    <div class="detail"><span class="detail-icon">💰</span> $50 donation</div>
+                    <div class="detail"><span>🌅</span> Dawn release</div>
+                    <div class="detail"><span>🐢</span> July = peak season</div>
+                    <div class="detail"><span>💰</span> $50 donation</div>
                 </div>
                 <div class="exp-booking">
                     <a href="https://localocean.co/" target="_blank" class="book-btn">Learn More</a>
@@ -284,190 +193,87 @@
     </section>
 
     <section>
-        <h2 class="section-title">⛵ Dhow Experiences</h2>
-        <p class="section-subtitle">Sail like the Swahili traders have for 1,000 years</p>
+        <h2 class="section-title">👨‍🍳 Food & Dining Secrets</h2>
+        <p class="section-subtitle">Where locals eat (and where to recover after the festival)</p>
 
-        <div class="experience-card reverse">
-            <div class="exp-image" style="background-image: url('https://images.unsplash.com/photo-1500514966906-fe245eea9344?w=800');"></div>
-            <div class="exp-content">
-                <span class="exp-badge badge-exclusive">Private Charter</span>
-                <h3 class="exp-title">Sunset Dhow with Chef</h3>
-                <p class="exp-location">📍 Mida Creek, Watamu</p>
-                <p class="exp-description">
-                    Charter a traditional jahazi dhow with a private chef who cooks fresh-caught seafood as you sail through the mangroves. The captain, Bwana Ali, has sailed these waters for 40 years. His family has been dhow builders for five generations.
-                </p>
-                <div class="exp-details">
-                    <div class="detail"><span class="detail-icon">⛵</span> 4-hour sail</div>
-                    <div class="detail"><span class="detail-icon">🦞</span> Seafood feast included</div>
-                    <div class="detail"><span class="detail-icon">👥</span> Up to 6 guests</div>
-                    <div class="detail"><span class="detail-icon">💰</span> $350 total</div>
-                </div>
-                <div class="exp-booking">
-                    <a href="https://wa.me/254712345678" target="_blank" class="whatsapp-btn">📱 Book via WhatsApp</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="experience-card">
-            <div class="exp-image" style="background-image: url('https://images.unsplash.com/photo-1559827291-72ee739d0d9a?w=800');"></div>
-            <div class="exp-content">
-                <span class="exp-badge badge-adventure">Full Day</span>
-                <h3 class="exp-title">Lamu Archipelago Expedition</h3>
-                <p class="exp-location">📍 Lamu Island</p>
-                <p class="exp-description">
-                    Sail to uninhabited islands in the Lamu archipelago. Visit Manda Toto for pristine snorkeling, have lunch on a deserted beach, and explore ancient Takwa ruins accessible only by boat.
-                </p>
-                <div class="exp-details">
-                    <div class="detail"><span class="detail-icon">🏝️</span> 3 islands</div>
-                    <div class="detail"><span class="detail-icon">⏰</span> 8 hours</div>
-                    <div class="detail"><span class="detail-icon">🍱</span> Lunch included</div>
-                    <div class="detail"><span class="detail-icon">💰</span> $120/person</div>
-                </div>
-                <div class="exp-booking">
-                    <a href="https://www.booking.com/hotel/ke/lamu-house.html" target="_blank" class="book-btn">Book via Hotel</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <h2 class="section-title">👨‍🍳 Private Dining</h2>
-        <p class="section-subtitle">Feast like royalty with Kenya's best coastal chefs</p>
-
-        <div class="experience-card reverse">
+        <div class="exp-card">
             <div class="exp-image" style="background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800');"></div>
             <div class="exp-content">
-                <span class="exp-badge badge-exclusive">Chef's Table</span>
-                <h3 class="exp-title">Chef Mwanaisha's Beach Dinner</h3>
-                <p class="exp-location">📍 Private beach, Watamu</p>
+                <span class="exp-badge badge-local">🦞 Local Legend</span>
+                <h3 class="exp-title">Baby Marrow Malindi</h3>
+                <p class="exp-location">📍 Malindi Town</p>
                 <p class="exp-description">
-                    Mwanaisha trained in Mombasa's legendary Tamarind before returning home to Watamu. She creates 7-course Swahili tasting menus using ingredients from her family's farm. Tables set on the beach under the stars.
+                    The best Italian-Swahili fusion on the coast. Fresh pasta, incredible seafood, and the kind of service that makes you feel like family. This is where expats and in-the-know visitors come for special dinners. Book ahead for post-festival recovery meals.
                 </p>
                 <div class="exp-details">
-                    <div class="detail"><span class="detail-icon">🍽️</span> 7 courses</div>
-                    <div class="detail"><span class="detail-icon">👥</span> 2-8 guests</div>
-                    <div class="detail"><span class="detail-icon">🍷</span> Wine pairing +$50</div>
-                    <div class="detail"><span class="detail-icon">💰</span> $95/person</div>
+                    <div class="detail"><span>💰</span> $$</div>
+                    <div class="detail"><span>📞</span> Reservations recommended</div>
                 </div>
                 <div class="exp-booking">
-                    <a href="https://wa.me/254700123456" target="_blank" class="whatsapp-btn">📱 WhatsApp Chef</a>
+                    <a href="https://www.google.com/maps/search/Baby+Marrow+Malindi+Kenya" target="_blank" class="book-btn">Find on Maps</a>
                 </div>
             </div>
         </div>
 
-        <div class="experience-card">
+        <div class="exp-card reverse">
             <div class="exp-image" style="background-image: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800');"></div>
             <div class="exp-content">
-                <span class="exp-badge badge-local">Local Experience</span>
-                <h3 class="exp-title">Swahili Cooking Class</h3>
-                <p class="exp-location">📍 Watamu Village</p>
+                <span class="exp-badge badge-coastal">👨‍🍳 Private Chef</span>
+                <h3 class="exp-title">Beach Dinner Under the Stars</h3>
+                <p class="exp-location">📍 Private beach setup</p>
                 <p class="exp-description">
-                    Learn to cook authentic Swahili dishes with local women in their homes. Start at the market selecting spices, then learn family recipes passed down for generations. Take home a spice kit and recipe cards.
+                    Arrange a private chef dinner on the beach. Tables set in the sand, tiki torches, fresh catch grilled to perfection, Swahili spices. Perfect for a special night with your crew. Ask your hotel concierge to arrange - most can set this up with 48hrs notice.
                 </p>
                 <div class="exp-details">
-                    <div class="detail"><span class="detail-icon">⏰</span> 4 hours</div>
-                    <div class="detail"><span class="detail-icon">🥘</span> 4 dishes</div>
-                    <div class="detail"><span class="detail-icon">🎁</span> Spice kit included</div>
-                    <div class="detail"><span class="detail-icon">💰</span> $45/person</div>
-                </div>
-                <div class="exp-booking">
-                    <a href="https://www.getyourguide.com/watamu-l96988/" target="_blank" class="book-btn">Find Classes</a>
+                    <div class="detail"><span>👥</span> 2-8 guests</div>
+                    <div class="detail"><span>🍽️</span> 5-7 courses</div>
+                    <div class="detail"><span>💰</span> ~$80-120/person</div>
                 </div>
             </div>
         </div>
     </section>
 
     <section>
-        <h2 class="section-title">🏛️ Culture & Heritage</h2>
-        <p class="section-subtitle">Step back in time along the Swahili Coast</p>
-
-        <div class="experience-card">
-            <div class="exp-image" style="background-image: url('https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?w=800');"></div>
-            <div class="exp-content">
-                <span class="exp-badge badge-culture">Hidden History</span>
-                <h3 class="exp-title">Gede Ruins at Sunset</h3>
-                <p class="exp-location">📍 Gede, near Watamu</p>
-                <p class="exp-description">
-                    Avoid the tour buses with a private sunset visit to this mysterious 12th-century ghost town. The caretaker opens the gates after hours for small groups. Watch the sun set through ancient coral stone doorways.
-                </p>
-                <div class="exp-details">
-                    <div class="detail"><span class="detail-icon">🌅</span> 4:30 PM entry</div>
-                    <div class="detail"><span class="detail-icon">🦎</span> Spot elephant shrews</div>
-                    <div class="detail"><span class="detail-icon">💰</span> $35/person (includes donation)</div>
-                </div>
-                <div class="exp-booking">
-                    <a href="https://wa.me/254733456789" target="_blank" class="whatsapp-btn">📱 Arrange Visit</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="experience-card reverse">
-            <div class="exp-image" style="background-image: url('https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800');"></div>
-            <div class="exp-content">
-                <span class="exp-badge badge-culture">UNESCO Site</span>
-                <h3 class="exp-title">Lamu Old Town Walking Tour</h3>
-                <p class="exp-location">📍 Lamu Island</p>
-                <p class="exp-description">
-                    Navigate the car-free labyrinth of Lamu Old Town with a local historian. Visit 14th-century mosques, dhow workshops, and hidden rooftop cafes. The best guides are third-generation Lamu families who know every doorway.
-                </p>
-                <div class="exp-details">
-                    <div class="detail"><span class="detail-icon">🚶</span> 3-hour walk</div>
-                    <div class="detail"><span class="detail-icon">☕</span> Tea stops included</div>
-                    <div class="detail"><span class="detail-icon">📸</span> Photo opportunities</div>
-                    <div class="detail"><span class="detail-icon">💰</span> $40/person</div>
-                </div>
-                <div class="exp-booking">
-                    <a href="https://www.booking.com/hotel/ke/lamu-house.html" target="_blank" class="book-btn">Book via Hotel</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="insider-tips">
         <h2 class="section-title">💡 Insider Tips</h2>
         <p class="section-subtitle">What the locals know</p>
         
-        <div class="tip-grid">
+        <div class="tips-grid">
             <div class="tip-card">
-                <div class="tip-title">Best Whale Shark Timing</div>
+                <div class="tip-title">🎵 Festival Transport</div>
+                <div class="tip-text">Arrange transport BEFORE you go. Ask your hotel to book a taxi for all festival nights. Agree on price upfront (~$15-20 each way). Uber doesn't work well here.</div>
+            </div>
+            <div class="tip-card">
+                <div class="tip-title">🦈 Whale Shark Timing</div>
                 <div class="tip-text">Go out at first light (6 AM). By 9 AM, there can be 10+ boats around each shark. Early boats often get 30+ minutes of solo time with the giants.</div>
             </div>
             <div class="tip-card">
-                <div class="tip-title">Money-Saving Hack</div>
-                <div class="tip-text">Book villas through local agents like Safari Doctors (+254 722 203636) instead of Airbnb – often 30% cheaper and better service.</div>
+                <div class="tip-title">💰 Cash is King</div>
+                <div class="tip-text">Bring KES cash for local experiences. ATMs exist but can be unreliable. Festival vendors prefer M-Pesa (Kenya's mobile money) - ask a local to help you set it up.</div>
             </div>
             <div class="tip-card">
-                <div class="tip-title">Best Local Eats</div>
-                <div class="tip-text">Skip hotel restaurants for dinner at Savannah (Watamu) or Ali Barbour's Cave (Diani). For street food, the nyama choma stands near Malindi market are unbeatable.</div>
+                <div class="tip-title">🌊 Tide Check</div>
+                <div class="tip-text">Check tides before beach activities. Low tide exposes rock pools for exploring, but swimming is better at high tide. Apps like "Tide Charts" work well here.</div>
             </div>
             <div class="tip-card">
-                <div class="tip-title">Lamu Pro Tip</div>
-                <div class="tip-text">Fly to Lamu – the road is long and checkpoints slow. Kenya Airways and Fly540 have daily flights from Malindi (20 min) and Nairobi (1 hr).</div>
+                <div class="tip-title">🧥 Festival Layers</div>
+                <div class="tip-text">The sea breeze gets COLD at 4-6 AM during sunrise sets. Bring a light jacket or hoodie. You'll thank us when everyone else is shivering.</div>
             </div>
             <div class="tip-card">
-                <div class="tip-title">Tide Timing</div>
-                <div class="tip-text">Check tides before booking beach activities. Low tide exposes rock pools for exploring, but swimming is better at high tide. Apps like "Tide Charts" work well here.</div>
-            </div>
-            <div class="tip-card">
-                <div class="tip-title">Respect Local Culture</div>
-                <div class="tip-text">The coast is predominantly Muslim. Dress modestly when visiting villages or Lamu. Swimwear is fine at resort beaches only.</div>
+                <div class="tip-title">📿 Respect Local Culture</div>
+                <div class="tip-text">The coast is predominantly Muslim. Dress modestly when visiting Malindi Old Town or markets. Festival beach = anything goes. Town = cover up.</div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="contact-section">
-        <h2>Need Help Planning?</h2>
-        <p>Local operators often don't have websites. WhatsApp is king here.</p>
-        <div class="contact-grid">
-            <a href="https://wa.me/254722203636" target="_blank" class="contact-btn">📱 Watamu Experts</a>
-            <a href="https://wa.me/254733456789" target="_blank" class="contact-btn">⛵ Dhow Charters</a>
-            <a href="https://wa.me/254700123456" target="_blank" class="contact-btn">👨‍🍳 Private Chefs</a>
-        </div>
+    <div class="cta-section" style="max-width: 1100px; margin: 3rem auto;">
+        <h2>Ready for the Ultimate Kenya Coast Trip?</h2>
+        <p>Festival + whale sharks + Swahili culture. 9 days you'll never forget.</p>
+        <a href="index.html" class="cta-btn">← Back to Full Trip Planner</a>
     </div>
 
     <footer>
-        <p>Kenya Summer Tides 2025 | Hidden Gems Edition</p>
-        <p style="margin-top: 0.5rem;"><a href="index.html" style="color: #00d4aa;">← Return to Main Brochure</a></p>
+        <p>Summer Tides Festival 2026 | Kenya Coast Adventure</p>
+        <p style="margin-top: 0.5rem;"><a href="index.html">← Return to Main Brochure</a></p>
     </footer>
 </body>
 </html>
