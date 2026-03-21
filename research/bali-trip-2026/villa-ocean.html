@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ocean-View Glass Infinity Pool Villa | Bali 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root { --primary: #0d5c4b; --primary-light: #1a8f75; --accent: #f0a500; --dark: #1a1a2e; --light: #f8f9fa; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: var(--light); color: var(--dark); line-height: 1.7; }
+    
+    .hero {
+      min-height: 70vh;
+      background: linear-gradient(135deg, rgba(156,39,176,0.85), rgba(233,30,99,0.8)), 
+        url('images/villa-ocean/01-pool.jpg') center/cover;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; color: white; padding: 60px 20px;
+    }
+    .hero-badge { background: linear-gradient(135deg, #9c27b0, #e91e63); padding: 10px 25px; border-radius: 30px; font-weight: 700; margin-bottom: 25px; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 4rem); margin-bottom: 20px; max-width: 800px; }
+    .hero-meta { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; font-size: 1.1rem; }
+    .hero-meta span { display: flex; align-items: center; gap: 8px; }
+    
+    .back-link { position: fixed; top: 20px; left: 20px; background: white; padding: 12px 24px; border-radius: 30px; text-decoration: none; color: var(--dark); font-weight: 600; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 100; display: flex; align-items: center; gap: 8px; }
+    
+    .content { max-width: 1000px; margin: 0 auto; padding: 60px 40px; }
+    .section { margin-bottom: 60px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 25px; color: var(--primary); display: flex; align-items: center; gap: 15px; }
+    
+    .overview-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+    .overview-item { background: white; padding: 25px; border-radius: 15px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.08); }
+    .overview-item i { font-size: 2rem; color: var(--primary); margin-bottom: 10px; }
+    .overview-item h4 { font-size: 1.3rem; margin-bottom: 5px; }
+    .overview-item p { color: #666; }
+    
+    .highlight-box { background: linear-gradient(135deg, #9c27b0, #e91e63); color: white; padding: 30px; border-radius: 20px; margin: 30px 0; }
+    .highlight-box h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 15px; }
+    
+    .amenities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; }
+    .amenity { background: white; padding: 20px; border-radius: 12px; display: flex; align-items: center; gap: 12px; box-shadow: 0 3px 15px rgba(0,0,0,0.06); }
+    .amenity i { color: var(--primary); font-size: 1.3rem; }
+    
+    .itinerary { background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); }
+    .day { padding: 20px 0; border-bottom: 1px solid #eee; }
+    .day:last-child { border-bottom: none; }
+    .day-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+    .day-badge { background: var(--primary); color: white; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; }
+    .day h4 { font-size: 1.2rem; }
+    .day-activities { display: grid; gap: 10px; padding-left: 20px; }
+    .activity { display: flex; align-items: center; gap: 10px; }
+    .activity-time { background: #f0f7f5; padding: 4px 12px; border-radius: 15px; font-size: 0.85rem; font-weight: 600; color: var(--primary); }
+    
+    .restaurants-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .restaurant { background: white; border-radius: 15px; padding: 25px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); }
+    .restaurant h4 { font-size: 1.2rem; margin-bottom: 8px; }
+    .restaurant-meta { display: flex; gap: 15px; color: #666; font-size: 0.9rem; margin-bottom: 12px; }
+    .restaurant p { color: #555; font-size: 0.95rem; margin-bottom: 15px; }
+    .restaurant a { color: var(--primary); font-weight: 600; text-decoration: none; }
+    
+    .budget-table { width: 100%; border-collapse: collapse; background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.08); }
+    .budget-table th, .budget-table td { padding: 18px 20px; text-align: left; }
+    .budget-table th { background: var(--primary); color: white; font-weight: 600; }
+    .budget-table tr:nth-child(even) { background: #f8f9fa; }
+    .budget-table tr:last-child { font-weight: 700; background: #e8f5f1; }
+    
+    .cta-section { background: linear-gradient(135deg, #9c27b0, #e91e63); padding: 50px; border-radius: 25px; text-align: center; color: white; margin-top: 40px; }
+    .cta-section h2 { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 20px; }
+    .cta-btn { display: inline-block; background: white; color: #9c27b0; padding: 18px 40px; border-radius: 30px; font-weight: 700; text-decoration: none; font-size: 1.1rem; transition: transform 0.3s; }
+    .cta-btn:hover { transform: scale(1.05); }
+    
+    /* Photo Gallery */
+    .photo-gallery { margin-bottom: 60px; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+    .gallery-grid img { width: 100%; height: 250px; object-fit: cover; border-radius: 16px; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s; }
+    .gallery-grid img:hover { transform: scale(1.03); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+    .gallery-grid img:first-child { grid-column: span 2; grid-row: span 2; height: 515px; }
+    
+    /* Lightbox */
+    .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center; }
+    .lightbox.active { display: flex; }
+    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 12px; }
+    .lightbox-close { position: absolute; top: 20px; right: 30px; color: white; font-size: 2rem; cursor: pointer; background: none; border: none; }
+    .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 2rem; cursor: pointer; background: rgba(255,255,255,0.1); border: none; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .lightbox-nav.prev { left: 20px; }
+    .lightbox-nav.next { right: 20px; }
+    .lightbox-counter { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); color: white; font-size: 1rem; }
+    
+    @media (max-width: 768px) { 
+      .content { padding: 40px 20px; } 
+      .hero-meta { flex-direction: column; gap: 15px; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid img { height: 150px; }
+      .gallery-grid img:first-child { height: 310px; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> All Villas</a>
+
+<section class="hero">
+  <span class="hero-badge">💎 HIDDEN GEM</span>
+  <h1>Ocean-View Glass Infinity Pool Villa</h1>
+  <div class="hero-meta">
+    <span><i class="fas fa-map-marker-alt"></i> East Bali (Karangasem)</span>
+    <span><i class="fas fa-star"></i> 4.88 (134 reviews)</span>
+    <span><i class="fas fa-dollar-sign"></i> $1,875/month</span>
+  </div>
+</section>
+
+<div class="content">
+
+  <!-- Photo Gallery -->
+  <section class="photo-gallery">
+    <h2 class="section-title"><i class="fas fa-camera"></i> Villa Photos</h2>
+    <div class="gallery-grid">
+      <img src="images/villa-ocean/01-pool.jpg" alt="Glass infinity pool with ocean views" onclick="openLightbox(0)">
+      <img src="images/villa-ocean/02-lounge.jpg" alt="Outdoor lounge area" onclick="openLightbox(1)">
+      <img src="images/villa-ocean/03-garden.jpg" alt="Tropical garden" onclick="openLightbox(2)">
+      <img src="images/villa-ocean/04-bedroom.jpg" alt="Master bedroom" onclick="openLightbox(3)">
+      <img src="images/villa-ocean/05-view.jpg" alt="Ocean view" onclick="openLightbox(4)">
+      <img src="images/villa-ocean/06-exterior.jpg" alt="Villa exterior" onclick="openLightbox(5)">
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" onclick="closeLightbox()">×</button>
+    <button class="lightbox-nav prev" onclick="changeLightbox(-1)"><i class="fas fa-chevron-left"></i></button>
+    <img id="lightbox-img" src="" alt="">
+    <button class="lightbox-nav next" onclick="changeLightbox(1)"><i class="fas fa-chevron-right"></i></button>
+    <div class="lightbox-counter"><span id="lightbox-current">1</span> / <span id="lightbox-total">6</span></div>
+  </div>
+  
+  <section class="section">
+    <h2 class="section-title"><i class="fas fa-home"></i> Villa Overview</h2>
+    <div class="overview-grid">
+      <div class="overview-item"><i class="fas fa-bed"></i><h4>2 Bedrooms</h4><p>King beds, AC, ensuite</p></div>
+      <div class="overview-item"><i class="fas fa-bath"></i><h4>2 Bathrooms</h4><p>Rain showers</p></div>
+      <div class="overview-item"><i class="fas fa-users"></i><h4>4 Guests</h4><p>Perfect for duo</p></div>
+      <div class="overview-item"><i class="fas fa-swimming-pool"></i><h4>Glass Infinity Pool</h4><p>Stunning ocean views</p></div>
+      <div class="overview-item"><i class="fas fa-wifi"></i><h4>WiFi</h4><p>Reliable connection</p></div>
+      <div class="overview-item"><i class="fas fa-utensils"></i><h4>Full Kitchen</h4><p>Modern appliances</p></div>
+    </div>
+    
+    <div class="highlight-box">
+      <h3>🌊 Why This Location is Unforgettable</h3>
+      <p>Far from the tourist crowds, East Bali offers the most authentic Balinese experience. Wake up to unobstructed ocean views, watch sunrise over the water, and enjoy the peaceful village atmosphere. The glass infinity pool creates stunning photos and a surreal swimming experience.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title"><i class="fas fa-concierge-bell"></i> Amenities</h2>
+    <div class="amenities-grid">
+      <div class="amenity"><i class="fas fa-swimming-pool"></i> Glass Infinity Pool</div>
+      <div class="amenity"><i class="fas fa-water"></i> Ocean Views</div>
+      <div class="amenity"><i class="fas fa-wifi"></i> WiFi</div>
+      <div class="amenity"><i class="fas fa-snowflake"></i> Air Conditioning</div>
+      <div class="amenity"><i class="fas fa-utensils"></i> Full Kitchen</div>
+      <div class="amenity"><i class="fas fa-parking"></i> Free Parking</div>
+      <div class="amenity"><i class="fas fa-mountain"></i> Terrace</div>
+      <div class="amenity"><i class="fas fa-umbrella-beach"></i> Beach Access</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title"><i class="fas fa-calendar-week"></i> Sample Week Itinerary</h2>
+    <div class="itinerary">
+      <div class="day">
+        <div class="day-header"><span class="day-badge">DAY 1</span><h4>Arrival & Ocean Bliss</h4></div>
+        <div class="day-activities">
+          <div class="activity"><span class="activity-time">3pm</span> Check-in, villa orientation</div>
+          <div class="activity"><span class="activity-time">5pm</span> First swim in glass infinity pool</div>
+          <div class="activity"><span class="activity-time">7pm</span> Sunset dinner at Jasri Beach Club</div>
+        </div>
+      </div>
+      <div class="day">
+        <div class="day-header"><span class="day-badge">DAY 2</span><h4>Tirta Gangga & Water Palaces</h4></div>
+        <div class="day-activities">
+          <div class="activity"><span class="activity-time">8am</span> Sunrise from villa</div>
+          <div class="activity"><span class="activity-time">10am</span> Tirta Gangga Royal Water Palace (20 min)</div>
+          <div class="activity"><span class="activity-time">1pm</span> Lunch at Tirta Ayu Restaurant</div>
+          <div class="activity"><span class="activity-time">4pm</span> Taman Ujung Water Palace</div>
+        </div>
+      </div>
+      <div class="day">
+        <div class="day-header"><span class="day-badge">DAY 3</span><h4>Amed Snorkeling Adventure</h4></div>
+        <div class="day-activities">
+          <div class="activity"><span class="activity-time">7am</span> Drive to Amed (30 min)</div>
+          <div class="activity"><span class="activity-time">9am</span> Snorkeling at Japanese Shipwreck</div>
+          <div class="activity"><span class="activity-time">12pm</span> Lunch at Warung Enak, Amed</div>
+          <div class="activity"><span class="activity-time">3pm</span> Salt farming village tour</div>
+        </div>
+      </div>
+      <div class="day">
+        <div class="day-header"><span class="day-badge">DAY 4</span><h4>Mt. Agung Sunrise Trek (Optional)</h4></div>
+        <div class="day-activities">
+          <div class="activity"><span class="activity-time">1am</span> Start Mt. Agung sunrise trek</div>
+          <div class="activity"><span class="activity-time">6am</span> Summit sunrise (3,142m!)</div>
+          <div class="activity"><span class="activity-time">12pm</span> Return, rest at villa</div>
+          <div class="activity"><span class="activity-time">7pm</span> Celebratory dinner</div>
+        </div>
+      </div>
+      <div class="day">
+        <div class="day-header"><span class="day-badge">DAY 5</span><h4>Remote Work + Village Life</h4></div>
+        <div class="day-activities">
+          <div class="activity"><span class="activity-time">8am</span> Work session by the pool</div>
+          <div class="activity"><span class="activity-time">12pm</span> Lunch at local warung</div>
+          <div class="activity"><span class="activity-time">4pm</span> Walk through rice terraces</div>
+          <div class="activity"><span class="activity-time">6pm</span> Traditional cooking class</div>
+        </div>
+      </div>
+      <div class="day">
+        <div class="day-header"><span class="day-badge">DAY 6</span><h4>Candidasa & White Sand Beach</h4></div>
+        <div class="day-activities">
+          <div class="activity"><span class="activity-time">9am</span> Drive to Candidasa (40 min)</div>
+          <div class="activity"><span class="activity-time">10am</span> White Sand Beach (Pasir Putih)</div>
+          <div class="activity"><span class="activity-time">1pm</span> Fresh seafood BBQ on beach</div>
+          <div class="activity"><span class="activity-time">5pm</span> Return for sunset at villa</div>
+        </div>
+      </div>
+      <div class="day">
+        <div class="day-header"><span class="day-badge">DAY 7</span><h4>Temple Day & Reflection</h4></div>
+        <div class="day-activities">
+          <div class="activity"><span class="activity-time">6am</span> Lempuyang Temple "Gates of Heaven"</div>
+          <div class="activity"><span class="activity-time">12pm</span> Lunch at Taman Ujung area</div>
+          <div class="activity"><span class="activity-time">4pm</span> Final pool session</div>
+          <div class="activity"><span class="activity-time">7pm</span> Farewell dinner</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title"><i class="fas fa-utensils"></i> Restaurants Nearby</h2>
+    <div class="restaurants-grid">
+      <div class="restaurant">
+        <h4>Jasri Beach Club</h4>
+        <div class="restaurant-meta"><span><i class="fas fa-dollar-sign"></i> $$</span><span><i class="fas fa-car"></i> 10 min</span></div>
+        <p>Beachfront dining with ocean views. Fresh seafood, Indonesian and Western cuisine. Perfect sunset spot.</p>
+        <a href="https://www.google.com/maps/search/Jasri+Beach+Club+Bali/@-8.4512,115.5234,14z" target="_blank">View on Map →</a>
+      </div>
+      <div class="restaurant">
+        <h4>Tirta Ayu Restaurant</h4>
+        <div class="restaurant-meta"><span><i class="fas fa-dollar-sign"></i> $$</span><span><i class="fas fa-car"></i> 20 min</span></div>
+        <p>Overlooks Tirta Gangga water palace. Authentic Balinese cuisine in royal setting. Book a gazebo!</p>
+        <a href="https://maps.google.com/?q=Tirta+Ayu+Restaurant+Bali" target="_blank">View on Map →</a>
+      </div>
+      <div class="restaurant">
+        <h4>Warung Enak Amed</h4>
+        <div class="restaurant-meta"><span><i class="fas fa-dollar-sign"></i> $</span><span><i class="fas fa-car"></i> 30 min</span></div>
+        <p>Local warung with incredible fresh fish. Simple, authentic, and delicious. The grilled barracuda is legendary.</p>
+        <a href="https://maps.google.com/?q=Warung+Enak+Amed" target="_blank">View on Map →</a>
+      </div>
+      <div class="restaurant">
+        <h4>Vincent's Restaurant</h4>
+        <div class="restaurant-meta"><span><i class="fas fa-dollar-sign"></i> $$$</span><span><i class="fas fa-car"></i> 40 min (Candidasa)</span></div>
+        <p>Fine dining in Candidasa. French-Indonesian fusion by a long-time expat chef. Excellent wine list.</p>
+        <a href="https://maps.google.com/?q=Vincents+Candidasa+Bali" target="_blank">View on Map →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title"><i class="fas fa-hiking"></i> Activities & Experiences</h2>
+    <div class="restaurants-grid">
+      <div class="restaurant">
+        <h4>Lempuyang Temple "Gates of Heaven"</h4>
+        <p>The famous Instagram spot with Mt. Agung framed in temple gates. Go at 6am to beat crowds.</p>
+      </div>
+      <div class="restaurant">
+        <h4>Amed Snorkeling/Diving</h4>
+        <p>Crystal clear waters, Japanese WWII shipwreck, coral gardens. One of Bali's best dive sites.</p>
+      </div>
+      <div class="restaurant">
+        <h4>Tirta Gangga Water Palace</h4>
+        <p>Royal water gardens with koi-filled pools. Swim in the sacred springs (bring swimsuit!).</p>
+      </div>
+      <div class="restaurant">
+        <h4>Mt. Agung Sunrise Trek</h4>
+        <p>Challenging but rewarding climb to Bali's highest peak. Book through local guides (4-8 hours).</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title"><i class="fas fa-calculator"></i> Monthly Budget Breakdown</h2>
+    <table class="budget-table">
+      <tr><th>Expense</th><th>Estimated Cost</th></tr>
+      <tr><td>Villa (30 nights)</td><td>$1,875</td></tr>
+      <tr><td>Food & Dining</td><td>$600 - $900</td></tr>
+      <tr><td>Scooter Rental</td><td>$120</td></tr>
+      <tr><td>Activities & Tours</td><td>$200 - $400</td></tr>
+      <tr><td>Diving/Snorkeling</td><td>$150 - $300</td></tr>
+      <tr><td>Misc & Transport</td><td>$100</td></tr>
+      <tr><td><strong>TOTAL (per person, shared)</strong></td><td><strong>$1,523 - $1,848</strong></td></tr>
+    </table>
+  </section>
+
+  <!-- Nearby Exclusive Experiences -->
+  <section class="section" style="background: linear-gradient(135deg, #1a1a2e, #2d1f3d); padding: 50px; border-radius: 25px; margin-bottom: 40px;">
+    <h2 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: white; margin-bottom: 25px; display: flex; align-items: center; gap: 15px;">
+      <span style="font-size: 1.5rem;">🔮</span> Exclusive Experiences in East Bali
+    </h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+      <div style="background: rgba(255,255,255,0.1); border-radius: 15px; padding: 20px;">
+        <h4 style="color: white; margin-bottom: 8px;">⛩️ Lempuyang Gates of Heaven</h4>
+        <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">Go at 6am to beat the crowds. Iconic photo spot.</p>
+      </div>
+      <div style="background: rgba(255,255,255,0.1); border-radius: 15px; padding: 20px;">
+        <h4 style="color: white; margin-bottom: 8px;">🤿 Amed Japanese Shipwreck</h4>
+        <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">World-class snorkeling, WWII wreck, crystal waters</p>
+      </div>
+      <div style="background: rgba(255,255,255,0.1); border-radius: 15px; padding: 20px;">
+        <h4 style="color: white; margin-bottom: 8px;">🏖️ White Sand Beach (Pasir Putih)</h4>
+        <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">Secret beach, no tourists, fresh seafood BBQ</p>
+      </div>
+    </div>
+    <a href="exclusive.html" style="display: inline-block; margin-top: 25px; color: #f0a500; text-decoration: none; font-weight: 600;">
+      View All Exclusive Experiences →
+    </a>
+  </section>
+
+  <div class="cta-section">
+    <h2>🌊 Experience East Bali's Hidden Paradise</h2>
+    <p style="margin-bottom: 25px; opacity: 0.9;">Far from crowds, authentic Bali awaits. Glass infinity pool + ocean views = pure magic.</p>
+    <a href="https://www.airbnb.com/rooms/25447889" target="_blank" class="cta-btn">Book on Airbnb →</a>
+  </div>
+  
+</div>
+
+<script>
+const galleryImages = [
+  'images/villa-ocean/01-pool.jpg',
+  'images/villa-ocean/02-lounge.jpg',
+  'images/villa-ocean/03-garden.jpg',
+  'images/villa-ocean/04-bedroom.jpg',
+  'images/villa-ocean/05-view.jpg',
+  'images/villa-ocean/06-exterior.jpg'
+];
+let currentIndex = 0;
+
+function openLightbox(index) {
+  currentIndex = index;
+  document.getElementById('lightbox').classList.add('active');
+  document.getElementById('lightbox-img').src = galleryImages[index];
+  document.getElementById('lightbox-current').textContent = index + 1;
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
+
+function changeLightbox(direction) {
+  currentIndex += direction;
+  if (currentIndex < 0) currentIndex = galleryImages.length - 1;
+  if (currentIndex >= galleryImages.length) currentIndex = 0;
+  document.getElementById('lightbox-img').src = galleryImages[currentIndex];
+  document.getElementById('lightbox-current').textContent = currentIndex + 1;
+}
+
+document.addEventListener('keydown', (e) => {
+  if (!document.getElementById('lightbox').classList.contains('active')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') changeLightbox(-1);
+  if (e.key === 'ArrowRight') changeLightbox(1);
+});
+
+document.getElementById('lightbox').addEventListener('click', (e) => {
+  if (e.target.id === 'lightbox') closeLightbox();
+});
+</script>
+
+</body>
+</html>

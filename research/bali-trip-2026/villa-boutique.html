@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boutique Villa Ubud 2BR | Bali 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root { --primary: #4CAF50; --primary-light: #8BC34A; --accent: #f0a500; --dark: #1a1a2e; --light: #f8f9fa; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: var(--light); color: var(--dark); line-height: 1.7; }
+    
+    .hero {
+      min-height: 70vh;
+      background: linear-gradient(135deg, rgba(76,175,80,0.85), rgba(139,195,74,0.8)), 
+        url('images/villa-boutique/01-pool.jpg') center/cover;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; color: white; padding: 60px 20px;
+    }
+    .hero-badge { background: linear-gradient(135deg, #4CAF50, #8BC34A); padding: 10px 25px; border-radius: 30px; font-weight: 700; margin-bottom: 25px; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 4rem); margin-bottom: 20px; max-width: 800px; }
+    .hero-meta { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; font-size: 1.1rem; }
+    .hero-meta span { display: flex; align-items: center; gap: 8px; }
+    
+    .back-link { position: fixed; top: 20px; left: 20px; background: white; padding: 12px 24px; border-radius: 30px; text-decoration: none; color: var(--dark); font-weight: 600; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 100; display: flex; align-items: center; gap: 8px; }
+    
+    .content { max-width: 1000px; margin: 0 auto; padding: 60px 40px; }
+    .section { margin-bottom: 60px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 25px; color: var(--primary); display: flex; align-items: center; gap: 15px; }
+    
+    .overview-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+    .overview-item { background: white; padding: 25px; border-radius: 15px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.08); }
+    .overview-item i { font-size: 2rem; color: var(--primary); margin-bottom: 10px; }
+    .overview-item h4 { font-size: 1.3rem; margin-bottom: 5px; }
+    .overview-item p { color: #666; }
+    
+    .highlight-box { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 30px; border-radius: 20px; margin: 30px 0; }
+    .highlight-box h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 15px; }
+    
+    .amenities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; }
+    .amenity { background: white; padding: 20px; border-radius: 12px; display: flex; align-items: center; gap: 12px; box-shadow: 0 3px 15px rgba(0,0,0,0.06); }
+    .amenity i { color: var(--primary); font-size: 1.3rem; }
+    
+    .itinerary { background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); }
+    .day { padding: 20px 0; border-bottom: 1px solid #eee; }
+    .day:last-child { border-bottom: none; }
+    .day-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+    .day-badge { background: var(--primary); color: white; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; }
+    .day h4 { font-size: 1.2rem; }
+    .day-activities { display: grid; gap: 10px; padding-left: 20px; }
+    .activity { display: flex; align-items: center; gap: 10px; }
+    .activity-time { background: #e8f5e9; padding: 4px 12px; border-radius: 15px; font-size: 0.85rem; font-weight: 600; color: var(--primary); }
+    
+    .restaurants-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .restaurant { background: white; border-radius: 15px; padding: 25px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); }
+    .restaurant h4 { font-size: 1.2rem; margin-bottom: 8px; }
+    .restaurant-meta { display: flex; gap: 15px; color: #666; font-size: 0.9rem; margin-bottom: 12px; }
+    .restaurant p { color: #555; font-size: 0.95rem; margin-bottom: 15px; }
+    .restaurant a { color: var(--primary); font-weight: 600; text-decoration: none; }
+    
+    .budget-table { width: 100%; border-collapse: collapse; background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.08); }
+    .budget-table th, .budget-table td { padding: 18px 20px; text-align: left; }
+    .budget-table th { background: var(--primary); color: white; font-weight: 600; }
+    .budget-table tr:nth-child(even) { background: #f8f9fa; }
+    .budget-table tr:last-child { font-weight: 700; background: #e8f5e9; }
+    
+    .cta-section { background: linear-gradient(135deg, var(--primary), var(--primary-light)); padding: 50px; border-radius: 25px; text-align: center; color: white; margin-top: 40px; }
+    .cta-section h2 { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 20px; }
+    .cta-btn { display: inline-block; background: white; color: var(--primary); padding: 18px 40px; border-radius: 30px; font-weight: 700; text-decoration: none; font-size: 1.1rem; transition: transform 0.3s; }
+    .cta-btn:hover { transform: scale(1.05); }
+    
+    /* Photo Gallery */
+    .photo-gallery { margin-bottom: 60px; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+    .gallery-grid img { width: 100%; height: 250px; object-fit: cover; border-radius: 16px; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s; }
+    .gallery-grid img:hover { transform: scale(1.03); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+    .gallery-grid img:first-child { grid-column: span 2; grid-row: span 2; height: 515px; }
+    
+    /* Lightbox */
+    .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center; }
+    .lightbox.active { display: flex; }
+    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 12px; }
+    .lightbox-close { position: absolute; top: 20px; right: 30px; color: white; font-size: 2rem; cursor: pointer; background: none; border: none; }
+    .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 2rem; cursor: pointer; background: rgba(255,255,255,0.1); border: none; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .lightbox-nav.prev { left: 20px; }
+    .lightbox-nav.next { right: 20px; }
+    .lightbox-counter { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); color: white; font-size: 1rem; }
+    
+    @media (max-width: 768px) { 
+      .content { padding: 40px 20px; } 
+      .hero-meta { flex-direction: column; gap: 15px; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid img { height: 150px; }
+      .gallery-grid img:first-child { height: 310px; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> All Villas</a>
+
+<section class="hero">
+  <span class="hero-badge">💰 BEST VALUE • 5.0 RATING</span>
+  <h1>Boutique Villa Ubud 2BR</h1>
+  <div class="hero-meta">
+    <span><i class="fas fa-map-marker-alt"></i> Ubud</span>
+    <span><i class="fas fa-star"></i> 5.0 (9 reviews)</span>
+    <span><i class="fas fa-dollar-sign"></i> $1,156/month</span>
+  </div>
+</section>
+
+<div class="content">
+
+  <!-- Photo Gallery -->
+  <section class="photo-gallery">
+    <h2 class="section-title"><i class="fas fa-camera"></i> Villa Photos</h2>
+    <div class="gallery-grid">
+      <img src="images/villa-boutique/01-pool.jpg" alt="Private pool" onclick="openLightbox(0)">
+      <img src="images/villa-boutique/02-view.jpg" alt="Garden view" onclick="openLightbox(1)">
+      <img src="images/villa-boutique/03-bedroom.jpg" alt="Bedroom" onclick="openLightbox(2)">
+      <img src="images/villa-boutique/04-living.jpg" alt="Living area" onclick="openLightbox(3)">
+      <img src="images/villa-boutique/05-bathroom.jpg" alt="Bathroom" onclick="openLightbox(4)">
+      <img src="images/villa-boutique/06-terrace.jpg" alt="Terrace" onclick="openLightbox(5)">
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" onclick="closeLightbox()">×</button>
+    <button class="lightbox-nav prev" onclick="changeLightbox(-1)"><i class="fas fa-chevron-left"></i></button>
+    <img id="lightbox-img" src="" alt="">
+    <button class="lightbox-nav next" onclick="changeLightbox(1)"><i class="fas fa-chevron-right"></i></button>
+    <div class="lightbox-counter"><span id="lightbox-current">1</span> / <span id="lightbox-total">6</span></div>
+  </div>
+  
+  <section class="section">
+    <h2 class="section-title"><i class="fas fa-home"></i> Villa Overview</h2>
+    <div class="overview-grid">
+      <div class="overview-item"><i class="fas fa-bed"></i><h4>2 Bedrooms</h4><p>Comfortable beds, AC</p></div>
+      <div class="overview-item"><i class="fas fa-bath"></i><h4>2 Bathrooms</h4><p>Modern fixtures</p></div>
+      <div class="overview-item"><i class="fas fa-users"></i><h4>4 Guests</h4><p>Perfect for duo</p></div>
+      <div class="overview-item"><i class="fas fa-swimming-pool"></i><h4>Private Pool</h4><p>Compact but refreshing</p></div>
+      <div class="overview-item"><i class="fas fa-door-open"></i><h4>Private Patio</h4><p>Outdoor relaxation</p></div>
+      <div class="overview-item"><i class="fas fa-wifi"></i><h4>WiFi</h4><p>Reliable internet</p></div>
+    </div>
+    
+    <div class="highlight-box">
+      <h3>💰 Best Value in Ubud</h3>
+      <p>At just $1,156/month with a perfect 5.0 rating, this is the sweet spot of quality and affordability. It's a newer listing (9 reviews) so you're getting premium value before prices go up. Central Ubud location means easy access to everything without long drives. Perfect for budget-conscious travelers who still want the private pool experience.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title"><i class="fas fa-concierge-bell"></i> Amenities</h2>
+    <div class="amenities-grid">
+      <div class="amenity"><i class="fas fa-swimming-pool"></i> Private Pool</div>
+      <div class="amenity"><i class="fas fa-tree"></i> Private Patio</div>
+      <div class="amenity"><i class="fas fa-wifi"></i> WiFi</div>
+      <div class="amenity"><i class="fas fa-snowflake"></i> Air Conditioning</div>
+      <div class="amenity"><i class="fas fa-utensils"></i> Kitchen</div>
+      <div class="amenity"><i class="fas fa-parking"></i> Free Parking</div>
+      <div class="amenity"><i class="fas fa-tv"></i> Smart TV</div>
+      <div class="amenity"><i class="fas fa-tshirt"></i> Washer</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title"><i class="fas fa-calendar-week"></i> Sample Week Itinerary</h2>
+    <div class="itinerary">
+      <div class="day">
+        <div class="day-header"><span class="day-badge">DAY 1</span><h4>Arrival & Ubud Orientation</h4></div>
+        <div class="day-activities">
+          <div class="activity"><span class="activity-time">3pm</span> Check-in, settle in</div>
+          <div class="activity"><span class="activity-time">5pm</span> First pool dip</div>
+          <div class="activity"><span class="activity-time">7pm</span> Walk to dinner at Warung Biah Biah</div>
+        </div>
+      </div>
+      <div class="day">
+        <div class="day-header"><span class="day-badge">DAY 2</span><h4>Ubud Essentials</h4></div>
+        <div class="day-activities">
+          <div class="activity"><span class="activity-time">8am</span> Breakfast at Lazy Cats Cafe</div>
+          <div class="activity"><span class="activity-time">10am</span> Sacred Monkey Forest</div>
+          <div class="activity"><span class="activity-time">1pm</span> Lunch at Ibu Oka (famous roast pig)</div>
+          <div class="activity"><span class="activity-time">4pm</span> Ubud Art Market shopping</div>
+        </div>
+      </div>
+      <div class="day">
+        <div class="day-header"><span class="day-badge">DAY 3</span><h4>Rice Terrace Day</h4></div>
+        <div class="day-activities">
+          <div class="activity"><span class="activity-time">6am</span> Sunrise at Tegallalang Rice Terraces</div>
+          <div class="activity"><span class="activity-time">9am</span> Breakfast at Tis Cafe</div>
+          <div class="activity"><span class="activity-time">2pm</span> Pool time at villa</div>
+          <div class="activity"><span class="activity-time">7pm</span> Kecak dance at Ubud Palace</div>
+        </div>
+      </div>
+      <div class="day">
+        <div class="day-header"><span class="day-badge">DAY 4</span><h4>Work From Paradise</h4></div>
+        <div class="day-activities">
+          <div class="activity"><span class="activity-time">8am</span> Work from patio</div>
+          <div class="activity"><span class="activity-time">12pm</span> Lunch break at local warung</div>
+          <div class="activity"><span class="activity-time">6pm</span> Sunset drinks at Karsa Kafe</div>
+          <div class="activity"><span class="activity-time">8pm</span> Dinner at Bebek Bengil</div>
+        </div>
+      </div>
+      <div class="day">
+        <div class="day-header"><span class="day-badge">DAY 5</span><h4>Waterfall Chase</h4></div>
+        <div class="day-activities">
+          <div class="activity"><span class="activity-time">7am</span> Tegenungan Waterfall (less crowded)</div>
+          <div class="activity"><span class="activity-time">10am</span> Tibumana Waterfall</div>
+          <div class="activity"><span class="activity-time">1pm</span> Late lunch at Gianyar Night Market</div>
+          <div class="activity"><span class="activity-time">5pm</span> Relax at villa pool</div>
+        </div>
+      </div>
+      <div class="day">
+        <div class="day-header"><span class="day-badge">DAY 6</span><h4>Temple & Spa</h4></div>
+        <div class="day-activities">
+          <div class="activity"><span class="activity-time">6am</span> Tirta Empul water temple</div>
+          <div class="activity"><span class="activity-time">11am</span> Balinese massage ($15-20)</div>
+          <div class="activity"><span class="activity-time">3pm</span> Goa Gajah (Elephant Cave)</div>
+          <div class="activity"><span class="activity-time">7pm</span> Dinner at Casa Luna</div>
+        </div>
+      </div>
+      <div class="day">
+        <div class="day-header"><span class="day-badge">DAY 7</span><h4>Leisure Day</h4></div>
+        <div class="day-activities">
+          <div class="activity"><span class="activity-time">7am</span> Campuhan Ridge Walk</div>
+          <div class="activity"><span class="activity-time">10am</span> Brunch at Watercress</div>
+          <div class="activity"><span class="activity-time">2pm</span> Last pool session</div>
+          <div class="activity"><span class="activity-time">7pm</span> Farewell dinner at Bridges Bali</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title"><i class="fas fa-utensils"></i> Budget-Friendly Restaurants</h2>
+    <div class="restaurants-grid">
+      <div class="restaurant">
+        <h4>Warung Biah Biah</h4>
+        <div class="restaurant-meta"><span><i class="fas fa-dollar-sign"></i> $</span><span><i class="fas fa-walking"></i> 10 min walk</span></div>
+        <p>Local favorite with authentic Balinese dishes. Massive portions, tiny prices. Try the nasi campur (mixed rice).</p>
+        <a href="https://maps.google.com/?q=Warung+Biah+Biah+Ubud" target="_blank">View on Map →</a>
+      </div>
+      <div class="restaurant">
+        <h4>Ibu Oka</h4>
+        <div class="restaurant-meta"><span><i class="fas fa-dollar-sign"></i> $</span><span><i class="fas fa-walking"></i> 15 min walk</span></div>
+        <p>Anthony Bourdain's famous babi guling (roast pig) spot. The original location near the palace. Must-try!</p>
+        <a href="https://maps.google.com/?q=Ibu+Oka+Ubud" target="_blank">View on Map →</a>
+      </div>
+      <div class="restaurant">
+        <h4>Bebek Bengil (Dirty Duck Diner)</h4>
+        <div class="restaurant-meta"><span><i class="fas fa-dollar-sign"></i> $$</span><span><i class="fas fa-car"></i> 10 min</span></div>
+        <p>Famous crispy duck in rice paddy setting. A Ubud institution since 1990. Book dinner in advance.</p>
+        <a href="https://www.bebekbengil.co.id/" target="_blank">Visit Website →</a>
+      </div>
+      <div class="restaurant">
+        <h4>Lazy Cats Cafe</h4>
+        <div class="restaurant-meta"><span><i class="fas fa-dollar-sign"></i> $</span><span><i class="fas fa-walking"></i> 10 min walk</span></div>
+        <p>Cute café with great breakfast and coffee. Budget-friendly with good WiFi for digital nomads.</p>
+        <a href="https://www.instagram.com/lazycatscafe/" target="_blank">View on Instagram →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title"><i class="fas fa-hiking"></i> Free & Budget Activities</h2>
+    <div class="restaurants-grid">
+      <div class="restaurant">
+        <h4>Campuhan Ridge Walk</h4>
+        <p>Free! Beautiful ridge walk between two valleys. Best at sunrise. 2km easy walk with stunning views.</p>
+      </div>
+      <div class="restaurant">
+        <h4>Ubud Palace & Market</h4>
+        <p>Free entry to palace grounds. Art Market great for bargain hunting. Go early for best prices.</p>
+      </div>
+      <div class="restaurant">
+        <h4>Sacred Monkey Forest</h4>
+        <p>Entry ~$5. Hundreds of monkeys in ancient temple setting. Keep belongings secure!</p>
+      </div>
+      <div class="restaurant">
+        <h4>Balinese Massage</h4>
+        <p>Budget spas from $10-20 for 1-hour massage. Quality varies - ask locals for recommendations.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title"><i class="fas fa-calculator"></i> Monthly Budget Breakdown</h2>
+    <table class="budget-table">
+      <tr><th>Expense</th><th>Estimated Cost</th></tr>
+      <tr><td>Villa (30 nights)</td><td>$1,156</td></tr>
+      <tr><td>Food & Dining (budget style)</td><td>$400 - $600</td></tr>
+      <tr><td>Scooter Rental</td><td>$100</td></tr>
+      <tr><td>Activities (budget)</td><td>$150 - $250</td></tr>
+      <tr><td>Spa & Wellness</td><td>$50 - $100</td></tr>
+      <tr><td>Misc & Transport</td><td>$75</td></tr>
+      <tr><td><strong>TOTAL (per person, shared)</strong></td><td><strong>$966 - $1,141</strong></td></tr>
+    </table>
+    <p style="margin-top: 20px; text-align: center; color: #666;">💡 This is the most budget-friendly option - under $40/day per person including villa!</p>
+  </section>
+
+  <!-- Nearby Exclusive Experiences -->
+  <section style="background: linear-gradient(135deg, #1a1a2e, #2d1f3d); padding: 40px; border-radius: 25px; margin-bottom: 40px;">
+    <h2 style="font-family: 'Playfair Display', serif; font-size: 1.6rem; color: white; margin-bottom: 20px;">
+      🔮 Exclusive Experiences Near Ubud
+    </h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+      <div style="background: rgba(255,255,255,0.1); border-radius: 15px; padding: 20px;">
+        <h4 style="color: white; margin-bottom: 8px;">👨‍🍳 Apéritif Chef's Table</h4>
+        <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">12-seat exclusive dining. Book 2-4 weeks ahead.</p>
+      </div>
+      <div style="background: rgba(255,255,255,0.1); border-radius: 15px; padding: 20px;">
+        <h4 style="color: white; margin-bottom: 8px;">🌿 LOCAVORE NXT</h4>
+        <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">Award-winning sustainable restaurant.</p>
+      </div>
+    </div>
+    <a href="exclusive.html" style="display: inline-block; margin-top: 20px; color: #4CAF50; text-decoration: none; font-weight: 600;">
+      View All Exclusive Experiences →
+    </a>
+  </section>
+
+  <div class="cta-section">
+    <h2>💰 Maximum Value, Perfect Rating</h2>
+    <p style="margin-bottom: 25px; opacity: 0.9;">5.0 stars at just $1,156/month. The smart traveler's choice.</p>
+    <a href="https://www.airbnb.com/rooms/1475627744186011682" target="_blank" class="cta-btn">Book on Airbnb →</a>
+  </div>
+  
+</div>
+
+<script>
+const galleryImages = [
+  'images/villa-boutique/01-pool.jpg',
+  'images/villa-boutique/02-view.jpg',
+  'images/villa-boutique/03-bedroom.jpg',
+  'images/villa-boutique/04-living.jpg',
+  'images/villa-boutique/05-bathroom.jpg',
+  'images/villa-boutique/06-terrace.jpg'
+];
+let currentIndex = 0;
+
+function openLightbox(index) {
+  currentIndex = index;
+  document.getElementById('lightbox').classList.add('active');
+  document.getElementById('lightbox-img').src = galleryImages[index];
+  document.getElementById('lightbox-current').textContent = index + 1;
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
+
+function changeLightbox(direction) {
+  currentIndex += direction;
+  if (currentIndex < 0) currentIndex = galleryImages.length - 1;
+  if (currentIndex >= galleryImages.length) currentIndex = 0;
+  document.getElementById('lightbox-img').src = galleryImages[currentIndex];
+  document.getElementById('lightbox-current').textContent = currentIndex + 1;
+}
+
+document.addEventListener('keydown', (e) => {
+  if (!document.getElementById('lightbox').classList.contains('active')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') changeLightbox(-1);
+  if (e.key === 'ArrowRight') changeLightbox(1);
+});
+
+document.getElementById('lightbox').addEventListener('click', (e) => {
+  if (e.target.id === 'lightbox') closeLightbox();
+});
+</script>
+
+</body>
+</html>

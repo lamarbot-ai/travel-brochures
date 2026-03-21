@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Villa Vinati Canggu - Detailed Guide | Bali 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #0d5c4b;
+      --primary-light: #1a8f75;
+      --accent: #f0a500;
+      --dark: #1a1a2e;
+      --light: #f8f9fa;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: var(--light); color: var(--dark); line-height: 1.7; }
+    
+    .hero {
+      height: 70vh;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.5)), 
+        url('images/villa-vinati/01-living.jpg') center/cover;
+      display: flex;
+      align-items: flex-end;
+      padding: 60px;
+      color: white;
+    }
+    .hero-content { max-width: 800px; }
+    .hero-badge { 
+      background: var(--accent); 
+      color: var(--dark); 
+      padding: 8px 20px; 
+      border-radius: 30px; 
+      font-weight: 700; 
+      font-size: 0.85rem;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; margin-bottom: 15px; }
+    .hero-meta { display: flex; gap: 30px; font-size: 1.1rem; }
+    .hero-meta span { display: flex; align-items: center; gap: 8px; }
+    
+    .back-link {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: white;
+      padding: 12px 24px;
+      border-radius: 30px;
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .back-link:hover { background: var(--primary); color: white; }
+    
+    .content { max-width: 1200px; margin: 0 auto; padding: 60px 40px; }
+    
+    .section { margin-bottom: 60px; }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 3px solid var(--primary);
+      display: inline-block;
+    }
+    
+    .amenities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .amenity-card {
+      background: white;
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+    .amenity-card i { font-size: 2rem; color: var(--primary); margin-bottom: 15px; }
+    .amenity-card h4 { margin-bottom: 5px; }
+    .amenity-card p { color: #666; font-size: 0.9rem; }
+    
+    .itinerary { background: white; border-radius: 20px; padding: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+    .day-card { 
+      border-left: 4px solid var(--primary); 
+      padding: 20px 30px; 
+      margin-bottom: 30px;
+      background: linear-gradient(to right, #f0f7f5, transparent);
+      border-radius: 0 16px 16px 0;
+    }
+    .day-card h4 { color: var(--primary); font-size: 1.3rem; margin-bottom: 15px; }
+    .day-card ul { margin-left: 20px; }
+    .day-card li { margin-bottom: 10px; }
+    .day-card a { color: var(--primary); }
+    .time-badge { 
+      background: var(--primary); 
+      color: white; 
+      padding: 4px 12px; 
+      border-radius: 15px; 
+      font-size: 0.8rem;
+      margin-right: 10px;
+    }
+    
+    .restaurant-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+    .restaurant-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .restaurant-img { height: 180px; background-size: cover; background-position: center; }
+    .restaurant-content { padding: 25px; }
+    .restaurant-content h4 { font-size: 1.2rem; margin-bottom: 8px; }
+    .restaurant-cuisine { color: var(--primary); font-weight: 600; font-size: 0.9rem; margin-bottom: 10px; }
+    .restaurant-price { display: flex; justify-content: space-between; align-items: center; margin-top: 15px; }
+    .restaurant-price .price { font-weight: 700; color: var(--dark); }
+    .restaurant-price a {
+      background: var(--primary);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    
+    .budget-table {
+      width: 100%;
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .budget-table th {
+      background: var(--primary);
+      color: white;
+      padding: 18px 25px;
+      text-align: left;
+    }
+    .budget-table td { padding: 18px 25px; border-bottom: 1px solid #eee; }
+    .budget-table tr:last-child td { border-bottom: none; }
+    .budget-table .total { background: #f0f7f5; font-weight: 700; }
+    .budget-table .price { text-align: right; font-weight: 600; }
+    
+    .highlight-box {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      padding: 40px;
+      border-radius: 20px;
+      margin: 40px 0;
+    }
+    .highlight-box h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 15px; }
+    
+    .cta-section {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      padding: 60px 40px;
+      text-align: center;
+      border-radius: 24px;
+      margin-top: 40px;
+    }
+    .cta-section h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 20px; }
+    .cta-button {
+      display: inline-block;
+      background: white;
+      color: var(--primary);
+      padding: 18px 50px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-top: 20px;
+    }
+    
+    /* Photo Gallery */
+    .photo-gallery {
+      margin-bottom: 60px;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+    .gallery-grid img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .gallery-grid img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    .gallery-grid img:first-child {
+      grid-column: span 2;
+      grid-row: span 2;
+      height: 515px;
+    }
+    
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.95);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+    .lightbox.active { display: flex; }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      background: rgba(255,255,255,0.1);
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox-nav.prev { left: 20px; }
+    .lightbox-nav.next { right: 20px; }
+    .lightbox-counter {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 1rem;
+    }
+    
+    @media (max-width: 768px) {
+      .hero { height: 50vh; padding: 30px; }
+      .hero h1 { font-size: 2rem; }
+      .hero-meta { flex-direction: column; gap: 10px; }
+      .content { padding: 40px 20px; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid img { height: 150px; }
+      .gallery-grid img:first-child { height: 310px; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to All Villas</a>
+
+<section class="hero">
+  <div class="hero-content">
+    <span class="hero-badge">⭐ TOP PICK FOR REMOTE WORK</span>
+    <h1>Villa Vinati Canggu</h1>
+    <div class="hero-meta">
+      <span><i class="fas fa-star" style="color: var(--accent)"></i> 4.91 (23 reviews)</span>
+      <span><i class="fas fa-map-marker-alt"></i> Kayu Tulang, Canggu</span>
+      <span><i class="fas fa-dollar-sign"></i> ~$3,200/month</span>
+    </div>
+  </div>
+</section>
+
+<div class="content">
+
+  <!-- Photo Gallery -->
+  <section class="photo-gallery">
+    <h2 class="section-title">📸 Villa Photos</h2>
+    <div class="gallery-grid">
+      <img src="images/villa-vinati/06-pool.jpg" alt="Private pool with rice paddy views" onclick="openLightbox(0)">
+      <img src="images/villa-vinati/01-living.jpg" alt="Tropical living area" onclick="openLightbox(1)">
+      <img src="images/villa-vinati/03-bedroom1.jpg" alt="Master bedroom with balcony" onclick="openLightbox(2)">
+      <img src="images/villa-vinati/04-bedroom2.jpg" alt="Second bedroom" onclick="openLightbox(3)">
+      <img src="images/villa-vinati/02-dining.jpg" alt="Dining area" onclick="openLightbox(4)">
+      <img src="images/villa-vinati/05-bathroom.jpg" alt="Terrazzo bathtub bathroom" onclick="openLightbox(5)">
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" onclick="closeLightbox()">×</button>
+    <button class="lightbox-nav prev" onclick="changeLightbox(-1)"><i class="fas fa-chevron-left"></i></button>
+    <img id="lightbox-img" src="" alt="">
+    <button class="lightbox-nav next" onclick="changeLightbox(1)"><i class="fas fa-chevron-right"></i></button>
+    <div class="lightbox-counter"><span id="lightbox-current">1</span> / <span id="lightbox-total">6</span></div>
+  </div>
+  
+  <!-- Overview -->
+  <section class="section">
+    <h2 class="section-title">🏡 Villa Overview</h2>
+    <p style="font-size: 1.15rem; margin-bottom: 25px;">
+      Villa Vinati is a stunning tropical 2-bedroom villa nestled in the peaceful Kayu Tulang area of Canggu, surrounded by lush rice paddies. Perfect for remote workers, it features <strong>100Mbps high-speed WiFi</strong>, a dedicated workspace, and a private pool you can enjoy 24/7.
+    </p>
+    <p style="font-size: 1.15rem;">
+      The villa is run by Superhost Elizabeth (103 reviews, responds within 1 hour) and is part of the ecoBali partnership, making it an environmentally conscious choice. The master suite features a private balcony and gorgeous terrazzo bathtub.
+    </p>
+  </section>
+  
+  <!-- Key Amenities -->
+  <section class="section">
+    <h2 class="section-title">✨ Key Amenities</h2>
+    <div class="amenities-grid">
+      <div class="amenity-card">
+        <i class="fas fa-swimming-pool"></i>
+        <h4>Private Pool</h4>
+        <p>24-hour access, perfect for morning or sunset swims</p>
+      </div>
+      <div class="amenity-card">
+        <i class="fas fa-wifi"></i>
+        <h4>100Mbps WiFi</h4>
+        <p>High-speed fiber, perfect for video calls & work</p>
+      </div>
+      <div class="amenity-card">
+        <i class="fas fa-laptop"></i>
+        <h4>Dedicated Workspace</h4>
+        <p>2nd floor office with comfortable desk setup</p>
+      </div>
+      <div class="amenity-card">
+        <i class="fas fa-bed"></i>
+        <h4>2 Bedrooms</h4>
+        <p>Master with balcony + second bedroom</p>
+      </div>
+      <div class="amenity-card">
+        <i class="fas fa-bath"></i>
+        <h4>Terrazzo Bathtub</h4>
+        <p>Luxury soaking tub in master bathroom</p>
+      </div>
+      <div class="amenity-card">
+        <i class="fas fa-tv"></i>
+        <h4>Smart TVs</h4>
+        <p>Netflix-ready TVs in living area & bedrooms</p>
+      </div>
+      <div class="amenity-card">
+        <i class="fas fa-utensils"></i>
+        <h4>Full Kitchen</h4>
+        <p>Modern kitchen for cooking meals</p>
+      </div>
+      <div class="amenity-card">
+        <i class="fas fa-leaf"></i>
+        <h4>Rice Paddy Views</h4>
+        <p>Peaceful views from pool and terrace</p>
+      </div>
+    </div>
+  </section>
+  
+  <div class="highlight-box">
+    <h3>🌾 What Makes This Location Unforgettable</h3>
+    <p>Wake up to the sound of birds and the gentle rustle of rice paddies. Work from your private office with fiber internet while overlooking tropical greenery. Take a midday swim in your private pool, then scooter 10 minutes to some of Bali's best beaches and cafes. This is the perfect balance of productive work life and tropical relaxation.</p>
+  </div>
+  
+  <!-- Sample Week Itinerary -->
+  <section class="section">
+    <h2 class="section-title">📅 Sample Week Itinerary</h2>
+    <div class="itinerary">
+      
+      <div class="day-card">
+        <h4>Day 1: Arrival & Settle In</h4>
+        <ul>
+          <li><span class="time-badge">Morning</span> Arrive at Ngurah Rai Airport (DPS), private transfer to villa (~45 min)</li>
+          <li><span class="time-badge">Afternoon</span> Unpack, explore the villa, take a dip in the pool</li>
+          <li><span class="time-badge">Evening</span> Dinner at <a href="https://masonrybali.com/" target="_blank">MASONRY Grill & Bar</a> (15 min) - Mediterranean cuisine, ~$25-35/person</li>
+        </ul>
+      </div>
+      
+      <div class="day-card">
+        <h4>Day 2: Work Day + Beach Sunset</h4>
+        <ul>
+          <li><span class="time-badge">Morning</span> Productive work session from villa workspace</li>
+          <li><span class="time-badge">Lunch</span> Work lunch at nearby cafe or cook at villa</li>
+          <li><span class="time-badge">Afternoon</span> Continue work, pool break</li>
+          <li><span class="time-badge">Sunset</span> Scooter to <a href="https://finnsbeachclub.com/" target="_blank">FINNS Beach Club</a> (10 min) - World's best beach club, sunset cocktails ~$15-20</li>
+        </ul>
+      </div>
+      
+      <div class="day-card">
+        <h4>Day 3: Explore Canggu</h4>
+        <ul>
+          <li><span class="time-badge">Morning</span> Sunrise at Batu Bolong Beach + surfing lesson (~$30 for 2 hours)</li>
+          <li><span class="time-badge">Lunch</span> Healthy bowl at Shady Shack or Crate Cafe (~$8-12)</li>
+          <li><span class="time-badge">Afternoon</span> Explore Canggu's boutiques and cafes</li>
+          <li><span class="time-badge">Evening</span> Dinner at <a href="https://sardinebali.com/" target="_blank">Sardine</a> - Iconic rice paddy seafood restaurant (~$40-50/person)</li>
+        </ul>
+      </div>
+      
+      <div class="day-card">
+        <h4>Day 4: Work Day + Wellness</h4>
+        <ul>
+          <li><span class="time-badge">Morning</span> Yoga class at The Practice or Desa Seni (~$15)</li>
+          <li><span class="time-badge">Day</span> Full work day from villa</li>
+          <li><span class="time-badge">Evening</span> Traditional Balinese massage at villa or nearby spa (~$25-40 for 90 min)</li>
+        </ul>
+      </div>
+      
+      <div class="day-card">
+        <h4>Day 5: Day Trip to Tanah Lot</h4>
+        <ul>
+          <li><span class="time-badge">Morning</span> Work session or sleep in</li>
+          <li><span class="time-badge">Afternoon</span> Visit Tanah Lot Temple (30 min drive) - Iconic sea temple, entrance ~$5</li>
+          <li><span class="time-badge">Sunset</span> Watch the famous Tanah Lot sunset</li>
+          <li><span class="time-badge">Dinner</span> Local warung near temple (~$5-8/person)</li>
+        </ul>
+      </div>
+      
+      <div class="day-card">
+        <h4>Day 6: Cretya Day Club</h4>
+        <ul>
+          <li><span class="time-badge">Morning</span> Light work or admin tasks</li>
+          <li><span class="time-badge">Afternoon</span> Day at <a href="https://cretya.com/" target="_blank">Cretya Ubud</a> (45 min) - Stunning infinity pool club with rice terrace views</li>
+          <li><span class="time-badge">Evening</span> Casual dinner in Ubud, explore the town</li>
+        </ul>
+      </div>
+      
+      <div class="day-card">
+        <h4>Day 7: Rest & Recharge</h4>
+        <ul>
+          <li><span class="time-badge">Morning</span> Sleep in, breakfast at villa</li>
+          <li><span class="time-badge">Day</span> Pool day, read, relax, catch up on life admin</li>
+          <li><span class="time-badge">Evening</span> Echo Beach sunset + dinner at Old Man's (live music, ~$15-20/person)</li>
+        </ul>
+      </div>
+      
+    </div>
+  </section>
+  
+  <!-- Nearby Restaurants -->
+  <section class="section">
+    <h2 class="section-title">🍽️ Top Restaurants Nearby</h2>
+    <div class="restaurant-grid">
+      
+      <div class="restaurant-card">
+        <div class="restaurant-img" style="background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600')"></div>
+        <div class="restaurant-content">
+          <h4>MASONRY Grill & Bar</h4>
+          <div class="restaurant-cuisine">Mediterranean • Grill</div>
+          <p>Upscale Mediterranean grill with beautiful ambiance. Great steaks and seafood.</p>
+          <div class="restaurant-price">
+            <span class="price">$25-40/person</span>
+            <a href="https://masonrybali.com/" target="_blank">Visit →</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="restaurant-card">
+        <div class="restaurant-img" style="background-image: url('https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600')"></div>
+        <div class="restaurant-content">
+          <h4>Sardine</h4>
+          <div class="restaurant-cuisine">Seafood • Fine Dining</div>
+          <p>Iconic bamboo restaurant overlooking rice paddies. Fresh seafood, stunning setting.</p>
+          <div class="restaurant-price">
+            <span class="price">$40-60/person</span>
+            <a href="https://sardinebali.com/" target="_blank">Visit →</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="restaurant-card">
+        <div class="restaurant-img" style="background-image: url('https://images.unsplash.com/photo-1551218808-94e220e084d2?w=600')"></div>
+        <div class="restaurant-content">
+          <h4>FINNS Beach Club</h4>
+          <div class="restaurant-cuisine">Beach Club • International</div>
+          <p>World-famous beach club with pools, beach, and great food. Free entry!</p>
+          <div class="restaurant-price">
+            <span class="price">$20-35/person</span>
+            <a href="https://finnsbeachclub.com/" target="_blank">Visit →</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="restaurant-card">
+        <div class="restaurant-img" style="background-image: url('https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=600')"></div>
+        <div class="restaurant-content">
+          <h4>Local Warung</h4>
+          <div class="restaurant-cuisine">Indonesian • Local</div>
+          <p>Authentic Indonesian food at local prices. Nasi goreng, satay, and more.</p>
+          <div class="restaurant-price">
+            <span class="price">$3-8/person</span>
+            <a href="https://www.google.com/maps/search/restaurants+near+Canggu+Bali/@-8.6478,115.1385,14z" target="_blank">Find Nearby →</a>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+  
+  <!-- Activities -->
+  <section class="section">
+    <h2 class="section-title">🎯 Activities & Experiences</h2>
+    <div class="restaurant-grid">
+      
+      <div class="restaurant-card">
+        <div class="restaurant-img" style="background-image: url('https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=600')"></div>
+        <div class="restaurant-content">
+          <h4>Surfing at Batu Bolong</h4>
+          <div class="restaurant-cuisine">Beach • Water Sports</div>
+          <p>Perfect beginner waves. Many surf schools along the beach.</p>
+          <div class="restaurant-price">
+            <span class="price">$25-35/lesson</span>
+            <a href="https://www.google.com/maps/place/Batu+Bolong+Beach/@-8.6553,115.1321,17z" target="_blank">10 min →</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="restaurant-card">
+        <div class="restaurant-img" style="background-image: url('https://images.unsplash.com/photo-1600618528240-fb9fc964b853?w=600')"></div>
+        <div class="restaurant-content">
+          <h4>Balinese Massage</h4>
+          <div class="restaurant-cuisine">Wellness • Spa</div>
+          <p>Traditional massage at villa or nearby spas. Pure relaxation.</p>
+          <div class="restaurant-price">
+            <span class="price">$20-50/session</span>
+            <a href="https://www.google.com/maps/search/spa+near+Canggu+Bali/@-8.6478,115.1385,14z" target="_blank">Various →</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="restaurant-card">
+        <div class="restaurant-img" style="background-image: url('https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?w=600')"></div>
+        <div class="restaurant-content">
+          <h4>Tanah Lot Temple</h4>
+          <div class="restaurant-cuisine">Culture • Landmark</div>
+          <p>Iconic sea temple. Best at sunset. One of Bali's most photographed spots.</p>
+          <div class="restaurant-price">
+            <span class="price">~$5 entry</span>
+            <a href="https://www.google.com/maps/place/Tanah+Lot+Temple/@-8.6212,115.0867,17z" target="_blank">30 min →</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="restaurant-card">
+        <div class="restaurant-img" style="background-image: url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600')"></div>
+        <div class="restaurant-content">
+          <h4>Yoga Classes</h4>
+          <div class="restaurant-cuisine">Wellness • Fitness</div>
+          <p>World-class yoga studios throughout Canggu. Drop-in classes available.</p>
+          <div class="restaurant-price">
+            <span class="price">$10-20/class</span>
+            <a href="https://www.google.com/maps/search/yoga+studio+near+Canggu+Bali/@-8.6478,115.1385,14z" target="_blank">Various →</a>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+  
+  <!-- Budget Breakdown -->
+  <section class="section">
+    <h2 class="section-title">💰 Monthly Budget Breakdown</h2>
+    <table class="budget-table">
+      <tr>
+        <th>Category</th>
+        <th>Estimated Cost</th>
+        <th>Notes</th>
+      </tr>
+      <tr>
+        <td><strong>🏠 Villa Vinati (1 month)</strong></td>
+        <td class="price">$3,200</td>
+        <td>All-inclusive: pool, WiFi, workspace</td>
+      </tr>
+      <tr>
+        <td><strong>🍽️ Food & Dining</strong></td>
+        <td class="price">$600 - $1,200</td>
+        <td>Mix of local warungs ($5-10) & nice restaurants ($30-50)</td>
+      </tr>
+      <tr>
+        <td><strong>🚗 Transportation</strong></td>
+        <td class="price">$150 - $250</td>
+        <td>Scooter rental ($70-100/mo) + occasional Grab/taxi</td>
+      </tr>
+      <tr>
+        <td><strong>🎯 Activities</strong></td>
+        <td class="price">$200 - $400</td>
+        <td>Beach clubs, day trips, surfing, yoga</td>
+      </tr>
+      <tr>
+        <td><strong>💆 Wellness</strong></td>
+        <td class="price">$100 - $200</td>
+        <td>Massages, spa treatments (2-4x/month)</td>
+      </tr>
+      <tr>
+        <td><strong>📱 SIM Card & Data</strong></td>
+        <td class="price">$15 - $25</td>
+        <td>Telkomsel or XL prepaid SIM with data</td>
+      </tr>
+      <tr class="total">
+        <td><strong>TOTAL ESTIMATE</strong></td>
+        <td class="price"><strong>$4,265 - $5,275</strong></td>
+        <td>For 2 people, per month</td>
+      </tr>
+    </table>
+    <p style="margin-top: 20px; color: #666; font-size: 0.95rem;">
+      * Prices in USD. Actual costs may vary. Budget assumes moderate lifestyle mixing local experiences with occasional splurges.
+    </p>
+  </section>
+  
+  <!-- Nearby Exclusive Experiences -->
+  <section class="section" style="background: linear-gradient(135deg, #1a1a2e, #2d1f3d); padding: 50px; border-radius: 25px; margin-bottom: 40px;">
+    <h2 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: white; margin-bottom: 25px; display: flex; align-items: center; gap: 15px;">
+      <span style="font-size: 1.5rem;">🔮</span> Exclusive Experiences Near Canggu
+    </h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+      <div style="background: rgba(255,255,255,0.1); border-radius: 15px; padding: 20px;">
+        <h4 style="color: white; margin-bottom: 8px;">🎵 Canggu Radio Station</h4>
+        <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">Underground DJ nights. Follow @cangguradiostation</p>
+      </div>
+      <div style="background: rgba(255,255,255,0.1); border-radius: 15px; padding: 20px;">
+        <h4 style="color: white; margin-bottom: 8px;">🥃 EAZY Bali</h4>
+        <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">World-class cocktails. 15 min drive to Seminyak.</p>
+      </div>
+      <div style="background: rgba(255,255,255,0.1); border-radius: 15px; padding: 20px;">
+        <h4 style="color: white; margin-bottom: 8px;">🎪 LOCUS Festival</h4>
+        <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">June 19+ 2026. Multi-venue music festival.</p>
+      </div>
+    </div>
+    <a href="exclusive.html" style="display: inline-block; margin-top: 25px; color: #f0a500; text-decoration: none; font-weight: 600;">
+      View All Exclusive Experiences →
+    </a>
+  </section>
+  
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>Ready to Book Villa Vinati?</h2>
+    <p style="font-size: 1.2rem; opacity: 0.9;">This villa is in high demand. Book early to secure your dates!</p>
+    <a href="https://www.airbnb.com/rooms/1207728405270743433" target="_blank" class="cta-button">
+      Book on Airbnb →
+    </a>
+  </section>
+  
+</div>
+
+<script>
+// Lightbox functionality
+const galleryImages = [
+  'images/villa-vinati/06-pool.jpg',
+  'images/villa-vinati/01-living.jpg',
+  'images/villa-vinati/03-bedroom1.jpg',
+  'images/villa-vinati/04-bedroom2.jpg',
+  'images/villa-vinati/02-dining.jpg',
+  'images/villa-vinati/05-bathroom.jpg'
+];
+let currentIndex = 0;
+
+function openLightbox(index) {
+  currentIndex = index;
+  document.getElementById('lightbox').classList.add('active');
+  document.getElementById('lightbox-img').src = galleryImages[index];
+  document.getElementById('lightbox-current').textContent = index + 1;
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
+
+function changeLightbox(direction) {
+  currentIndex += direction;
+  if (currentIndex < 0) currentIndex = galleryImages.length - 1;
+  if (currentIndex >= galleryImages.length) currentIndex = 0;
+  document.getElementById('lightbox-img').src = galleryImages[currentIndex];
+  document.getElementById('lightbox-current').textContent = currentIndex + 1;
+}
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  if (!document.getElementById('lightbox').classList.contains('active')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') changeLightbox(-1);
+  if (e.key === 'ArrowRight') changeLightbox(1);
+});
+
+// Click outside to close
+document.getElementById('lightbox').addEventListener('click', (e) => {
+  if (e.target.id === 'lightbox') closeLightbox();
+});
+</script>
+
+</body>
+</html>

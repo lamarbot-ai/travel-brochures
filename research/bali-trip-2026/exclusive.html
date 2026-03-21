@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exclusive & Hidden Experiences | Bali 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root { --primary: #9c27b0; --primary-light: #ba68c8; --accent: #ffd700; --dark: #1a1a2e; --light: #f8f9fa; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: var(--dark); color: white; line-height: 1.7; }
+    
+    .hero {
+      min-height: 60vh;
+      background: linear-gradient(135deg, rgba(156,39,176,0.9), rgba(103,58,183,0.85)), 
+        url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1920&q=80') center/cover;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; padding: 60px 20px;
+    }
+    .hero-badge { background: var(--accent); color: var(--dark); padding: 10px 25px; border-radius: 30px; font-weight: 700; margin-bottom: 25px; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 4rem); margin-bottom: 20px; }
+    .hero p { font-size: 1.2rem; opacity: 0.9; max-width: 600px; }
+    
+    .back-link { position: fixed; top: 20px; left: 20px; background: white; padding: 12px 24px; border-radius: 30px; text-decoration: none; color: var(--dark); font-weight: 600; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 100; display: flex; align-items: center; gap: 8px; }
+    
+    .content { max-width: 1200px; margin: 0 auto; padding: 60px 40px; }
+    .section { margin-bottom: 80px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 30px; color: var(--accent); display: flex; align-items: center; gap: 15px; }
+    
+    .experience-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px; }
+    .experience-card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px; padding: 30px; backdrop-filter: blur(10px);
+      transition: all 0.3s;
+    }
+    .experience-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+    .experience-card.featured { border: 2px solid var(--accent); background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(255,255,255,0.05)); }
+    
+    .experience-badge { display: inline-block; background: var(--primary); padding: 5px 15px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; margin-bottom: 15px; }
+    .experience-badge.secret { background: linear-gradient(135deg, #e91e63, #9c27b0); }
+    .experience-badge.new { background: linear-gradient(135deg, #4caf50, #8bc34a); }
+    .experience-badge.exclusive { background: linear-gradient(135deg, #ffd700, #ff9800); color: var(--dark); }
+    
+    .experience-card h3 { font-size: 1.4rem; margin-bottom: 10px; }
+    .experience-meta { display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 15px; font-size: 0.9rem; opacity: 0.8; }
+    .experience-meta span { display: flex; align-items: center; gap: 5px; }
+    .experience-card p { opacity: 0.9; margin-bottom: 20px; }
+    
+    .experience-price { font-size: 1.3rem; font-weight: 700; color: var(--accent); margin-bottom: 15px; }
+    .experience-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: var(--dark); padding: 12px 25px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+    .experience-cta:hover { transform: scale(1.05); }
+    
+    .how-to-book { background: rgba(255,255,255,0.05); border-radius: 15px; padding: 20px; margin-top: 15px; }
+    .how-to-book h4 { color: var(--accent); margin-bottom: 10px; font-size: 0.9rem; }
+    .how-to-book p { font-size: 0.9rem; opacity: 0.8; }
+    
+    .tip-box { background: linear-gradient(135deg, var(--accent), #ff9800); color: var(--dark); padding: 25px; border-radius: 15px; margin: 30px 0; }
+    .tip-box h4 { margin-bottom: 10px; }
+    
+    footer { background: rgba(0,0,0,0.3); padding: 40px; text-align: center; }
+    
+    @media (max-width: 768px) { 
+      .content { padding: 40px 20px; } 
+      .experience-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Villas</a>
+
+<section class="hero">
+  <span class="hero-badge">🔮 INSIDER ACCESS</span>
+  <h1>Exclusive & Hidden Experiences</h1>
+  <p>Underground parties, secret speakeasies, private chef dinners, and rare finds you won't see in any guidebook.</p>
+</section>
+
+<div class="content">
+
+  <!-- CANGGU UNDERGROUND -->
+  <section class="section">
+    <h2 class="section-title"><i class="fas fa-music"></i> Canggu Underground Scene</h2>
+    <div class="experience-grid">
+      
+      <div class="experience-card">
+        <span class="experience-badge secret">🎵 UNDERGROUND</span>
+        <h3>Canggu Radio Station</h3>
+        <div class="experience-meta">
+          <span><i class="fas fa-map-marker-alt"></i> Canggu</span>
+          <span><i class="fas fa-clock"></i> Varies</span>
+        </div>
+        <p>Underground music venue hosting exclusive DJ nights. Not your typical tourist spot - this is where the local scene hangs out. Follow for event announcements.</p>
+        <div class="how-to-book">
+          <h4>📱 How to Access</h4>
+          <p>Follow <strong>@cangguradiostation</strong> on Instagram. Events posted weekly. Limited capacity - arrive early or DM for guestlist.</p>
+        </div>
+        <a href="https://www.instagram.com/cangguradiostation/" target="_blank" class="experience-cta">Follow on IG <i class="fas fa-arrow-right"></i></a>
+      </div>
+      
+      <div class="experience-card">
+        <span class="experience-badge exclusive">✨ EXCLUSIVE</span>
+        <h3>Bali Meet Night Events</h3>
+        <div class="experience-meta">
+          <span><i class="fas fa-map-marker-alt"></i> Various Canggu</span>
+          <span><i class="fas fa-dollar-sign"></i> $30-80</span>
+        </div>
+        <p>"From high-end fashion to underground parties, your insider to the island's coolest happenings." Curated events at Gate 88, Jalapeño, and secret locations.</p>
+        <div class="how-to-book">
+          <h4>📱 How to Access</h4>
+          <p>Follow <strong>@balimeetnight</strong> for announcements. Events sell out fast - get on their DM list for early access.</p>
+        </div>
+        <a href="https://www.instagram.com/balimeetnight/" target="_blank" class="experience-cta">Follow for Events <i class="fas fa-arrow-right"></i></a>
+      </div>
+      
+      <div class="experience-card">
+        <span class="experience-badge">🎸 LIVE MUSIC</span>
+        <h3>Give Me Shelter</h3>
+        <div class="experience-meta">
+          <span><i class="fas fa-map-marker-alt"></i> Canggu</span>
+          <span><i class="fas fa-music"></i> Punk/Alternative</span>
+        </div>
+        <p>Underground live music venue for punk, Oi!, and alternative scenes. International and local acts. The real Bali music scene away from beach club DJs.</p>
+        <div class="how-to-book">
+          <h4>📱 How to Access</h4>
+          <p>Check local event listings or ask at record shops in Canggu. Word of mouth venue.</p>
+        </div>
+      </div>
+      
+      <div class="experience-card featured">
+        <span class="experience-badge exclusive">🎪 FESTIVAL - JUNE 2026</span>
+        <h3>LOCUS Bali Festival</h3>
+        <div class="experience-meta">
+          <span><i class="fas fa-calendar"></i> June 19+, 2026</span>
+          <span><i class="fas fa-map-marker-alt"></i> Block42 @ Nuanu + more</span>
+        </div>
+        <p>Multi-venue music festival across Bali's best locations. International DJs, immersive experiences, and the coolest crowd. This is THE event if you're here in June.</p>
+        <div class="experience-price">Early bird ~$100-200</div>
+        <div class="how-to-book">
+          <h4>📱 How to Book</h4>
+          <p>Follow <strong>@locus</strong> on Facebook/Instagram for 2026 lineup and tickets. Book early - sells out!</p>
+        </div>
+        <a href="https://www.instagram.com/locus.festival/" target="_blank" class="experience-cta">Follow for Tickets <i class="fas fa-arrow-right"></i></a>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- EXCLUSIVE DINING -->
+  <section class="section">
+    <h2 class="section-title"><i class="fas fa-utensils"></i> Secret Dining Experiences</h2>
+    <div class="experience-grid">
+      
+      <div class="experience-card featured">
+        <span class="experience-badge exclusive">👨‍🍳 CHEF'S TABLE</span>
+        <h3>Apéritif Chef's Table</h3>
+        <div class="experience-meta">
+          <span><i class="fas fa-map-marker-alt"></i> Ubud</span>
+          <span><i class="fas fa-users"></i> Max 12 guests</span>
+        </div>
+        <p>Ultra-exclusive 12-seat experience with Chef Nic Vanderbeeken. Borderless cuisine, avant-garde techniques, rare ingredients. Direct interaction with the chef - he explains each course's inspiration.</p>
+        <div class="experience-price">$200-400/person</div>
+        <div class="how-to-book">
+          <h4>📅 How to Book</h4>
+          <p>Book 2-4 weeks ahead via website. Limited seatings per week. This is the real deal - not a tourist trap.</p>
+        </div>
+        <a href="https://www.aperitif.com/chefs-table-bali/" target="_blank" class="experience-cta">Reserve Table <i class="fas fa-arrow-right"></i></a>
+      </div>
+      
+      <div class="experience-card">
+        <span class="experience-badge exclusive">🏕️ JUNGLE DINING</span>
+        <h3>Capella Ubud Private Dinner</h3>
+        <div class="experience-meta">
+          <span><i class="fas fa-map-marker-alt"></i> Ubud Jungle</span>
+          <span><i class="fas fa-heart"></i> Couples</span>
+        </div>
+        <p>Bespoke private dinner in the jungle with your own chef and bartender. 3-course meal, cocktails, Balinese decor, live Rindik music under the stars.</p>
+        <div class="experience-price">IDR 6,500,000 (~$410) per couple</div>
+        <div class="how-to-book">
+          <h4>📅 How to Book</h4>
+          <p>Contact Capella Ubud directly. 1-2 weeks notice. Perfect for anniversary or special occasion.</p>
+        </div>
+        <a href="https://capellahotels.com/en/capella-ubud/offers/private-dining" target="_blank" class="experience-cta">Book Experience <i class="fas fa-arrow-right"></i></a>
+      </div>
+      
+      <div class="experience-card">
+        <span class="experience-badge">🌿 SUSTAINABLE</span>
+        <h3>LOCAVORE NXT</h3>
+        <div class="experience-meta">
+          <span><i class="fas fa-map-marker-alt"></i> Ubud</span>
+          <span><i class="fas fa-award"></i> Award-Winning</span>
+        </div>
+        <p>Indonesia's most acclaimed sustainable restaurant. Zero-waste kitchen, farm-to-table, tasting menus that tell Bali's story. Book way ahead.</p>
+        <div class="experience-price">$150-250/person tasting menu</div>
+        <div class="how-to-book">
+          <h4>📅 How to Book</h4>
+          <p>Reserve 3-4 weeks ahead minimum. Website booking only. Worth the wait.</p>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- NEW SECRET SPOTS -->
+  <section class="section">
+    <h2 class="section-title"><i class="fas fa-star"></i> New 2025/2026 Hidden Gems</h2>
+    
+    <div class="tip-box">
+      <h4>💡 Insider Tip</h4>
+      <p>These just opened in late 2025 - most tourists don't know about them yet. You'll be ahead of the curve!</p>
+    </div>
+    
+    <div class="experience-grid">
+      
+      <div class="experience-card featured">
+        <span class="experience-badge secret">🥃 SECRET SPEAKEASY</span>
+        <h3>Aoku</h3>
+        <div class="experience-meta">
+          <span><i class="fas fa-map-marker-alt"></i> Hidden above Dahana, Seminyak</span>
+          <span><i class="fas fa-clock"></i> 7pm-1am Mon-Sat</span>
+        </div>
+        <p>Hidden cocktail bar with secret entrance. Japanese minimalism meets jazz-inspired cocktails. Try "So What" (coffee/spice) or "Kind of Blue" (matcha/whisky). Ingredients from their own mountain garden.</p>
+        <div class="experience-price">Cocktails $15-25</div>
+        <div class="how-to-book">
+          <h4>📍 How to Find</h4>
+          <p>Look for Dahana Restaurant in Seminyak. Entrance is upstairs - ask staff or look for subtle signage. Walk-in or WhatsApp +62 851 2357 3571</p>
+        </div>
+        <a href="https://www.instagram.com/aokubali" target="_blank" class="experience-cta">See Vibes <i class="fas fa-arrow-right"></i></a>
+      </div>
+      
+      <div class="experience-card">
+        <span class="experience-badge new">🆕 DEC 2025</span>
+        <h3>KŌRO Bali</h3>
+        <div class="experience-meta">
+          <span><i class="fas fa-map-marker-alt"></i> Pantai Nyanyi (Black Sand Beach)</span>
+          <span><i class="fas fa-clock"></i> Wed-Sun 5pm-10pm</span>
+        </div>
+        <p>Japanese-Italian fusion in an ultra-exclusive location. "Kokumikase Journeys" - two curated set menus. Feels like a luxurious countryside home overlooking the ocean. Far from tourist crowds.</p>
+        <div class="experience-price">Set menus from ~$100/person</div>
+        <div class="how-to-book">
+          <h4>📞 How to Book</h4>
+          <p>WhatsApp +62 811 3811 7484 or visit korobali.com. Book 3-5 days ahead. Only open 5 days/week!</p>
+        </div>
+        <a href="http://korobali.com/" target="_blank" class="experience-cta">Book Table <i class="fas fa-arrow-right"></i></a>
+      </div>
+      
+      <div class="experience-card">
+        <span class="experience-badge new">🆕 DEC 2025</span>
+        <h3>EAZY Bali</h3>
+        <div class="experience-meta">
+          <span><i class="fas fa-map-marker-alt"></i> Seminyak</span>
+          <span><i class="fas fa-clock"></i> Daily 7pm-2am</span>
+        </div>
+        <p>By world-renowned bartender Jan Jurecka. Philosophy: "The joy of human connection" over trends. Try the Smoked Brisket Negroni or Cheesecake Daiquiri. Paired with Texas BBQ from Deli Island downstairs.</p>
+        <div class="experience-price">Cocktails $12-20</div>
+        <div class="how-to-book">
+          <h4>📞 How to Book</h4>
+          <p>Walk-in or WhatsApp +62 857 3822 6286. Gets busy on weekends - go early or reserve.</p>
+        </div>
+        <a href="https://www.instagram.com/eazybali" target="_blank" class="experience-cta">Check Hours <i class="fas fa-arrow-right"></i></a>
+      </div>
+      
+      <div class="experience-card">
+        <span class="experience-badge new">🏔️ HIGHLAND ESCAPE</span>
+        <h3>Hiland 1280</h3>
+        <div class="experience-meta">
+          <span><i class="fas fa-map-marker-alt"></i> Bedugul (1,280m elevation!)</span>
+          <span><i class="fas fa-thermometer-half"></i> Cool mountain climate</span>
+        </div>
+        <p>Escape the beach heat! Mountain lodge restaurant with fireplace, overlooking misty peaks. Leather armchairs, timber beams, golf course views. Try Osso Bucco or Crispy Pork Belly.</p>
+        <div class="experience-price">Mains $20-50</div>
+        <div class="how-to-book">
+          <h4>📍 How to Get There</h4>
+          <p>1.5 hours from Canggu. Perfect day trip - combine with Ulun Danu Temple visit. Dress warm (it's actually cool up there!).</p>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- BOOKING SUMMARY -->
+  <section class="section">
+    <h2 class="section-title"><i class="fas fa-calendar-check"></i> Quick Booking Guide</h2>
+    <div style="background: rgba(255,255,255,0.05); border-radius: 20px; padding: 30px; overflow-x: auto;">
+      <table style="width: 100%; border-collapse: collapse; color: white;">
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.2);">
+          <th style="padding: 15px; text-align: left; color: var(--accent);">Experience</th>
+          <th style="padding: 15px; text-align: left; color: var(--accent);">Best For</th>
+          <th style="padding: 15px; text-align: left; color: var(--accent);">Advance Notice</th>
+          <th style="padding: 15px; text-align: left; color: var(--accent);">Book Via</th>
+        </tr>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+          <td style="padding: 15px;">Apéritif Chef's Table</td>
+          <td style="padding: 15px;">Special occasion</td>
+          <td style="padding: 15px;">2-4 weeks</td>
+          <td style="padding: 15px;">Website</td>
+        </tr>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+          <td style="padding: 15px;">Capella Private Dining</td>
+          <td style="padding: 15px;">Couples/Anniversary</td>
+          <td style="padding: 15px;">1-2 weeks</td>
+          <td style="padding: 15px;">Hotel direct</td>
+        </tr>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+          <td style="padding: 15px;">Aoku Speakeasy</td>
+          <td style="padding: 15px;">Cocktail lovers</td>
+          <td style="padding: 15px;">Same day OK</td>
+          <td style="padding: 15px;">Walk-in/WhatsApp</td>
+        </tr>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+          <td style="padding: 15px;">KŌRO Bali</td>
+          <td style="padding: 15px;">Foodies</td>
+          <td style="padding: 15px;">3-5 days</td>
+          <td style="padding: 15px;">WhatsApp</td>
+        </tr>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+          <td style="padding: 15px;">Underground parties</td>
+          <td style="padding: 15px;">Night owls</td>
+          <td style="padding: 15px;">Follow IG</td>
+          <td style="padding: 15px;">Instagram DM</td>
+        </tr>
+        <tr>
+          <td style="padding: 15px;">LOCUS Festival (June)</td>
+          <td style="padding: 15px;">Music lovers</td>
+          <td style="padding: 15px;">Months ahead</td>
+          <td style="padding: 15px;">Website</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <p>Created with 🔮 by Lamarbot | March 2026</p>
+  <p style="opacity: 0.7; margin-top: 10px; font-size: 0.9rem;">These are real venues discovered through deep research. Verify availability before visiting.</p>
+</footer>
+
+</body>
+</html>

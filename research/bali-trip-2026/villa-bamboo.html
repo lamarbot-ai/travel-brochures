@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bamboo House Hideout | Bali 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root { --primary: #2E7D32; --primary-light: #4CAF50; --accent: #f0a500; --dark: #1a1a2e; --light: #f8f9fa; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: var(--light); color: var(--dark); line-height: 1.7; }
+    
+    .hero {
+      min-height: 70vh;
+      background: linear-gradient(135deg, rgba(46,125,50,0.85), rgba(76,175,80,0.8)), 
+        url('images/villa-bamboo/01-exterior.jpg') center/cover;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; color: white; padding: 60px 20px;
+    }
+    .hero-badge { background: linear-gradient(135deg, #2E7D32, #4CAF50); padding: 10px 25px; border-radius: 30px; font-weight: 700; margin-bottom: 25px; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 4rem); margin-bottom: 20px; max-width: 800px; }
+    .hero-meta { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; font-size: 1.1rem; }
+    .hero-meta span { display: flex; align-items: center; gap: 8px; }
+    
+    .back-link { position: fixed; top: 20px; left: 20px; background: white; padding: 12px 24px; border-radius: 30px; text-decoration: none; color: var(--dark); font-weight: 600; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 100; display: flex; align-items: center; gap: 8px; }
+    
+    .content { max-width: 1000px; margin: 0 auto; padding: 60px 40px; }
+    .section { margin-bottom: 60px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 25px; color: var(--primary); display: flex; align-items: center; gap: 15px; }
+    
+    .overview-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+    .overview-item { background: white; padding: 25px; border-radius: 15px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.08); }
+    .overview-item i { font-size: 2rem; color: var(--primary); margin-bottom: 10px; }
+    .overview-item h4 { font-size: 1.3rem; margin-bottom: 5px; }
+    .overview-item p { color: #666; }
+    
+    .highlight-box { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 30px; border-radius: 20px; margin: 30px 0; }
+    .highlight-box h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 15px; }
+    
+    .amenities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; }
+    .amenity { background: white; padding: 20px; border-radius: 12px; display: flex; align-items: center; gap: 12px; box-shadow: 0 3px 15px rgba(0,0,0,0.06); }
+    .amenity i { color: var(--primary); font-size: 1.3rem; }
+    
+    .itinerary { background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); }
+    .day { padding: 20px 0; border-bottom: 1px solid #eee; }
+    .day:last-child { border-bottom: none; }
+    .day-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+    .day-badge { background: var(--primary); color: white; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; }
+    .day h4 { font-size: 1.2rem; }
+    .day-activities { display: grid; gap: 10px; padding-left: 20px; }
+    .activity { display: flex; align-items: center; gap: 10px; }
+    .activity-time { background: #e8f5e9; padding: 4px 12px; border-radius: 15px; font-size: 0.85rem; font-weight: 600; color: var(--primary); }
+    
+    .restaurants-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .restaurant { background: white; border-radius: 15px; padding: 25px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); }
+    .restaurant h4 { font-size: 1.2rem; margin-bottom: 8px; }
+    .restaurant-meta { display: flex; gap: 15px; color: #666; font-size: 0.9rem; margin-bottom: 12px; }
+    .restaurant p { color: #555; font-size: 0.95rem; margin-bottom: 15px; }
+    .restaurant a { color: var(--primary); font-weight: 600; text-decoration: none; }
+    
+    .budget-table { width: 100%; border-collapse: collapse; background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.08); }
+    .budget-table th, .budget-table td { padding: 18px 20px; text-align: left; }
+    .budget-table th { background: var(--primary); color: white; font-weight: 600; }
+    .budget-table tr:nth-child(even) { background: #f8f9fa; }
+    .budget-table tr:last-child { font-weight: 700; background: #e8f5e9; }
+    
+    .cta-section { background: linear-gradient(135deg, var(--primary), var(--primary-light)); padding: 50px; border-radius: 25px; text-align: center; color: white; margin-top: 40px; }
+    .cta-section h2 { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 20px; }
+    .cta-btn { display: inline-block; background: white; color: var(--primary); padding: 18px 40px; border-radius: 30px; font-weight: 700; text-decoration: none; font-size: 1.1rem; transition: transform 0.3s; }
+    .cta-btn:hover { transform: scale(1.05); }
+    
+    /* Photo Gallery */
+    .photo-gallery { margin-bottom: 60px; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+    .gallery-grid img { width: 100%; height: 250px; object-fit: cover; border-radius: 16px; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s; }
+    .gallery-grid img:hover { transform: scale(1.03); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+    .gallery-grid img:first-child { grid-column: span 2; grid-row: span 2; height: 515px; }
+    
+    /* Lightbox */
+    .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center; }
+    .lightbox.active { display: flex; }
+    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 12px; }
+    .lightbox-close { position: absolute; top: 20px; right: 30px; color: white; font-size: 2rem; cursor: pointer; background: none; border: none; }
+    .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 2rem; cursor: pointer; background: rgba(255,255,255,0.1); border: none; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .lightbox-nav.prev { left: 20px; }
+    .lightbox-nav.next { right: 20px; }
+    .lightbox-counter { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); color: white; font-size: 1rem; }
+    
+    @media (max-width: 768px) { 
+      .content { padding: 40px 20px; } 
+      .hero-meta { flex-direction: column; gap: 15px; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid img { height: 150px; }
+      .gallery-grid img:first-child { height: 310px; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> All Villas</a>
+
+<section class="hero">
+  <span class="hero-badge">🎋 ECO-LUXURY</span>
+  <h1>Bamboo House Hideout</h1>
+  <div class="hero-meta">
+    <span><i class="fas fa-map-marker-alt"></i> Selat, Karangasem</span>
+    <span><i class="fas fa-star"></i> 4.85 (203 reviews)</span>
+    <span><i class="fas fa-dollar-sign"></i> $1,743/month</span>
+  </div>
+</section>
+
+<div class="content">
+
+  <!-- Photo Gallery -->
+  <section class="photo-gallery">
+    <h2 class="section-title"><i class="fas fa-camera"></i> Villa Photos</h2>
+    <div class="gallery-grid">
+      <img src="images/villa-bamboo/01-exterior.jpg" alt="Bamboo architecture exterior" onclick="openLightbox(0)">
+      <img src="images/villa-bamboo/02-interior.jpg" alt="Bamboo interior" onclick="openLightbox(1)">
+      <img src="images/villa-bamboo/03-bedroom.jpg" alt="Bedroom" onclick="openLightbox(2)">
+      <img src="images/villa-bamboo/04-bathroom.jpg" alt="Outdoor bathroom" onclick="openLightbox(3)">
+      <img src="images/villa-bamboo/05-terrace.jpg" alt="Terrace views" onclick="openLightbox(4)">
+      <img src="images/villa-bamboo/06-view.jpg" alt="Rice terrace views" onclick="openLightbox(5)">
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" onclick="closeLightbox()">×</button>
+    <button class="lightbox-nav prev" onclick="changeLightbox(-1)"><i class="fas fa-chevron-left"></i></button>
+    <img id="lightbox-img" src="" alt="">
+    <button class="lightbox-nav next" onclick="changeLightbox(1)"><i class="fas fa-chevron-right"></i></button>
+    <div class="lightbox-counter"><span id="lightbox-current">1</span> / <span id="lightbox-total">6</span></div>
+  </div>
+  
+  <section class="section">
+    <h2 class="section-title"><i class="fas fa-home"></i> Villa Overview</h2>
+    <div class="overview-grid">
+      <div class="overview-item"><i class="fas fa-bed"></i><h4>2 Bedrooms</h4><p>All-bamboo construction</p></div>
+      <div class="overview-item"><i class="fas fa-bath"></i><h4>2 Bathrooms</h4><p>Open-air design</p></div>
+      <div class="overview-item"><i class="fas fa-users"></i><h4>4 Guests</h4><p>Nature retreat</p></div>
+      <div class="overview-item"><i class="fas fa-swimming-pool"></i><h4>Private Pool</h4><p>Jungle setting</p></div>
+      <div class="overview-item"><i class="fas fa-leaf"></i><h4>Eco-Friendly</h4><p>Sustainable design</p></div>
+      <div class="overview-item"><i class="fas fa-tree"></i><h4>Rice Terraces</h4><p>Stunning views</p></div>
+    </div>
+    
+    <div class="highlight-box">
+      <h3>🎋 Live in a Bamboo Treehouse</h3>
+      <p>This isn't just a villa — it's an architectural experience. Built entirely from bamboo using traditional techniques, this eco-luxury hideout offers a unique stay you won't find anywhere else. 203 reviews and 4.85 stars prove the magic is real. Wake up in the jungle, surrounded by rice terraces, and feel completely disconnected from the modern world.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title"><i class="fas fa-concierge-bell"></i> Amenities</h2>
+    <div class="amenities-grid">
+      <div class="amenity"><i class="fas fa-swimming-pool"></i> Private Pool</div>
+      <div class="amenity"><i class="fas fa-seedling"></i> Rice Terrace Views</div>
+      <div class="amenity"><i class="fas fa-wifi"></i> WiFi</div>
+      <div class="amenity"><i class="fas fa-fan"></i> Ceiling Fans</div>
+      <div class="amenity"><i class="fas fa-utensils"></i> Kitchen</div>
+      <div class="amenity"><i class="fas fa-parking"></i> Free Parking</div>
+      <div class="amenity"><i class="fas fa-tree"></i> Garden</div>
+      <div class="amenity"><i class="fas fa-shower"></i> Outdoor Shower</div>
+    </div>
+    <p style="margin-top: 20px; text-align: center; color: #666;"><i class="fas fa-exclamation-circle"></i> Note: Being eco-focused, A/C may be limited. Check listing for details.</p>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title"><i class="fas fa-calendar-week"></i> Sample Week Itinerary</h2>
+    <div class="itinerary">
+      <div class="day">
+        <div class="day-header"><span class="day-badge">DAY 1</span><h4>Arrival in the Bamboo Paradise</h4></div>
+        <div class="day-activities">
+          <div class="activity"><span class="activity-time">3pm</span> Check-in, marvel at bamboo architecture</div>
+          <div class="activity"><span class="activity-time">5pm</span> Pool time in jungle setting</div>
+          <div class="activity"><span class="activity-time">7pm</span> Dinner at local warung</div>
+        </div>
+      </div>
+      <div class="day">
+        <div class="day-header"><span class="day-badge">DAY 2</span><h4>Mt. Agung & Nature</h4></div>
+        <div class="day-activities">
+          <div class="activity"><span class="activity-time">6am</span> Sunrise over Mt. Agung</div>
+          <div class="activity"><span class="activity-time">9am</span> Rice terrace walk</div>
+          <div class="activity"><span class="activity-time">1pm</span> Lunch at Mahagiri</div>
+          <div class="activity"><span class="activity-time">4pm</span> Relax at bamboo villa</div>
+        </div>
+      </div>
+      <div class="day">
+        <div class="day-header"><span class="day-badge">DAY 3</span><h4>Temples & Water Palaces</h4></div>
+        <div class="day-activities">
+          <div class="activity"><span class="activity-time">7am</span> Besakih "Mother Temple"</div>
+          <div class="activity"><span class="activity-time">11am</span> Tirta Gangga Water Palace</div>
+          <div class="activity"><span class="activity-time">2pm</span> Lunch at Tirta Ayu</div>
+          <div class="activity"><span class="activity-time">5pm</span> Sunset swim at villa</div>
+        </div>
+      </div>
+      <div class="day">
+        <div class="day-header"><span class="day-badge">DAY 4</span><h4>Work Day in Paradise</h4></div>
+        <div class="day-activities">
+          <div class="activity"><span class="activity-time">8am</span> Work from bamboo terrace</div>
+          <div class="activity"><span class="activity-time">12pm</span> Pool break</div>
+          <div class="activity"><span class="activity-time">5pm</span> Village walk</div>
+          <div class="activity"><span class="activity-time">7pm</span> Cooking with host family</div>
+        </div>
+      </div>
+      <div class="day">
+        <div class="day-header"><span class="day-badge">DAY 5</span><h4>Amed & Snorkeling</h4></div>
+        <div class="day-activities">
+          <div class="activity"><span class="activity-time">8am</span> Drive to Amed (45 min)</div>
+          <div class="activity"><span class="activity-time">10am</span> Snorkeling at Japanese Shipwreck</div>
+          <div class="activity"><span class="activity-time">1pm</span> Beachfront seafood lunch</div>
+          <div class="activity"><span class="activity-time">5pm</span> Return to bamboo retreat</div>
+        </div>
+      </div>
+      <div class="day">
+        <div class="day-header"><span class="day-badge">DAY 6</span><h4>Waterfalls Day</h4></div>
+        <div class="day-activities">
+          <div class="activity"><span class="activity-time">7am</span> Tukad Cepung Waterfall</div>
+          <div class="activity"><span class="activity-time">10am</span> Tibumana Waterfall</div>
+          <div class="activity"><span class="activity-time">1pm</span> Lunch in Bangli</div>
+          <div class="activity"><span class="activity-time">4pm</span> Final pool session</div>
+        </div>
+      </div>
+      <div class="day">
+        <div class="day-header"><span class="day-badge">DAY 7</span><h4>Slow Morning & Departure</h4></div>
+        <div class="day-activities">
+          <div class="activity"><span class="activity-time">6am</span> Sunrise meditation</div>
+          <div class="activity"><span class="activity-time">8am</span> Breakfast in nature</div>
+          <div class="activity"><span class="activity-time">10am</span> Last photos, checkout</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title"><i class="fas fa-utensils"></i> Nearby Restaurants</h2>
+    <div class="restaurants-grid">
+      <div class="restaurant">
+        <h4>Mahagiri Panoramic</h4>
+        <div class="restaurant-meta"><span><i class="fas fa-dollar-sign"></i> $$</span><span><i class="fas fa-car"></i> 20 min</span></div>
+        <p>Stunning infinity pool restaurant with rice terrace views. Good for a nice lunch with Instagram-worthy backdrop.</p>
+        <a href="https://maps.google.com/?q=Mahagiri+Panoramic+Resort+Sidemen+Bali" target="_blank">View on Map →</a>
+      </div>
+      <div class="restaurant">
+        <h4>Warung Local</h4>
+        <div class="restaurant-meta"><span><i class="fas fa-dollar-sign"></i> $</span><span><i class="fas fa-car"></i> 10 min</span></div>
+        <p>Ask your host for recommendations — the best local warungs are often unmarked but incredible. $2-3 for a full meal.</p>
+      </div>
+      <div class="restaurant">
+        <h4>Tirta Ayu</h4>
+        <div class="restaurant-meta"><span><i class="fas fa-dollar-sign"></i> $$</span><span><i class="fas fa-car"></i> 40 min</span></div>
+        <p>Worth the drive for lunch overlooking Tirta Gangga water palace. Book a gazebo over the water.</p>
+        <a href="https://maps.google.com/?q=Tirta+Ayu+Restaurant+Bali" target="_blank">View on Map →</a>
+      </div>
+      <div class="restaurant">
+        <h4>Amed Beach Warungs</h4>
+        <div class="restaurant-meta"><span><i class="fas fa-dollar-sign"></i> $</span><span><i class="fas fa-car"></i> 45 min</span></div>
+        <p>Fresh-caught fish grilled beachside. Combine with snorkeling trip. Simple but unforgettable.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title"><i class="fas fa-hiking"></i> Unique Experiences</h2>
+    <div class="restaurants-grid">
+      <div class="restaurant">
+        <h4>Bamboo Architecture Tour</h4>
+        <p>Learn about sustainable bamboo building from the makers. Visit other bamboo structures in the area. Truly educational.</p>
+      </div>
+      <div class="restaurant">
+        <h4>Traditional Farming</h4>
+        <p>Join local farmers in the rice fields. Plant, harvest, or just walk through. Authentic cultural immersion.</p>
+      </div>
+      <div class="restaurant">
+        <h4>Amed Snorkeling/Diving</h4>
+        <p>Some of Bali's best underwater scenery. Japanese WWII shipwreck, coral gardens, and calm waters.</p>
+      </div>
+      <div class="restaurant">
+        <h4>Sunrise Yoga</h4>
+        <p>Practice yoga on your bamboo deck with Mt. Agung backdrop. Ask host about local instructors.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title"><i class="fas fa-calculator"></i> Monthly Budget Breakdown</h2>
+    <table class="budget-table">
+      <tr><th>Expense</th><th>Estimated Cost</th></tr>
+      <tr><td>Villa (30 nights)</td><td>$1,743</td></tr>
+      <tr><td>Food & Dining</td><td>$400 - $600</td></tr>
+      <tr><td>Scooter Rental</td><td>$100</td></tr>
+      <tr><td>Activities & Tours</td><td>$200 - $350</td></tr>
+      <tr><td>Diving/Snorkeling</td><td>$100 - $200</td></tr>
+      <tr><td>Misc & Transport</td><td>$75</td></tr>
+      <tr><td><strong>TOTAL (per person, shared)</strong></td><td><strong>$1,309 - $1,534</strong></td></tr>
+    </table>
+  </section>
+
+  <!-- Nearby Exclusive Experiences -->
+  <section class="section" style="background: linear-gradient(135deg, #1a1a2e, #2d1f3d); padding: 50px; border-radius: 25px; margin-bottom: 40px;">
+    <h2 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: white; margin-bottom: 25px; display: flex; align-items: center; gap: 15px;">
+      <span style="font-size: 1.5rem;">🔮</span> Exclusive Experiences Near Tabanan
+    </h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+      <div style="background: rgba(255,255,255,0.1); border-radius: 15px; padding: 20px;">
+        <h4 style="color: white; margin-bottom: 8px;">🌾 Jatiluwih Rice Terraces</h4>
+        <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">UNESCO World Heritage, less crowded than Tegalalang</p>
+      </div>
+      <div style="background: rgba(255,255,255,0.1); border-radius: 15px; padding: 20px;">
+        <h4 style="color: white; margin-bottom: 8px;">⛩️ Batukaru Temple</h4>
+        <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">Sacred mountain temple, spiritual, rarely visited</p>
+      </div>
+      <div style="background: rgba(255,255,255,0.1); border-radius: 15px; padding: 20px;">
+        <h4 style="color: white; margin-bottom: 8px;">🏖️ Secret Black Sand Beaches</h4>
+        <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">Kelating and Yeh Gangga - no tourists, pure Bali</p>
+      </div>
+    </div>
+    <a href="exclusive.html" style="display: inline-block; margin-top: 25px; color: #f0a500; text-decoration: none; font-weight: 600;">
+      View All Exclusive Experiences →
+    </a>
+  </section>
+
+  <div class="cta-section">
+    <h2>🎋 Experience Eco-Luxury Living</h2>
+    <p style="margin-bottom: 25px; opacity: 0.9;">203 reviews. All-bamboo architecture. Jungle pool. This is unique.</p>
+    <a href="https://www.airbnb.com/rooms/33780483" target="_blank" class="cta-btn">Book on Airbnb →</a>
+  </div>
+  
+</div>
+
+<script>
+const galleryImages = [
+  'images/villa-bamboo/01-exterior.jpg',
+  'images/villa-bamboo/02-interior.jpg',
+  'images/villa-bamboo/03-bedroom.jpg',
+  'images/villa-bamboo/04-bathroom.jpg',
+  'images/villa-bamboo/05-terrace.jpg',
+  'images/villa-bamboo/06-view.jpg'
+];
+let currentIndex = 0;
+
+function openLightbox(index) {
+  currentIndex = index;
+  document.getElementById('lightbox').classList.add('active');
+  document.getElementById('lightbox-img').src = galleryImages[index];
+  document.getElementById('lightbox-current').textContent = index + 1;
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
+
+function changeLightbox(direction) {
+  currentIndex += direction;
+  if (currentIndex < 0) currentIndex = galleryImages.length - 1;
+  if (currentIndex >= galleryImages.length) currentIndex = 0;
+  document.getElementById('lightbox-img').src = galleryImages[currentIndex];
+  document.getElementById('lightbox-current').textContent = currentIndex + 1;
+}
+
+document.addEventListener('keydown', (e) => {
+  if (!document.getElementById('lightbox').classList.contains('active')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') changeLightbox(-1);
+  if (e.key === 'ArrowRight') changeLightbox(1);
+});
+
+document.getElementById('lightbox').addEventListener('click', (e) => {
+  if (e.target.id === 'lightbox') closeLightbox();
+});
+</script>
+
+</body>
+</html>
