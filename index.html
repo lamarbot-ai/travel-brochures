@@ -21,7 +21,37 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .subtitle { opacity: 0.7; margin-bottom: 3rem; font-size: 1.2rem; }
+        .subtitle { opacity: 0.7; margin-bottom: 2rem; font-size: 1.2rem; }
+        
+        /* Plan Your Trip CTA */
+        .plan-cta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1.5rem 2.5rem;
+            background: linear-gradient(135deg, #D4AF37, #c9a227);
+            border-radius: 16px;
+            margin-bottom: 3rem;
+            text-decoration: none;
+            color: #1a1a2e;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .plan-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.4);
+        }
+        .plan-cta .icon { font-size: 2rem; }
+        .plan-cta .text h2 { font-size: 1.5rem; margin-bottom: 0.2rem; }
+        .plan-cta .text p { opacity: 0.8; font-size: 0.95rem; }
+        .plan-cta .arrow { font-size: 1.5rem; margin-left: auto; }
+        
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+        
         .trips-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -56,12 +86,30 @@
             opacity: 0.5;
             font-size: 0.9rem;
         }
+        
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .plan-cta { padding: 1rem 1.5rem; flex-wrap: wrap; }
+            .plan-cta .text h2 { font-size: 1.2rem; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>🌍 Travel Planning</h1>
         <p class="subtitle">Curated trip brochures with exclusive finds</p>
+        
+        <!-- Plan Your Trip CTA -->
+        <a href="/plan/" class="plan-cta">
+            <span class="icon">✈️</span>
+            <div class="text">
+                <h2>Plan Your Trip</h2>
+                <p>Tell us about your dream trip and we'll create a personalized brochure</p>
+            </div>
+            <span class="arrow">→</span>
+        </a>
+        
+        <h3 class="section-title">📚 Recent Brochures</h3>
         
         <div class="trips-grid">
             <a href="/research/kenya-summer-tides-2025/" class="trip-card">

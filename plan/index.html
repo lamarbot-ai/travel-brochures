@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Your Trip | Travel Planning</title>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --gold: #D4AF37;
+            --gold-light: rgba(212, 175, 55, 0.2);
+            --dark: #1a1a2e;
+            --darker: #16213e;
+            --light: #fff;
+            --gray: rgba(255,255,255,0.7);
+            --success: #4ade80;
+            --error: #f87171;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--darker) 100%);
+            color: var(--light);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+        
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--light), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        
+        header p {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+        
+        /* Progress Steps */
+        .progress-steps {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .step.active { color: var(--gold); }
+        .step.completed { color: var(--success); }
+        
+        .step-number {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2px solid currentColor;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        
+        .step.completed .step-number {
+            background: var(--success);
+            border-color: var(--success);
+            color: var(--dark);
+        }
+        
+        .step.active .step-number {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--dark);
+        }
+        
+        /* Form Card */
+        .form-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+        }
+        
+        .form-section {
+            margin-bottom: 2rem;
+        }
+        
+        .form-section h3 {
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        /* Form Controls */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+        
+        input[type="text"],
+        input[type="date"],
+        input[type="email"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 10px;
+            color: var(--light);
+            font-size: 1rem;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            background: rgba(255,255,255,0.12);
+        }
+        
+        input::placeholder { color: rgba(255,255,255,0.4); }
+        
+        /* Date inputs side by side */
+        .date-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        /* Chip Select */
+        .chip-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+        
+        .chip {
+            padding: 0.6rem 1.2rem;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+        }
+        
+        .chip:hover {
+            border-color: var(--gold);
+            background: var(--gold-light);
+        }
+        
+        .chip.selected {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--dark);
+        }
+        
+        /* Budget Selector */
+        .budget-options {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.75rem;
+        }
+        
+        .budget-option {
+            padding: 1rem;
+            text-align: center;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .budget-option:hover {
+            border-color: var(--gold);
+        }
+        
+        .budget-option.selected {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--dark);
+        }
+        
+        .budget-option .emoji { font-size: 1.5rem; }
+        .budget-option .label { font-size: 0.85rem; margin-top: 0.3rem; }
+        
+        /* Number Stepper */
+        .stepper {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .stepper button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.1);
+            color: var(--light);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .stepper button:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--dark);
+        }
+        
+        .stepper .value {
+            font-size: 1.5rem;
+            min-width: 40px;
+            text-align: center;
+        }
+        
+        /* Submit Button */
+        .submit-btn {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--gold), #c9a227);
+            border: none;
+            border-radius: 12px;
+            color: var(--dark);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+        
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        /* Chat Interface */
+        .chat-container {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(0,0,0,0.2);
+            border-radius: 12px;
+        }
+        
+        .chat-message {
+            margin-bottom: 1rem;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-message.user {
+            align-items: flex-end;
+        }
+        
+        .chat-message.assistant {
+            align-items: flex-start;
+        }
+        
+        .message-bubble {
+            max-width: 80%;
+            padding: 0.8rem 1.2rem;
+            border-radius: 16px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .user .message-bubble {
+            background: var(--gold);
+            color: var(--dark);
+            border-bottom-right-radius: 4px;
+        }
+        
+        .assistant .message-bubble {
+            background: rgba(255,255,255,0.1);
+            border-bottom-left-radius: 4px;
+        }
+        
+        .chat-input-row {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .chat-input {
+            flex: 1;
+        }
+        
+        .send-btn {
+            padding: 0 1.5rem;
+            background: var(--gold);
+            border: none;
+            border-radius: 10px;
+            color: var(--dark);
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .send-btn:hover { transform: scale(1.05); }
+        .send-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        
+        /* Progress Bar */
+        .progress-container {
+            text-align: center;
+            padding: 3rem;
+        }
+        
+        .progress-bar-bg {
+            width: 100%;
+            height: 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 2rem 0;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--gold), #f0d78c);
+            border-radius: 4px;
+            transition: width 0.3s;
+        }
+        
+        .progress-message {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+        
+        .progress-percent {
+            font-size: 2rem;
+            color: var(--gold);
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+        
+        /* Success State */
+        .success-container {
+            text-align: center;
+            padding: 3rem;
+        }
+        
+        .success-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .success-title {
+            font-size: 2rem;
+            color: var(--success);
+            margin-bottom: 1rem;
+        }
+        
+        .brochure-link {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--gold);
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 1.5rem;
+            transition: transform 0.2s;
+        }
+        
+        .brochure-link:hover { transform: scale(1.05); }
+        
+        /* Loading Spinner */
+        .spinner {
+            width: 24px;
+            height: 24px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top-color: var(--gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Error */
+        .error-message {
+            background: rgba(248, 113, 113, 0.2);
+            border: 1px solid var(--error);
+            color: var(--error);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container { padding: 1rem; }
+            header h1 { font-size: 1.8rem; }
+            .form-card { padding: 1.5rem; }
+            .date-row { grid-template-columns: 1fr; }
+            .budget-options { grid-template-columns: repeat(2, 1fr); }
+            .progress-steps { flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" x-data="tripPlanner()">
+        <header>
+            <h1>✈️ Plan Your Trip</h1>
+            <p>Tell us about your dream trip and we'll create a personalized brochure</p>
+        </header>
+        
+        <!-- Progress Steps -->
+        <div class="progress-steps">
+            <div class="step" :class="{ 'active': step === 1, 'completed': step > 1 }">
+                <span class="step-number">1</span>
+                <span>Details</span>
+            </div>
+            <div class="step" :class="{ 'active': step === 2, 'completed': step > 2 }">
+                <span class="step-number">2</span>
+                <span>Preferences</span>
+            </div>
+            <div class="step" :class="{ 'active': step === 3, 'completed': step > 3 }">
+                <span class="step-number">3</span>
+                <span>Refine</span>
+            </div>
+            <div class="step" :class="{ 'active': step === 4, 'completed': step > 4 }">
+                <span class="step-number">4</span>
+                <span>Generate</span>
+            </div>
+        </div>
+        
+        <!-- Error Message -->
+        <div x-show="error" class="error-message" x-text="error"></div>
+        
+        <!-- Step 1: Basic Details -->
+        <div class="form-card" x-show="step === 1">
+            <div class="form-section">
+                <h3>📍 Where do you want to go?</h3>
+                <div class="form-group">
+                    <label for="destination">Destination</label>
+                    <input type="text" id="destination" x-model="form.destination" 
+                           placeholder="e.g., Kenya, Portugal Algarve, Bali..." />
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h3>📅 When are you traveling?</h3>
+                <div class="date-row">
+                    <div class="form-group">
+                        <label for="startDate">Start Date</label>
+                        <input type="date" id="startDate" x-model="form.startDate" />
+                    </div>
+                    <div class="form-group">
+                        <label for="endDate">End Date</label>
+                        <input type="date" id="endDate" x-model="form.endDate" />
+                    </div>
+                </div>
+                <div class="form-group" style="margin-top: 0.5rem;">
+                    <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                        <input type="checkbox" x-model="form.dateFlexible" style="width: auto;" />
+                        Dates are flexible (±3 days)
+                    </label>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h3>👥 How many travelers?</h3>
+                <div class="stepper">
+                    <button @click="form.travelers = Math.max(1, form.travelers - 1)">−</button>
+                    <span class="value" x-text="form.travelers"></span>
+                    <button @click="form.travelers = Math.min(20, form.travelers + 1)">+</button>
+                </div>
+            </div>
+            
+            <button class="submit-btn" @click="nextStep()" 
+                    :disabled="!form.destination || !form.startDate || !form.endDate">
+                Continue →
+            </button>
+        </div>
+        
+        <!-- Step 2: Preferences -->
+        <div class="form-card" x-show="step === 2">
+            <div class="form-section">
+                <h3>💰 Budget Level</h3>
+                <div class="budget-options">
+                    <div class="budget-option" :class="{ 'selected': form.budget === 'budget' }" 
+                         @click="form.budget = 'budget'">
+                        <div class="emoji">💵</div>
+                        <div class="label">Budget</div>
+                    </div>
+                    <div class="budget-option" :class="{ 'selected': form.budget === 'midrange' }" 
+                         @click="form.budget = 'midrange'">
+                        <div class="emoji">💳</div>
+                        <div class="label">Mid-Range</div>
+                    </div>
+                    <div class="budget-option" :class="{ 'selected': form.budget === 'luxury' }" 
+                         @click="form.budget = 'luxury'">
+                        <div class="emoji">💎</div>
+                        <div class="label">Luxury</div>
+                    </div>
+                    <div class="budget-option" :class="{ 'selected': form.budget === 'ultra' }" 
+                         @click="form.budget = 'ultra'">
+                        <div class="emoji">👑</div>
+                        <div class="label">Ultra</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h3>✨ Trip Vibes (select all that apply)</h3>
+                <div class="chip-grid">
+                    <template x-for="vibe in vibeOptions" :key="vibe.id">
+                        <div class="chip" :class="{ 'selected': form.vibes.includes(vibe.id) }"
+                             @click="toggleVibe(vibe.id)">
+                            <span x-text="vibe.emoji + ' ' + vibe.label"></span>
+                        </div>
+                    </template>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h3>📧 Email (optional, for notifications)</h3>
+                <div class="form-group">
+                    <input type="email" x-model="form.email" 
+                           placeholder="your@email.com" />
+                </div>
+            </div>
+            
+            <div style="display: flex; gap: 1rem;">
+                <button class="submit-btn" style="background: rgba(255,255,255,0.1);" 
+                        @click="step = 1">← Back</button>
+                <button class="submit-btn" @click="submitForm()" 
+                        :disabled="!form.budget || form.vibes.length === 0 || loading">
+                    <span x-show="loading" class="spinner"></span>
+                    <span x-text="loading ? 'Starting...' : 'Start Planning →'"></span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Step 3: Chat/Conversation -->
+        <div class="form-card" x-show="step === 3">
+            <div class="form-section">
+                <h3>💬 Let's refine your trip</h3>
+                <p style="color: var(--gray); margin-bottom: 1rem;">
+                    Answer a few questions so we can create the perfect brochure for you.
+                </p>
+            </div>
+            
+            <div class="chat-container" x-ref="chatContainer">
+                <template x-for="msg in messages" :key="msg.timestamp">
+                    <div class="chat-message" :class="msg.role">
+                        <div class="message-bubble" x-text="msg.content"></div>
+                    </div>
+                </template>
+                <div x-show="chatLoading" class="chat-message assistant">
+                    <div class="message-bubble">
+                        <span class="spinner"></span> Thinking...
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-input-row">
+                <input type="text" class="chat-input" x-model="chatInput" 
+                       placeholder="Type your answer..."
+                       @keyup.enter="sendMessage()"
+                       :disabled="chatLoading" />
+                <button class="send-btn" @click="sendMessage()" :disabled="chatLoading || !chatInput">
+                    Send
+                </button>
+            </div>
+        </div>
+        
+        <!-- Step 4: Generating -->
+        <div class="form-card" x-show="step === 4 && !complete">
+            <div class="progress-container">
+                <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">✈️ Creating Your Brochure</h3>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar" :style="{ width: progress + '%' }"></div>
+                </div>
+                <div class="progress-percent" x-text="progress + '%'"></div>
+                <div class="progress-message" x-text="progressMessage"></div>
+            </div>
+        </div>
+        
+        <!-- Step 5: Complete -->
+        <div class="form-card" x-show="complete">
+            <div class="success-container">
+                <div class="success-icon">🎉</div>
+                <h2 class="success-title">Your Brochure is Ready!</h2>
+                <p style="color: var(--gray);">
+                    We've created a personalized travel guide for your trip to 
+                    <strong x-text="form.destination"></strong>.
+                </p>
+                <a :href="brochureUrl" class="brochure-link" target="_blank">
+                    View Your Brochure →
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const API_BASE = 'https://tripapi.lamaroliphant.com/api';
+        
+        function tripPlanner() {
+            return {
+                step: 1,
+                loading: false,
+                chatLoading: false,
+                error: null,
+                sessionId: null,
+                messages: [],
+                chatInput: '',
+                progress: 0,
+                progressMessage: 'Starting...',
+                complete: false,
+                brochureUrl: '',
+                
+                form: {
+                    destination: '',
+                    startDate: '',
+                    endDate: '',
+                    dateFlexible: false,
+                    travelers: 2,
+                    budget: '',
+                    vibes: [],
+                    email: ''
+                },
+                
+                vibeOptions: [
+                    { id: 'beach', emoji: '🏖️', label: 'Beach & Relaxation' },
+                    { id: 'food', emoji: '🍽️', label: 'Food & Culinary' },
+                    { id: 'history', emoji: '🏛️', label: 'History & Culture' },
+                    { id: 'nightlife', emoji: '🎉', label: 'Nightlife' },
+                    { id: 'adventure', emoji: '🥾', label: 'Adventure' },
+                    { id: 'wellness', emoji: '🧘', label: 'Wellness & Spa' },
+                    { id: 'family', emoji: '👨‍👩‍👧', label: 'Family Friendly' },
+                    { id: 'romantic', emoji: '💑', label: 'Romantic' },
+                    { id: 'instagram', emoji: '📸', label: 'Instagram-worthy' },
+                    { id: 'local', emoji: '🏠', label: 'Local & Authentic' }
+                ],
+                
+                toggleVibe(id) {
+                    const index = this.form.vibes.indexOf(id);
+                    if (index === -1) {
+                        this.form.vibes.push(id);
+                    } else {
+                        this.form.vibes.splice(index, 1);
+                    }
+                },
+                
+                nextStep() {
+                    this.error = null;
+                    this.step++;
+                },
+                
+                async submitForm() {
+                    this.loading = true;
+                    this.error = null;
+                    
+                    try {
+                        const response = await fetch(`${API_BASE}/sessions`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                destination: this.form.destination,
+                                start_date: this.form.startDate,
+                                end_date: this.form.endDate,
+                                travelers: this.form.travelers,
+                                budget_tier: this.form.budget,
+                                vibes: this.form.vibes,
+                                date_flexible: this.form.dateFlexible,
+                                email: this.form.email || null
+                            })
+                        });
+                        
+                        if (!response.ok) throw new Error('Failed to create session');
+                        
+                        const data = await response.json();
+                        this.sessionId = data.id;
+                        
+                        // Start conversation with initial greeting
+                        await this.sendMessage('Hi! I just filled out the form and I\'m ready to plan my trip.');
+                        
+                        this.step = 3;
+                    } catch (e) {
+                        this.error = e.message;
+                    } finally {
+                        this.loading = false;
+                    }
+                },
+                
+                async sendMessage(text = null) {
+                    const content = text || this.chatInput;
+                    if (!content.trim()) return;
+                    
+                    this.chatInput = '';
+                    this.chatLoading = true;
+                    
+                    // Add user message
+                    this.messages.push({
+                        role: 'user',
+                        content: content,
+                        timestamp: new Date().toISOString()
+                    });
+                    
+                    // Scroll to bottom
+                    this.$nextTick(() => {
+                        this.$refs.chatContainer.scrollTop = this.$refs.chatContainer.scrollHeight;
+                    });
+                    
+                    try {
+                        const response = await fetch(`${API_BASE}/sessions/${this.sessionId}/chat`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ content })
+                        });
+                        
+                        if (!response.ok) throw new Error('Chat failed');
+                        
+                        const data = await response.json();
+                        
+                        // Add assistant message
+                        this.messages.push({
+                            role: 'assistant',
+                            content: data.message,
+                            timestamp: new Date().toISOString()
+                        });
+                        
+                        // Scroll to bottom
+                        this.$nextTick(() => {
+                            this.$refs.chatContainer.scrollTop = this.$refs.chatContainer.scrollHeight;
+                        });
+                        
+                        // Check if ready to generate
+                        if (data.status === 'ready' || data.status === 'generating') {
+                            this.step = 4;
+                            this.pollProgress();
+                        }
+                    } catch (e) {
+                        this.error = e.message;
+                    } finally {
+                        this.chatLoading = false;
+                    }
+                },
+                
+                async pollProgress() {
+                    const poll = async () => {
+                        try {
+                            const response = await fetch(`${API_BASE}/sessions/${this.sessionId}`);
+                            const data = await response.json();
+                            
+                            this.progress = data.progress;
+                            this.progressMessage = data.progress_message || 'Working...';
+                            
+                            if (data.status === 'complete') {
+                                this.complete = true;
+                                this.brochureUrl = data.brochure_url;
+                            } else if (data.status === 'failed') {
+                                this.error = data.error || 'Generation failed';
+                                this.step = 3;
+                            } else {
+                                setTimeout(poll, 2000);
+                            }
+                        } catch (e) {
+                            this.error = e.message;
+                        }
+                    };
+                    
+                    poll();
+                }
+            };
+        }
+    </script>
+</body>
+</html>
