@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kenya Summer Tides 2025 | Whale Sharks & Swahili Soul</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        :root {
+            --primary: #00d4aa;
+            --secondary: #0099cc;
+            --dark: #0a1628;
+            --card-bg: linear-gradient(145deg, #1a2a44, #0d1929);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--dark); color: #fff; }
+        
+        /* Hero */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(10, 22, 40, 0.7), rgba(0, 80, 120, 0.6)),
+                        url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1920') center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        .hero-badge {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero p { font-size: 1.3rem; opacity: 0.9; max-width: 600px; margin-bottom: 2rem; }
+        .hero-stats { display: flex; gap: 3rem; margin-top: 2rem; flex-wrap: wrap; justify-content: center; }
+        .stat { text-align: center; }
+        .stat-number { font-size: 2.5rem; font-weight: 700; color: var(--primary); }
+        .stat-label { font-size: 0.9rem; opacity: 0.7; }
+        
+        /* Nav */
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 1rem 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; background: rgba(10, 22, 40, 0.9); backdrop-filter: blur(10px);
+        }
+        .nav-logo { font-weight: 700; font-size: 1.2rem; }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { color: #fff; text-decoration: none; font-weight: 500; }
+        .nav-links a:hover { color: var(--primary); }
+        
+        /* Sections */
+        section { padding: 5rem 2rem; max-width: 1400px; margin: 0 auto; }
+        .section-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; text-align: center; }
+        .section-subtitle { text-align: center; opacity: 0.7; margin-bottom: 3rem; font-size: 1.1rem; }
+        
+        /* Season Cards */
+        .season-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+        .season-card {
+            background: var(--card-bg); padding: 2rem; border-radius: 20px; text-align: center;
+        }
+        .season-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .season-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .season-text { opacity: 0.8; line-height: 1.6; font-size: 0.95rem; }
+        
+        /* Filter Tabs */
+        .filter-tabs { display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
+        .filter-tab {
+            padding: 0.75rem 1.5rem; border: 2px solid var(--primary); border-radius: 50px;
+            cursor: pointer; transition: all 0.3s; background: transparent; color: #fff; font-weight: 500;
+        }
+        .filter-tab:hover, .filter-tab.active { background: var(--primary); color: var(--dark); }
+        
+        /* Villa Cards */
+        .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 2rem; }
+        .villa-card {
+            background: var(--card-bg); border-radius: 20px; overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s; text-decoration: none; color: #fff;
+        }
+        .villa-card:hover { transform: translateY(-10px); box-shadow: 0 20px 60px rgba(0, 212, 170, 0.2); }
+        
+        .villa-image-container { position: relative; height: 250px; overflow: hidden; }
+        .villa-carousel { display: flex; transition: transform 0.3s ease; height: 100%; }
+        .villa-carousel img { min-width: 100%; height: 100%; object-fit: cover; }
+        .carousel-nav {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: rgba(255,255,255,0.9); border: none; width: 36px; height: 36px;
+            border-radius: 50%; cursor: pointer; font-size: 1.2rem; opacity: 0; transition: opacity 0.3s;
+        }
+        .villa-card:hover .carousel-nav { opacity: 1; }
+        .carousel-nav.prev { left: 10px; }
+        .carousel-nav.next { right: 10px; }
+        .carousel-dots { position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; }
+        .carousel-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.5); }
+        .carousel-dot.active { background: #fff; }
+        
+        .villa-badge {
+            position: absolute; top: 15px; left: 15px; padding: 0.4rem 0.8rem;
+            border-radius: 20px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+        }
+        .badge-luxury { background: linear-gradient(135deg, #ffd700, #ff8c00); color: #000; }
+        .badge-mid { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #fff; }
+        .badge-budget { background: linear-gradient(135deg, #6c5ce7, #a29bfe); color: #fff; }
+        .badge-whale { background: linear-gradient(135deg, #0077be, #00a8e8); color: #fff; }
+        
+        .villa-content { padding: 1.5rem; }
+        .villa-location { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; opacity: 0.7; margin-bottom: 0.5rem; }
+        .villa-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .villa-description { font-size: 0.95rem; opacity: 0.8; margin-bottom: 1rem; line-height: 1.5; }
+        .villa-amenities { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+        .amenity { background: rgba(0, 212, 170, 0.15); padding: 0.3rem 0.6rem; border-radius: 15px; font-size: 0.75rem; color: var(--primary); }
+        .villa-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1); }
+        .price { font-size: 1.5rem; font-weight: 700; color: var(--primary); }
+        .price span { font-size: 0.9rem; opacity: 0.7; color: #fff; }
+        .view-btn {
+            padding: 0.75rem 1.5rem; background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none; border-radius: 25px; color: #fff; font-weight: 600; cursor: pointer; text-decoration: none;
+        }
+        
+        /* Map */
+        #map { height: 500px; border-radius: 20px; margin-top: 2rem; }
+        
+        /* Comparison Table */
+        .comparison-table { width: 100%; border-collapse: collapse; margin-top: 2rem; background: var(--card-bg); border-radius: 20px; overflow: hidden; }
+        .comparison-table th, .comparison-table td { padding: 1.2rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .comparison-table th { background: rgba(0, 212, 170, 0.2); font-weight: 600; }
+        .comparison-table tr:last-child td { border-bottom: none; }
+        
+        /* CTA */
+        .cta-section { background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 30px; padding: 4rem; text-align: center; margin: 3rem 0; }
+        .cta-section h2 { color: var(--dark); font-size: 2.5rem; margin-bottom: 1rem; }
+        .cta-section p { color: var(--dark); opacity: 0.8; margin-bottom: 2rem; font-size: 1.2rem; }
+        .cta-btn { padding: 1rem 2.5rem; background: var(--dark); color: var(--primary); border: none; border-radius: 30px; font-size: 1.1rem; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; }
+        
+        footer { text-align: center; padding: 3rem; opacity: 0.6; font-size: 0.9rem; }
+        
+        @media (max-width: 768px) {
+            .hero-stats { flex-direction: column; gap: 1.5rem; }
+            .cards-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .comparison-table { font-size: 0.85rem; }
+            .comparison-table th, .comparison-table td { padding: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-logo">🐋 Kenya Summer Tides</div>
+        <div class="nav-links">
+            <a href="#accommodations">Stays</a>
+            <a href="#map">Map</a>
+            <a href="#comparison">Compare</a>
+            <a href="exclusive.html">Hidden Gems</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-badge">🦈 Whale Shark Season July-September</div>
+        <h1>Kenya Summer Tides 2025</h1>
+        <p>Swim with gentle giants, sail ancient dhows, and discover the untouched Swahili coast. Your ultimate Indian Ocean adventure.</p>
+        <div class="hero-stats">
+            <div class="stat"><div class="stat-number">2-4</div><div class="stat-label">Travelers</div></div>
+            <div class="stat"><div class="stat-number">7-14</div><div class="stat-label">Days</div></div>
+            <div class="stat"><div class="stat-number">$65-450</div><div class="stat-label">Per Night</div></div>
+        </div>
+    </header>
+
+    <section id="season">
+        <h2 class="section-title">Why July-August?</h2>
+        <p class="section-subtitle">The perfect convergence of marine life, weather, and culture</p>
+        <div class="season-grid">
+            <div class="season-card">
+                <div class="season-icon">🦈</div>
+                <div class="season-title">Whale Shark Season</div>
+                <div class="season-text">June-September brings whale sharks to Watamu. Snorkel with the world's largest fish.</div>
+            </div>
+            <div class="season-card">
+                <div class="season-icon">☀️</div>
+                <div class="season-title">Dry Season</div>
+                <div class="season-text">25-30°C (77-86°F). Clear skies, calm seas, ideal diving conditions.</div>
+            </div>
+            <div class="season-card">
+                <div class="season-icon">🐢</div>
+                <div class="season-title">Turtle Nesting</div>
+                <div class="season-text">Sea turtles nest on Kenya's beaches. Witness hatchlings reach the ocean.</div>
+            </div>
+            <div class="season-card">
+                <div class="season-icon">⛵</div>
+                <div class="season-title">Kusi Winds</div>
+                <div class="season-text">Southeast monsoon creates perfect dhow sailing conditions.</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="accommodations">
+        <h2 class="section-title">Where to Stay</h2>
+        <p class="section-subtitle">Handpicked properties from beachfront luxury to authentic local gems</p>
+        
+        <div class="filter-tabs">
+            <button class="filter-tab active" onclick="filterCards('all')">All</button>
+            <button class="filter-tab" onclick="filterCards('luxury')">Luxury</button>
+            <button class="filter-tab" onclick="filterCards('mid')">Mid-Range</button>
+            <button class="filter-tab" onclick="filterCards('budget')">Budget</button>
+            <button class="filter-tab" onclick="filterCards('whale')">🦈 Whale Shark Base</button>
+        </div>
+        
+        <div class="cards-grid">
+            <!-- Hemingways Watamu -->
+            <a href="villa-hemingways.html" class="villa-card" data-category="luxury whale">
+                <div class="villa-image-container" data-carousel="hemingways">
+                    <div class="villa-carousel">
+                        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800" alt="Hemingways Suite">
+                        <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800" alt="Pool">
+                        <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800" alt="Beach">
+                    </div>
+                    <button class="carousel-nav prev" onclick="event.preventDefault(); moveCarousel('hemingways', -1)">‹</button>
+                    <button class="carousel-nav next" onclick="event.preventDefault(); moveCarousel('hemingways', 1)">›</button>
+                    <div class="carousel-dots"><span class="carousel-dot active"></span><span class="carousel-dot"></span><span class="carousel-dot"></span></div>
+                    <span class="villa-badge badge-luxury">Luxury</span>
+                </div>
+                <div class="villa-content">
+                    <div class="villa-location">📍 Watamu, Kenya</div>
+                    <h3 class="villa-title">Hemingways Watamu</h3>
+                    <p class="villa-description">Legendary 5-star where Ernest Hemingway fished. On-site whale shark excursions and world-class diving.</p>
+                    <div class="villa-amenities">
+                        <span class="amenity">🏊 Infinity Pool</span>
+                        <span class="amenity">🦈 Dive Center</span>
+                        <span class="amenity">🍽️ Fine Dining</span>
+                        <span class="amenity">🧖 Spa</span>
+                    </div>
+                    <div class="villa-footer">
+                        <div class="price">$450 <span>/night</span></div>
+                        <span class="view-btn">View Details →</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Medina Palms -->
+            <a href="villa-medina.html" class="villa-card" data-category="luxury whale">
+                <div class="villa-image-container" data-carousel="medina">
+                    <div class="villa-carousel">
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800" alt="Villa">
+                        <img src="https://images.unsplash.com/photo-1602002418082-a4443e081dd1?w=800" alt="Pool">
+                        <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800" alt="Beach">
+                    </div>
+                    <button class="carousel-nav prev" onclick="event.preventDefault(); moveCarousel('medina', -1)">‹</button>
+                    <button class="carousel-nav next" onclick="event.preventDefault(); moveCarousel('medina', 1)">›</button>
+                    <div class="carousel-dots"><span class="carousel-dot active"></span><span class="carousel-dot"></span><span class="carousel-dot"></span></div>
+                    <span class="villa-badge badge-luxury">Luxury</span>
+                </div>
+                <div class="villa-content">
+                    <div class="villa-location">📍 Watamu, Kenya</div>
+                    <h3 class="villa-title">Medina Palms</h3>
+                    <p class="villa-description">Private 1-4 bedroom residences with private pools. Perfect for groups. Chef service available.</p>
+                    <div class="villa-amenities">
+                        <span class="amenity">🏊 Private Pool</span>
+                        <span class="amenity">👨‍🍳 Chef Service</span>
+                        <span class="amenity">🏖️ Beach Club</span>
+                    </div>
+                    <div class="villa-footer">
+                        <div class="price">$380 <span>/night</span></div>
+                        <span class="view-btn">View Details →</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Diani Reef -->
+            <a href="villa-diani-reef.html" class="villa-card" data-category="mid">
+                <div class="villa-image-container" data-carousel="dianireef">
+                    <div class="villa-carousel">
+                        <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800" alt="Resort">
+                        <img src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800" alt="Beach">
+                        <img src="https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=800" alt="Pool">
+                    </div>
+                    <button class="carousel-nav prev" onclick="event.preventDefault(); moveCarousel('dianireef', -1)">‹</button>
+                    <button class="carousel-nav next" onclick="event.preventDefault(); moveCarousel('dianireef', 1)">›</button>
+                    <div class="carousel-dots"><span class="carousel-dot active"></span><span class="carousel-dot"></span><span class="carousel-dot"></span></div>
+                    <span class="villa-badge badge-mid">Mid-Range</span>
+                </div>
+                <div class="villa-content">
+                    <div class="villa-location">📍 Diani Beach, Kenya</div>
+                    <h3 class="villa-title">Diani Reef Beach Resort</h3>
+                    <p class="villa-description">Award-winning resort on Kenya's best beach. All-inclusive option with 5 pools and water sports.</p>
+                    <div class="villa-amenities">
+                        <span class="amenity">🍽️ All-Inclusive</span>
+                        <span class="amenity">🏊 5 Pools</span>
+                        <span class="amenity">🏄 Water Sports</span>
+                    </div>
+                    <div class="villa-footer">
+                        <div class="price">$180 <span>/night</span></div>
+                        <span class="view-btn">View Details →</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Turtle Bay -->
+            <a href="villa-turtle-bay.html" class="villa-card" data-category="mid whale">
+                <div class="villa-image-container" data-carousel="turtle">
+                    <div class="villa-carousel">
+                        <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?w=800" alt="Turtle Bay">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800" alt="Beach">
+                        <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800" alt="Pool">
+                    </div>
+                    <button class="carousel-nav prev" onclick="event.preventDefault(); moveCarousel('turtle', -1)">‹</button>
+                    <button class="carousel-nav next" onclick="event.preventDefault(); moveCarousel('turtle', 1)">›</button>
+                    <div class="carousel-dots"><span class="carousel-dot active"></span><span class="carousel-dot"></span><span class="carousel-dot"></span></div>
+                    <span class="villa-badge badge-whale">🦈 Whale Shark Base</span>
+                </div>
+                <div class="villa-content">
+                    <div class="villa-location">📍 Watamu, Kenya</div>
+                    <h3 class="villa-title">Turtle Bay Beach Club</h3>
+                    <p class="villa-description">Eco-resort with direct marine park access. Popular with divers and whale shark seekers.</p>
+                    <div class="villa-amenities">
+                        <span class="amenity">🌿 Eco Resort</span>
+                        <span class="amenity">🐢 Marine Park</span>
+                        <span class="amenity">🤿 Dive Center</span>
+                    </div>
+                    <div class="villa-footer">
+                        <div class="price">$150 <span>/night</span></div>
+                        <span class="view-btn">View Details →</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Lamu House -->
+            <a href="villa-lamu-house.html" class="villa-card" data-category="mid">
+                <div class="villa-image-container" data-carousel="lamu">
+                    <div class="villa-carousel">
+                        <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800" alt="Lamu House">
+                        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800" alt="Rooftop">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800" alt="Interior">
+                    </div>
+                    <button class="carousel-nav prev" onclick="event.preventDefault(); moveCarousel('lamu', -1)">‹</button>
+                    <button class="carousel-nav next" onclick="event.preventDefault(); moveCarousel('lamu', 1)">›</button>
+                    <div class="carousel-dots"><span class="carousel-dot active"></span><span class="carousel-dot"></span><span class="carousel-dot"></span></div>
+                    <span class="villa-badge badge-mid">Heritage</span>
+                </div>
+                <div class="villa-content">
+                    <div class="villa-location">📍 Lamu Island, Kenya</div>
+                    <h3 class="villa-title">Lamu House Hotel</h3>
+                    <p class="villa-description">Boutique heritage hotel in UNESCO Old Town. Traditional architecture, rooftop dining.</p>
+                    <div class="villa-amenities">
+                        <span class="amenity">🏛️ Heritage Site</span>
+                        <span class="amenity">⛵ Dhow Trips</span>
+                        <span class="amenity">🌅 Rooftop Bar</span>
+                    </div>
+                    <div class="villa-footer">
+                        <div class="price">$200 <span>/night</span></div>
+                        <span class="view-btn">View Details →</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Papa Remo -->
+            <a href="villa-papa-remo.html" class="villa-card" data-category="budget whale">
+                <div class="villa-image-container" data-carousel="paparemo">
+                    <div class="villa-carousel">
+                        <img src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=800" alt="Papa Remo">
+                        <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=800" alt="Beach">
+                        <img src="https://images.unsplash.com/photo-1501426026826-31c667bdf23d?w=800" alt="Sunset">
+                    </div>
+                    <button class="carousel-nav prev" onclick="event.preventDefault(); moveCarousel('paparemo', -1)">‹</button>
+                    <button class="carousel-nav next" onclick="event.preventDefault(); moveCarousel('paparemo', 1)">›</button>
+                    <div class="carousel-dots"><span class="carousel-dot active"></span><span class="carousel-dot"></span><span class="carousel-dot"></span></div>
+                    <span class="villa-badge badge-budget">Budget Gem</span>
+                </div>
+                <div class="villa-content">
+                    <div class="villa-location">📍 Watamu, Kenya</div>
+                    <h3 class="villa-title">Papa Remo Beach Resort</h3>
+                    <p class="villa-description">Local favorite with authentic Swahili hospitality. Simple cottages, best local seafood restaurant.</p>
+                    <div class="villa-amenities">
+                        <span class="amenity">🏖️ Beachfront</span>
+                        <span class="amenity">🦐 Fresh Seafood</span>
+                        <span class="amenity">💰 Great Value</span>
+                    </div>
+                    <div class="villa-footer">
+                        <div class="price">$65 <span>/night</span></div>
+                        <span class="view-btn">View Details →</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <section id="map">
+        <h2 class="section-title">Explore the Coast</h2>
+        <p class="section-subtitle">From Lamu in the north to Diani in the south – 300km of paradise</p>
+        <div id="coast-map"></div>
+    </section>
+
+    <section id="comparison">
+        <h2 class="section-title">Quick Comparison</h2>
+        <p class="section-subtitle">Find the perfect match for your group</p>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Location</th>
+                    <th>Price/Night</th>
+                    <th>Best For</th>
+                    <th>Whale Sharks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Hemingways Watamu</strong></td>
+                    <td>Watamu</td>
+                    <td>$450</td>
+                    <td>Luxury seekers</td>
+                    <td>✅ On-site trips</td>
+                </tr>
+                <tr>
+                    <td><strong>Medina Palms</strong></td>
+                    <td>Watamu</td>
+                    <td>$380</td>
+                    <td>Groups (4+ people)</td>
+                    <td>✅ 5 min drive</td>
+                </tr>
+                <tr>
+                    <td><strong>Diani Reef</strong></td>
+                    <td>Diani Beach</td>
+                    <td>$180</td>
+                    <td>Families, all-inclusive</td>
+                    <td>❌ 2hr drive</td>
+                </tr>
+                <tr>
+                    <td><strong>Turtle Bay</strong></td>
+                    <td>Watamu</td>
+                    <td>$150</td>
+                    <td>Eco travelers, divers</td>
+                    <td>✅ Marine park access</td>
+                </tr>
+                <tr>
+                    <td><strong>Lamu House</strong></td>
+                    <td>Lamu</td>
+                    <td>$200</td>
+                    <td>Culture lovers</td>
+                    <td>❌ Different area</td>
+                </tr>
+                <tr>
+                    <td><strong>Papa Remo</strong></td>
+                    <td>Watamu</td>
+                    <td>$65</td>
+                    <td>Budget travelers</td>
+                    <td>✅ Walking distance</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <div class="cta-section" style="max-width: 1200px; margin: 3rem auto;">
+        <h2>Discover Hidden Gems</h2>
+        <p>Private whale shark safaris, secret beach dinners, local experiences</p>
+        <a href="exclusive.html" class="cta-btn">Explore Exclusive Experiences →</a>
+    </div>
+
+    <footer>
+        <p>Kenya Summer Tides 2025 | Created for your group's adventure</p>
+        <p style="margin-top: 0.5rem;">🐋 Swim with giants. Sail with history. Sleep in paradise.</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Carousel
+        const carouselState = {};
+        function moveCarousel(id, direction) {
+            const container = document.querySelector(`[data-carousel="${id}"]`);
+            if (!container) return;
+            const carousel = container.querySelector('.villa-carousel');
+            const images = carousel.querySelectorAll('img');
+            const dots = container.querySelectorAll('.carousel-dot');
+            if (!carouselState[id]) carouselState[id] = 0;
+            carouselState[id] += direction;
+            if (carouselState[id] < 0) carouselState[id] = images.length - 1;
+            if (carouselState[id] >= images.length) carouselState[id] = 0;
+            carousel.style.transform = `translateX(-${carouselState[id] * 100}%)`;
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === carouselState[id]));
+        }
+        // Touch swipe
+        document.querySelectorAll('.villa-image-container').forEach(container => {
+            let startX = 0;
+            const id = container.dataset.carousel;
+            if (!id) return;
+            container.addEventListener('touchstart', e => startX = e.touches[0].clientX, {passive:true});
+            container.addEventListener('touchend', e => {
+                const diff = startX - e.changedTouches[0].clientX;
+                if (Math.abs(diff) > 50) moveCarousel(id, diff > 0 ? 1 : -1);
+            }, {passive:true});
+        });
+
+        // Filter
+        function filterCards(category) {
+            document.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.classList.toggle('active', tab.textContent.toLowerCase().includes(category) || 
+                    (category === 'all' && tab.textContent === 'All'));
+            });
+            document.querySelectorAll('.villa-card').forEach(card => {
+                card.style.display = category === 'all' || card.dataset.category.includes(category) ? 'block' : 'none';
+            });
+        }
+
+        // Map
+        const map = L.map('coast-map').setView([-3.35, 40.0], 8);
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            attribution: '©OpenStreetMap, ©CartoDB'
+        }).addTo(map);
+        const locations = [
+            { lat: -3.3396, lng: 40.0172, name: "Watamu", desc: "🦈 Whale Shark Capital<br>Hemingways, Medina, Turtle Bay, Papa Remo" },
+            { lat: -4.2773, lng: 39.5847, name: "Diani Beach", desc: "🏖️ Kenya's Best Beach<br>Diani Reef Resort" },
+            { lat: -2.2685, lng: 40.9022, name: "Lamu", desc: "🏛️ UNESCO Heritage<br>Lamu House Hotel" },
+            { lat: -3.2175, lng: 40.1167, name: "Malindi", desc: "🌊 Historic Port Town" }
+        ];
+        locations.forEach(loc => {
+            L.marker([loc.lat, loc.lng]).addTo(map).bindPopup(`<strong>${loc.name}</strong><br>${loc.desc}`);
+        });
+    </script>
+</body>
+</html>
