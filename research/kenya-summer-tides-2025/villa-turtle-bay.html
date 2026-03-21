@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turtle Bay Beach Club | Kenya Summer Tides 2025</title>
+    <style>
+        :root { --primary: #00d4aa; --secondary: #0099cc; --dark: #0a1628; --card-bg: linear-gradient(145deg, #1a2a44, #0d1929); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--dark); color: #fff; line-height: 1.6; }
+        nav { position: fixed; top: 0; width: 100%; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(10, 22, 40, 0.95); backdrop-filter: blur(10px); }
+        nav a { color: #fff; text-decoration: none; font-weight: 600; }
+        .hero { padding: 7rem 2rem 3rem; background: linear-gradient(135deg, rgba(10, 22, 40, 0.8), rgba(0, 80, 120, 0.6)), url('https://images.unsplash.com/photo-1540541338287-41700207dee6?w=1920') center/cover; text-align: center; }
+        .hero-badge { display: inline-block; background: linear-gradient(135deg, #0077be, #00a8e8); padding: 0.5rem 1.2rem; border-radius: 25px; font-size: 0.85rem; font-weight: 600; color: #fff; margin-bottom: 1rem; }
+        .hero h1 { font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 800; margin-bottom: 0.5rem; }
+        .hero-location { opacity: 0.9; font-size: 1.1rem; margin-bottom: 1rem; }
+        .hero-price { font-size: 1.8rem; font-weight: 700; color: var(--primary); }
+        .hero-price span { font-size: 1rem; opacity: 0.8; color: #fff; }
+        section { padding: 4rem 2rem; max-width: 1100px; margin: 0 auto; }
+        .section-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 1.5rem; }
+        .photo-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        .photo-gallery img { width: 100%; height: 220px; object-fit: cover; border-radius: 12px; cursor: pointer; transition: transform 0.3s; }
+        .photo-gallery img:hover { transform: scale(1.03); }
+        .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center; }
+        .lightbox.active { display: flex; }
+        .lightbox img { max-width: 90%; max-height: 90%; border-radius: 10px; }
+        .lightbox-close { position: absolute; top: 20px; right: 30px; font-size: 2.5rem; color: #fff; cursor: pointer; }
+        .overview-grid { display: grid; grid-template-columns: 1.8fr 1fr; gap: 2rem; }
+        .overview-text p { margin-bottom: 1rem; opacity: 0.9; }
+        .quick-facts { background: var(--card-bg); padding: 1.5rem; border-radius: 15px; }
+        .fact { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .fact:last-child { border-bottom: none; }
+        .fact-label { opacity: 0.7; }
+        .fact-value { font-weight: 600; color: var(--primary); }
+        .amenities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; }
+        .amenity-card { background: var(--card-bg); padding: 1.2rem; border-radius: 12px; text-align: center; }
+        .amenity-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+        .amenity-name { font-weight: 600; font-size: 0.9rem; }
+        .highlight-box { background: linear-gradient(135deg, var(--primary), var(--secondary)); padding: 2.5rem; border-radius: 20px; text-align: center; }
+        .highlight-box h3 { color: var(--dark); font-size: 1.5rem; margin-bottom: 1rem; }
+        .highlight-box p { color: var(--dark); font-size: 1.1rem; line-height: 1.7; }
+        .itinerary-day { background: var(--card-bg); padding: 1.5rem; border-radius: 15px; margin-bottom: 1rem; }
+        .day-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+        .day-badge { background: var(--primary); color: var(--dark); padding: 0.3rem 0.8rem; border-radius: 20px; font-weight: 600; font-size: 0.85rem; }
+        .day-title { font-weight: 600; font-size: 1.1rem; }
+        .time-slot { display: flex; gap: 1rem; margin: 0.8rem 0; padding-left: 1rem; border-left: 3px solid var(--primary); }
+        .time-badge { background: rgba(0, 212, 170, 0.2); padding: 0.25rem 0.7rem; border-radius: 10px; font-size: 0.8rem; color: var(--primary); font-weight: 600; min-width: 75px; text-align: center; }
+        .time-activity { flex: 1; }
+        .time-activity a { color: var(--primary); }
+        .restaurant-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+        .restaurant-card { background: var(--card-bg); padding: 1.5rem; border-radius: 15px; }
+        .restaurant-name { font-weight: 700; font-size: 1.1rem; margin-bottom: 0.3rem; }
+        .restaurant-cuisine { opacity: 0.7; font-size: 0.9rem; margin-bottom: 0.8rem; }
+        .restaurant-meta { display: flex; gap: 1.5rem; font-size: 0.85rem; margin-bottom: 1rem; }
+        .restaurant-card a { color: var(--primary); }
+        .activities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+        .activity-card { background: var(--card-bg); padding: 1.5rem; border-radius: 15px; }
+        .activity-name { font-weight: 600; margin-bottom: 0.5rem; }
+        .activity-desc { opacity: 0.8; font-size: 0.9rem; margin-bottom: 0.75rem; }
+        .activity-price { color: var(--primary); font-weight: 700; }
+        .budget-table { width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: 15px; overflow: hidden; }
+        .budget-table th, .budget-table td { padding: 1rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .budget-table th { background: rgba(0, 212, 170, 0.15); }
+        .budget-table tr:last-child td { border-bottom: none; font-weight: 700; color: var(--primary); }
+        .exp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .exp-card { background: var(--card-bg); padding: 1.5rem; border-radius: 15px; border-left: 4px solid var(--primary); }
+        .exp-badge { display: inline-block; background: rgba(0, 212, 170, 0.2); padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.75rem; color: var(--primary); font-weight: 600; margin-bottom: 0.8rem; }
+        .exp-title { font-weight: 700; margin-bottom: 0.5rem; }
+        .exp-desc { opacity: 0.8; font-size: 0.9rem; }
+        .cta-section { background: linear-gradient(135deg, var(--primary), var(--secondary)); padding: 3rem; border-radius: 25px; text-align: center; margin: 2rem 0; }
+        .cta-section h2 { color: var(--dark); font-size: 2rem; margin-bottom: 0.75rem; }
+        .cta-section p { color: var(--dark); margin-bottom: 1.5rem; }
+        .cta-btn { display: inline-block; padding: 1rem 2.5rem; background: var(--dark); color: var(--primary); border-radius: 30px; font-weight: 700; text-decoration: none; }
+        footer { text-align: center; padding: 2rem; opacity: 0.6; }
+        footer a { color: var(--primary); text-decoration: none; }
+        @media (max-width: 768px) { .overview-grid { grid-template-columns: 1fr; } .photo-gallery { grid-template-columns: repeat(2, 1fr); } }
+    </style>
+</head>
+<body>
+    <nav><a href="index.html">← Back to All Properties</a><span style="color: var(--primary);">🐋 Kenya Summer Tides</span></nav>
+
+    <header class="hero">
+        <span class="hero-badge">🦈 WHALE SHARK BASE • 🌿 Eco Resort</span>
+        <h1>Turtle Bay Beach Club</h1>
+        <p class="hero-location">📍 Watamu, Kenya • Marine National Park</p>
+        <div class="hero-price">$150 <span>/night (all-inclusive)</span></div>
+    </header>
+
+    <!-- 1. Photo Gallery -->
+    <section>
+        <h2 class="section-title">📸 Photo Gallery</h2>
+        <div class="photo-gallery">
+            <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?w=800" alt="Beach" onclick="openLightbox(this.src)">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800" alt="Coastline" onclick="openLightbox(this.src)">
+            <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800" alt="Pool" onclick="openLightbox(this.src)">
+            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800" alt="Marine Life" onclick="openLightbox(this.src)">
+            <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800" alt="Garden" onclick="openLightbox(this.src)">
+            <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800" alt="Restaurant" onclick="openLightbox(this.src)">
+        </div>
+    </section>
+    <div class="lightbox" onclick="closeLightbox()"><span class="lightbox-close">&times;</span><img src=""></div>
+
+    <!-- 2. Overview -->
+    <section>
+        <h2 class="section-title">🏨 Property Overview</h2>
+        <div class="overview-grid">
+            <div class="overview-text">
+                <p><strong>Turtle Bay Beach Club</strong> is the diver's and eco-traveler's choice in Watamu. This award-winning eco-resort sits directly on the boundary of Watamu Marine National Park, giving you instant access to some of Kenya's best snorkeling and diving sites.</p>
+                <p>The resort takes sustainability seriously – solar power, water recycling, and a long-running partnership with Local Ocean Conservation for turtle protection. You're not just visiting; you're supporting marine conservation.</p>
+                <p>With an all-inclusive rate that includes meals, drinks, snorkeling gear, and kayaks, Turtle Bay offers exceptional value. The on-site dive center arranges whale shark excursions daily during season, and you can literally walk to the Marine Park jetty.</p>
+            </div>
+            <div class="quick-facts">
+                <div class="fact"><span class="fact-label">Rooms</span><span class="fact-value">145 rooms</span></div>
+                <div class="fact"><span class="fact-label">Whale Sharks</span><span class="fact-value">5 min walk ⭐</span></div>
+                <div class="fact"><span class="fact-label">Marine Park</span><span class="fact-value">Direct access</span></div>
+                <div class="fact"><span class="fact-label">Dive Center</span><span class="fact-value">PADI on-site</span></div>
+                <div class="fact"><span class="fact-label">All-Inclusive</span><span class="fact-value">Yes ✓</span></div>
+                <div class="fact"><span class="fact-label">Eco Certified</span><span class="fact-value">Gold rated</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Amenities -->
+    <section>
+        <h2 class="section-title">✨ Key Amenities</h2>
+        <div class="amenities-grid">
+            <div class="amenity-card"><div class="amenity-icon">🤿</div><div class="amenity-name">PADI Dive Center</div></div>
+            <div class="amenity-card"><div class="amenity-icon">🐢</div><div class="amenity-name">Marine Park Access</div></div>
+            <div class="amenity-card"><div class="amenity-icon">🏊</div><div class="amenity-name">2 Pools</div></div>
+            <div class="amenity-card"><div class="amenity-icon">🛶</div><div class="amenity-name">Free Kayaks</div></div>
+            <div class="amenity-card"><div class="amenity-icon">🍽️</div><div class="amenity-name">All-Inclusive</div></div>
+            <div class="amenity-card"><div class="amenity-icon">🌿</div><div class="amenity-name">Eco Certified</div></div>
+            <div class="amenity-card"><div class="amenity-icon">📶</div><div class="amenity-name">Free WiFi</div></div>
+            <div class="amenity-card"><div class="amenity-icon">🐢</div><div class="amenity-name">Turtle Sanctuary</div></div>
+        </div>
+    </section>
+
+    <!-- 4. Highlight -->
+    <section>
+        <div class="highlight-box">
+            <h3>🌟 What Makes This Location Unforgettable</h3>
+            <p>Step off the beach and into a coral wonderland. Turtle Bay's location on the Marine Park boundary means world-class snorkeling is steps away – no boat needed. Combine this with the lowest whale shark trip logistics of any resort (the boats leave from the neighboring jetty) and you have the ultimate marine adventure base. Plus, every stay supports real conservation work.</p>
+        </div>
+    </section>
+
+    <!-- 5. Itinerary -->
+    <section>
+        <h2 class="section-title">📅 Sample Week Itinerary</h2>
+        <div class="itinerary-day">
+            <div class="day-header"><span class="day-badge">Day 1</span><span class="day-title">Arrival & Marine Park Intro</span></div>
+            <div class="time-slot"><span class="time-badge">2:00 PM</span><div class="time-activity">Check-in, all-inclusive wristband</div></div>
+            <div class="time-slot"><span class="time-badge">4:00 PM</span><div class="time-activity">Snorkel the reef right off the beach</div></div>
+            <div class="time-slot"><span class="time-badge">6:00 PM</span><div class="time-activity">Dive center briefing for whale shark trip</div></div>
+        </div>
+        <div class="itinerary-day">
+            <div class="day-header"><span class="day-badge">Day 2</span><span class="day-title">Whale Shark Day</span></div>
+            <div class="time-slot"><span class="time-badge">6:00 AM</span><div class="time-activity">Walk to jetty, boat departs for whale shark search</div></div>
+            <div class="time-slot"><span class="time-badge">12:00 PM</span><div class="time-activity">Return, all-inclusive lunch buffet</div></div>
+            <div class="time-slot"><span class="time-badge">3:00 PM</span><div class="time-activity">Kayak Mida Creek mangroves</div></div>
+        </div>
+        <div class="itinerary-day">
+            <div class="day-header"><span class="day-badge">Day 3</span><span class="day-title">Conservation Day</span></div>
+            <div class="time-slot"><span class="time-badge">6:00 AM</span><div class="time-activity">Turtle nest release with <a href="https://localocean.co/" target="_blank">Local Ocean Trust</a></div></div>
+            <div class="time-slot"><span class="time-badge">10:00 AM</span><div class="time-activity">Guided Marine Park snorkel tour</div></div>
+            <div class="time-slot"><span class="time-badge">3:00 PM</span><div class="time-activity">Visit turtle sanctuary on-site</div></div>
+        </div>
+        <div class="itinerary-day">
+            <div class="day-header"><span class="day-badge">Day 4-7</span><span class="day-title">Mix It Up</span></div>
+            <div class="time-slot"><span class="time-badge">Flexible</span><div class="time-activity">Second whale shark trip, PADI diving, Gede Ruins, dhow cruise, or beach days</div></div>
+        </div>
+    </section>
+
+    <!-- 6. Restaurants -->
+    <section>
+        <h2 class="section-title">🍽️ Top Restaurants Nearby</h2>
+        <div class="restaurant-grid">
+            <div class="restaurant-card">
+                <div class="restaurant-name">All-Inclusive Buffet</div>
+                <div class="restaurant-cuisine">International & Swahili</div>
+                <div class="restaurant-meta"><span>💰 Included</span><span>📍 On-site</span></div>
+            </div>
+            <div class="restaurant-card">
+                <div class="restaurant-name">Savannah Restaurant</div>
+                <div class="restaurant-cuisine">Fresh Seafood</div>
+                <div class="restaurant-meta"><span>💰 $$</span><span>📍 5 min</span></div>
+                <a href="https://www.google.com/maps/search/Savannah+Restaurant+Watamu" target="_blank">View on Map →</a>
+            </div>
+            <div class="restaurant-card">
+                <div class="restaurant-name">Papa Remo</div>
+                <div class="restaurant-cuisine">Local Seafood</div>
+                <div class="restaurant-meta"><span>💰 $</span><span>📍 10 min</span></div>
+                <a href="https://www.google.com/maps/search/Papa+Remo+Watamu" target="_blank">View on Map →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Activities -->
+    <section>
+        <h2 class="section-title">🎯 Activities & Experiences</h2>
+        <div class="activities-grid">
+            <div class="activity-card"><div class="activity-name">🦈 Whale Shark Trip</div><div class="activity-desc">Departs from neighboring jetty. Easiest logistics.</div><div class="activity-price">$120/person</div></div>
+            <div class="activity-card"><div class="activity-name">🤿 PADI Diving</div><div class="activity-desc">Coral gardens, reef sharks, turtles galore.</div><div class="activity-price">$80/dive</div></div>
+            <div class="activity-card"><div class="activity-name">🐢 Turtle Release</div><div class="activity-desc">Dawn ceremony at Local Ocean Trust.</div><div class="activity-price">$50 donation</div></div>
+            <div class="activity-card"><div class="activity-name">🛶 Mida Creek Kayak</div><div class="activity-desc">Mangrove exploration, bird watching.</div><div class="activity-price">Included</div></div>
+            <div class="activity-card"><div class="activity-name">🏊 Marine Park Snorkel</div><div class="activity-desc">Walk-in access to protected reef.</div><div class="activity-price">$15 park fee</div></div>
+            <div class="activity-card"><div class="activity-name">🌙 Night Snorkel</div><div class="activity-desc">Bioluminescence when conditions allow.</div><div class="activity-price">$40/person</div></div>
+        </div>
+    </section>
+
+    <!-- 8. Budget -->
+    <section>
+        <h2 class="section-title">💰 7-Night Budget (Per Person, All-Inclusive)</h2>
+        <table class="budget-table">
+            <thead><tr><th>Category</th><th>Cost</th><th>Notes</th></tr></thead>
+            <tbody>
+                <tr><td>All-Inclusive (7 nights)</td><td>$1,050</td><td>$150/night, meals + drinks included</td></tr>
+                <tr><td>Whale Shark Trips (×2)</td><td>$240</td><td>$120 each</td></tr>
+                <tr><td>Marine Park Fees</td><td>$45</td><td>$15 × 3 visits</td></tr>
+                <tr><td>Turtle Release</td><td>$50</td><td>Conservation donation</td></tr>
+                <tr><td>Transport</td><td>$80</td><td>Airport transfers</td></tr>
+                <tr><td><strong>TOTAL</strong></td><td><strong>~$1,465</strong></td><td>Best value whale shark base!</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- 9. Exclusive -->
+    <section>
+        <h2 class="section-title">🔮 Nearby Exclusive Experiences</h2>
+        <div class="exp-grid">
+            <div class="exp-card">
+                <span class="exp-badge">🦈 Best Access</span>
+                <div class="exp-title">First Boat Out</div>
+                <div class="exp-desc">Book the 5:45 AM departure – you'll reach whale sharks before anyone else. Ask dive center.</div>
+            </div>
+            <div class="exp-card">
+                <span class="exp-badge">🌙 Rare</span>
+                <div class="exp-title">Bioluminescent Night Snorkel</div>
+                <div class="exp-desc">New moon nights only. The plankton glow is magical. Book through dive center.</div>
+            </div>
+            <div class="exp-card">
+                <span class="exp-badge">🐢 Conservation</span>
+                <div class="exp-title">Turtle Hospital Visit</div>
+                <div class="exp-desc">See injured turtles being rehabilitated at Local Ocean Trust. Walking distance.</div>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 2rem;"><a href="exclusive.html" style="color: var(--primary);">Explore All Hidden Gems →</a></p>
+    </section>
+
+    <!-- 10. CTA -->
+    <section>
+        <div class="cta-section">
+            <h2>Ready to Book Turtle Bay?</h2>
+            <p>Best value whale shark base in Kenya. Eco-friendly and all-inclusive.</p>
+            <a href="https://www.booking.com/hotel/ke/turtle-bay-beach-club.html" target="_blank" class="cta-btn">Book on Booking.com →</a>
+        </div>
+    </section>
+
+    <footer><p><a href="index.html">← All Properties</a> · <a href="exclusive.html">Hidden Gems</a></p><p style="margin-top:0.5rem;">Kenya Summer Tides 2025</p></footer>
+
+    <script>
+        function openLightbox(src){const l=document.querySelector('.lightbox');l.querySelector('img').src=src;l.classList.add('active');}
+        function closeLightbox(){document.querySelector('.lightbox').classList.remove('active');}
+    </script>
+</body>
+</html>

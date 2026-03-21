@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hemingways Watamu | Kenya Summer Tides 2025</title>
+    <style>
+        :root { --primary: #00d4aa; --secondary: #0099cc; --dark: #0a1628; --card-bg: linear-gradient(145deg, #1a2a44, #0d1929); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--dark); color: #fff; line-height: 1.6; }
+        
+        nav { position: fixed; top: 0; width: 100%; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(10, 22, 40, 0.95); backdrop-filter: blur(10px); }
+        nav a { color: #fff; text-decoration: none; font-weight: 600; }
+        nav a:hover { color: var(--primary); }
+        
+        .hero { padding: 7rem 2rem 3rem; background: linear-gradient(135deg, rgba(10, 22, 40, 0.8), rgba(0, 80, 120, 0.6)), url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1920') center/cover; text-align: center; }
+        .hero-badge { display: inline-block; background: linear-gradient(135deg, #ffd700, #ff8c00); padding: 0.5rem 1.2rem; border-radius: 25px; font-size: 0.85rem; font-weight: 600; color: #000; margin-bottom: 1rem; }
+        .hero h1 { font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 800; margin-bottom: 0.5rem; }
+        .hero-location { opacity: 0.9; font-size: 1.1rem; margin-bottom: 1rem; }
+        .hero-price { font-size: 1.8rem; font-weight: 700; color: var(--primary); }
+        .hero-price span { font-size: 1rem; opacity: 0.8; color: #fff; }
+        
+        section { padding: 4rem 2rem; max-width: 1100px; margin: 0 auto; }
+        .section-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        
+        /* 1. Photo Gallery */
+        .photo-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        .photo-gallery img { width: 100%; height: 220px; object-fit: cover; border-radius: 12px; cursor: pointer; transition: transform 0.3s, opacity 0.3s; }
+        .photo-gallery img:hover { transform: scale(1.03); opacity: 0.9; }
+        .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center; }
+        .lightbox.active { display: flex; }
+        .lightbox img { max-width: 90%; max-height: 90%; border-radius: 10px; }
+        .lightbox-close { position: absolute; top: 20px; right: 30px; font-size: 2.5rem; color: #fff; cursor: pointer; }
+        
+        /* 2. Overview */
+        .overview-grid { display: grid; grid-template-columns: 1.8fr 1fr; gap: 2rem; }
+        .overview-text p { margin-bottom: 1rem; opacity: 0.9; }
+        .quick-facts { background: var(--card-bg); padding: 1.5rem; border-radius: 15px; height: fit-content; }
+        .fact { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .fact:last-child { border-bottom: none; }
+        .fact-label { opacity: 0.7; }
+        .fact-value { font-weight: 600; color: var(--primary); }
+        
+        /* 3. Amenities */
+        .amenities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; }
+        .amenity-card { background: var(--card-bg); padding: 1.2rem; border-radius: 12px; text-align: center; }
+        .amenity-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+        .amenity-name { font-weight: 600; font-size: 0.9rem; }
+        
+        /* 4. Highlight Box */
+        .highlight-box { background: linear-gradient(135deg, var(--primary), var(--secondary)); padding: 2.5rem; border-radius: 20px; text-align: center; }
+        .highlight-box h3 { color: var(--dark); font-size: 1.5rem; margin-bottom: 1rem; }
+        .highlight-box p { color: var(--dark); font-size: 1.1rem; line-height: 1.7; opacity: 0.9; }
+        
+        /* 5. Itinerary */
+        .itinerary-day { background: var(--card-bg); padding: 1.5rem; border-radius: 15px; margin-bottom: 1rem; }
+        .day-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+        .day-badge { background: var(--primary); color: var(--dark); padding: 0.3rem 0.8rem; border-radius: 20px; font-weight: 600; font-size: 0.85rem; }
+        .day-title { font-weight: 600; font-size: 1.1rem; }
+        .time-slot { display: flex; gap: 1rem; margin: 0.8rem 0; padding-left: 1rem; border-left: 3px solid var(--primary); }
+        .time-badge { background: rgba(0, 212, 170, 0.2); padding: 0.25rem 0.7rem; border-radius: 10px; font-size: 0.8rem; color: var(--primary); font-weight: 600; min-width: 75px; text-align: center; height: fit-content; }
+        .time-activity { flex: 1; }
+        .time-activity a { color: var(--primary); text-decoration: none; }
+        .time-activity a:hover { text-decoration: underline; }
+        
+        /* 6. Restaurants */
+        .restaurant-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+        .restaurant-card { background: var(--card-bg); padding: 1.5rem; border-radius: 15px; }
+        .restaurant-name { font-weight: 700; font-size: 1.1rem; margin-bottom: 0.3rem; }
+        .restaurant-cuisine { opacity: 0.7; font-size: 0.9rem; margin-bottom: 0.8rem; }
+        .restaurant-meta { display: flex; gap: 1.5rem; font-size: 0.85rem; margin-bottom: 1rem; }
+        .restaurant-card a { color: var(--primary); text-decoration: none; font-weight: 500; font-size: 0.9rem; }
+        
+        /* 7. Activities */
+        .activities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+        .activity-card { background: var(--card-bg); padding: 1.5rem; border-radius: 15px; }
+        .activity-name { font-weight: 600; margin-bottom: 0.5rem; font-size: 1.05rem; }
+        .activity-desc { opacity: 0.8; font-size: 0.9rem; line-height: 1.5; margin-bottom: 0.75rem; }
+        .activity-price { color: var(--primary); font-weight: 700; }
+        
+        /* 8. Budget */
+        .budget-table { width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: 15px; overflow: hidden; }
+        .budget-table th, .budget-table td { padding: 1rem 1.2rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .budget-table th { background: rgba(0, 212, 170, 0.15); font-weight: 600; }
+        .budget-table tr:last-child td { border-bottom: none; font-weight: 700; color: var(--primary); font-size: 1.1rem; }
+        
+        /* 9. Nearby Experiences */
+        .exp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .exp-card { background: var(--card-bg); padding: 1.5rem; border-radius: 15px; border-left: 4px solid var(--primary); }
+        .exp-badge { display: inline-block; background: rgba(0, 212, 170, 0.2); padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.75rem; color: var(--primary); font-weight: 600; margin-bottom: 0.8rem; }
+        .exp-title { font-weight: 700; margin-bottom: 0.5rem; }
+        .exp-desc { opacity: 0.8; font-size: 0.9rem; line-height: 1.5; }
+        .exp-desc a { color: var(--primary); }
+        
+        /* 10. CTA */
+        .cta-section { background: linear-gradient(135deg, var(--primary), var(--secondary)); padding: 3rem; border-radius: 25px; text-align: center; margin: 2rem 0; }
+        .cta-section h2 { color: var(--dark); font-size: 2rem; margin-bottom: 0.75rem; }
+        .cta-section p { color: var(--dark); opacity: 0.85; margin-bottom: 1.5rem; font-size: 1.1rem; }
+        .cta-btn { display: inline-block; padding: 1rem 2.5rem; background: var(--dark); color: var(--primary); border-radius: 30px; font-weight: 700; text-decoration: none; font-size: 1.1rem; transition: transform 0.3s; }
+        .cta-btn:hover { transform: scale(1.05); }
+        
+        footer { text-align: center; padding: 2rem; opacity: 0.6; font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.1); }
+        footer a { color: var(--primary); text-decoration: none; }
+        
+        @media (max-width: 768px) {
+            .overview-grid { grid-template-columns: 1fr; }
+            .photo-gallery { grid-template-columns: repeat(2, 1fr); }
+            .hero h1 { font-size: 2rem; }
+            section { padding: 3rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">← Back to All Properties</a>
+        <span style="color: var(--primary);">🐋 Kenya Summer Tides</span>
+    </nav>
+
+    <header class="hero">
+        <span class="hero-badge">⭐ LUXURY • 🦈 Whale Shark Base</span>
+        <h1>Hemingways Watamu</h1>
+        <p class="hero-location">📍 Watamu, Kenya • Turtle Bay Road</p>
+        <div class="hero-price">$450 <span>/night</span></div>
+    </header>
+
+    <!-- SECTION 1: Photo Gallery -->
+    <section>
+        <h2 class="section-title">📸 Photo Gallery</h2>
+        <div class="photo-gallery">
+            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800" alt="Luxury Suite" onclick="openLightbox(this.src)">
+            <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800" alt="Infinity Pool" onclick="openLightbox(this.src)">
+            <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800" alt="Beach View" onclick="openLightbox(this.src)">
+            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800" alt="Resort Exterior" onclick="openLightbox(this.src)">
+            <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800" alt="Fine Dining" onclick="openLightbox(this.src)">
+            <img src="https://images.unsplash.com/photo-1602002418082-a4443e081dd1?w=800" alt="Lounge Area" onclick="openLightbox(this.src)">
+        </div>
+    </section>
+    <div class="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img src="" alt="Full size">
+    </div>
+
+    <!-- SECTION 2: Villa Overview -->
+    <section>
+        <h2 class="section-title">🏨 Property Overview</h2>
+        <div class="overview-grid">
+            <div class="overview-text">
+                <p>Named after Ernest Hemingway, who famously fished these waters in the 1930s, <strong>Hemingways Watamu</strong> stands as Kenya's premier luxury coastal retreat. The resort seamlessly blends colonial elegance with contemporary comfort, offering unobstructed views of the Indian Ocean and direct access to Watamu Marine National Park.</p>
+                <p>Each of the 74 rooms features handcrafted Lamu furniture, private ocean-facing balconies, and the legendary Hemingways service that has earned it multiple awards. The on-site <strong>PADI 5-Star dive center</strong> runs daily whale shark excursions during season (July-September), with a remarkable 90%+ encounter rate.</p>
+                <p>The resort's speedboats can have you swimming alongside gentle giants within 30 minutes of departure. After your ocean adventures, retreat to the award-winning spa or enjoy sundowners at the iconic waterfront bar.</p>
+            </div>
+            <div class="quick-facts">
+                <div class="fact"><span class="fact-label">Rooms</span><span class="fact-value">74 suites</span></div>
+                <div class="fact"><span class="fact-label">WiFi Speed</span><span class="fact-value">50+ Mbps</span></div>
+                <div class="fact"><span class="fact-label">Beach</span><span class="fact-value">Private access</span></div>
+                <div class="fact"><span class="fact-label">Whale Sharks</span><span class="fact-value">On-site trips</span></div>
+                <div class="fact"><span class="fact-label">Airport</span><span class="fact-value">15 min (Malindi)</span></div>
+                <div class="fact"><span class="fact-label">Check-in</span><span class="fact-value">2:00 PM</span></div>
+                <div class="fact"><span class="fact-label">Check-out</span><span class="fact-value">11:00 AM</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: Key Amenities -->
+    <section>
+        <h2 class="section-title">✨ Key Amenities</h2>
+        <div class="amenities-grid">
+            <div class="amenity-card"><div class="amenity-icon">🏊</div><div class="amenity-name">Infinity Pool</div></div>
+            <div class="amenity-card"><div class="amenity-icon">🦈</div><div class="amenity-name">PADI Dive Center</div></div>
+            <div class="amenity-card"><div class="amenity-icon">🍽️</div><div class="amenity-name">3 Restaurants</div></div>
+            <div class="amenity-card"><div class="amenity-icon">🧖</div><div class="amenity-name">Full-Service Spa</div></div>
+            <div class="amenity-card"><div class="amenity-icon">📶</div><div class="amenity-name">High-Speed WiFi</div></div>
+            <div class="amenity-card"><div class="amenity-icon">🎣</div><div class="amenity-name">Deep Sea Fishing</div></div>
+            <div class="amenity-card"><div class="amenity-icon">⛵</div><div class="amenity-name">Dhow Cruises</div></div>
+            <div class="amenity-card"><div class="amenity-icon">🚗</div><div class="amenity-name">Airport Transfers</div></div>
+            <div class="amenity-card"><div class="amenity-icon">🏖️</div><div class="amenity-name">Private Beach</div></div>
+            <div class="amenity-card"><div class="amenity-icon">🍸</div><div class="amenity-name">Waterfront Bar</div></div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: Highlight Box -->
+    <section>
+        <div class="highlight-box">
+            <h3>🌟 What Makes This Location Unforgettable</h3>
+            <p>Wake up to dolphin pods playing in the bay. Spend your morning swimming alongside the world's largest fish – the magnificent whale shark. Return to sundowners on your private balcony as traditional dhows sail past against a blazing sunset. Hemingways isn't just a hotel – it's the gateway to Kenya's most extraordinary marine encounters, wrapped in the kind of timeless service that made it Hemingway's choice nearly a century ago.</p>
+        </div>
+    </section>
+
+    <!-- SECTION 5: Sample Week Itinerary -->
+    <section>
+        <h2 class="section-title">📅 Sample Week Itinerary</h2>
+        
+        <div class="itinerary-day">
+            <div class="day-header">
+                <span class="day-badge">Day 1</span>
+                <span class="day-title">Arrival & Settle In</span>
+            </div>
+            <div class="time-slot"><span class="time-badge">2:00 PM</span><div class="time-activity">Check-in, welcome cocktail, room orientation</div></div>
+            <div class="time-slot"><span class="time-badge">4:00 PM</span><div class="time-activity">Beach walk and marine park briefing at dive center</div></div>
+            <div class="time-slot"><span class="time-badge">6:30 PM</span><div class="time-activity">Sunset drinks at the waterfront bar</div></div>
+            <div class="time-slot"><span class="time-badge">7:30 PM</span><div class="time-activity">Dinner at <a href="https://www.google.com/maps/search/The+Palm+Restaurant+Hemingways+Watamu" target="_blank">The Palm Restaurant</a> (on-site)</div></div>
+        </div>
+
+        <div class="itinerary-day">
+            <div class="day-header">
+                <span class="day-badge">Day 2</span>
+                <span class="day-title">Whale Shark Encounter</span>
+            </div>
+            <div class="time-slot"><span class="time-badge">6:00 AM</span><div class="time-activity">Early breakfast, depart for whale shark search</div></div>
+            <div class="time-slot"><span class="time-badge">12:00 PM</span><div class="time-activity">Return to resort, light lunch at beach bar</div></div>
+            <div class="time-slot"><span class="time-badge">3:00 PM</span><div class="time-activity">Spa treatment (highly recommended after ocean day)</div></div>
+            <div class="time-slot"><span class="time-badge">6:00 PM</span><div class="time-activity">Sunset dhow cruise with drinks and canapés</div></div>
+        </div>
+
+        <div class="itinerary-day">
+            <div class="day-header">
+                <span class="day-badge">Day 3</span>
+                <span class="day-title">Marine Park & Culture</span>
+            </div>
+            <div class="time-slot"><span class="time-badge">9:00 AM</span><div class="time-activity">Snorkeling in Watamu Marine National Park</div></div>
+            <div class="time-slot"><span class="time-badge">1:00 PM</span><div class="time-activity">Lunch at <a href="https://www.google.com/maps/search/Savannah+Restaurant+Watamu+Kenya" target="_blank">Savannah Restaurant</a></div></div>
+            <div class="time-slot"><span class="time-badge">3:00 PM</span><div class="time-activity">Visit <a href="https://www.google.com/maps/search/Gede+Ruins+Kenya" target="_blank">Gede Ruins</a> - mysterious 12th-century settlement</div></div>
+            <div class="time-slot"><span class="time-badge">7:00 PM</span><div class="time-activity">Swahili cooking class followed by dinner</div></div>
+        </div>
+
+        <div class="itinerary-day">
+            <div class="day-header">
+                <span class="day-badge">Day 4-7</span>
+                <span class="day-title">Mix & Match Adventures</span>
+            </div>
+            <div class="time-slot"><span class="time-badge">Flexible</span><div class="time-activity">Second whale shark trip, Mida Creek kayaking, turtle release at <a href="https://localocean.co/" target="_blank">Local Ocean Trust</a>, deep sea fishing, spa days, or simply relax on the beach</div></div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: Top Restaurants Nearby -->
+    <section>
+        <h2 class="section-title">🍽️ Top Restaurants Nearby</h2>
+        <div class="restaurant-grid">
+            <div class="restaurant-card">
+                <div class="restaurant-name">The Palm Restaurant</div>
+                <div class="restaurant-cuisine">Swahili-International Fusion</div>
+                <div class="restaurant-meta"><span>💰 $$$</span><span>📍 On-site</span></div>
+                <a href="https://www.google.com/maps/search/Hemingways+Watamu+Restaurant" target="_blank">View on Map →</a>
+            </div>
+            <div class="restaurant-card">
+                <div class="restaurant-name">Savannah Restaurant</div>
+                <div class="restaurant-cuisine">Fresh Seafood & Grill</div>
+                <div class="restaurant-meta"><span>💰 $$</span><span>📍 5 min drive</span></div>
+                <a href="https://www.google.com/maps/search/Savannah+Restaurant+Watamu+Kenya" target="_blank">View on Map →</a>
+            </div>
+            <div class="restaurant-card">
+                <div class="restaurant-name">Papa Remo</div>
+                <div class="restaurant-cuisine">Local Swahili Seafood</div>
+                <div class="restaurant-meta"><span>💰 $</span><span>📍 10 min drive</span></div>
+                <a href="https://www.google.com/maps/search/Papa+Remo+Watamu+Kenya" target="_blank">View on Map →</a>
+            </div>
+            <div class="restaurant-card">
+                <div class="restaurant-name">Pilipan Restaurant</div>
+                <div class="restaurant-cuisine">Italian-Swahili Fusion</div>
+                <div class="restaurant-meta"><span>💰 $$</span><span>📍 8 min drive</span></div>
+                <a href="https://www.google.com/maps/search/Pilipan+Restaurant+Watamu" target="_blank">View on Map →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 7: Activities & Experiences -->
+    <section>
+        <h2 class="section-title">🎯 Activities & Experiences</h2>
+        <div class="activities-grid">
+            <div class="activity-card">
+                <div class="activity-name">🦈 Whale Shark Snorkeling</div>
+                <div class="activity-desc">Private boat with expert marine guide. 90%+ encounter rate July-September.</div>
+                <div class="activity-price">$120/person</div>
+            </div>
+            <div class="activity-card">
+                <div class="activity-name">🤿 PADI Scuba Diving</div>
+                <div class="activity-desc">Coral gardens, reef sharks, manta rays. All levels welcome.</div>
+                <div class="activity-price">$85/dive</div>
+            </div>
+            <div class="activity-card">
+                <div class="activity-name">🐢 Turtle Nest Release</div>
+                <div class="activity-desc">Dawn ceremony with Local Ocean Trust conservation team.</div>
+                <div class="activity-price">$50 donation</div>
+            </div>
+            <div class="activity-card">
+                <div class="activity-name">⛵ Sunset Dhow Cruise</div>
+                <div class="activity-desc">Traditional sailing with drinks, snacks, and stunning views.</div>
+                <div class="activity-price">$65/person</div>
+            </div>
+            <div class="activity-card">
+                <div class="activity-name">🎣 Deep Sea Fishing</div>
+                <div class="activity-desc">Hunt for marlin, sailfish, and yellowfin tuna. Full day charter.</div>
+                <div class="activity-price">$600/boat</div>
+            </div>
+            <div class="activity-card">
+                <div class="activity-name">🏛️ Gede Ruins Tour</div>
+                <div class="activity-desc">Explore a mysterious 12th-century Swahili settlement in the forest.</div>
+                <div class="activity-price">$25/person</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 8: Budget Breakdown -->
+    <section>
+        <h2 class="section-title">💰 7-Night Budget Breakdown (Per Person)</h2>
+        <table class="budget-table">
+            <thead>
+                <tr><th>Category</th><th>Cost</th><th>Notes</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Accommodation (7 nights)</td><td>$1,575</td><td>$450/night ÷ 2 people sharing suite</td></tr>
+                <tr><td>Whale Shark Trips (×2)</td><td>$240</td><td>$120 each excursion</td></tr>
+                <tr><td>Food & Drinks</td><td>$490</td><td>$70/day (mix of hotel + local restaurants)</td></tr>
+                <tr><td>Activities & Tours</td><td>$200</td><td>Dhow cruise, snorkeling, ruins visit</td></tr>
+                <tr><td>Spa & Wellness</td><td>$150</td><td>2 treatments</td></tr>
+                <tr><td>Local Transport</td><td>$100</td><td>Airport transfers + day trip transport</td></tr>
+                <tr><td><strong>TOTAL</strong></td><td><strong>~$2,755</strong></td><td>Per person for 7 nights</td></tr>
+            </tbody>
+        </table>
+        <p style="text-align: center; margin-top: 1.5rem; opacity: 0.8; font-size: 0.95rem;">💡 <strong>Group hack:</strong> Split a suite with 4 people = ~$790/person for accommodation!</p>
+    </section>
+
+    <!-- SECTION 9: Nearby Exclusive Experiences -->
+    <section>
+        <h2 class="section-title">🔮 Nearby Exclusive Experiences</h2>
+        <div class="exp-grid">
+            <div class="exp-card">
+                <span class="exp-badge">🦈 Season Highlight</span>
+                <div class="exp-title">Private Whale Shark Safari</div>
+                <div class="exp-desc">6 AM departure with marine biologist. Skip the tourist boats with a private charter. Book via <a href="https://wa.me/254722203636" target="_blank">WhatsApp</a>. $200/person.</div>
+            </div>
+            <div class="exp-card">
+                <span class="exp-badge">🌙 Night Adventure</span>
+                <div class="exp-title">Bioluminescent Night Dive</div>
+                <div class="exp-desc">New moon only – the ocean lights up with glowing plankton. Advanced cert required. Contact dive center.</div>
+            </div>
+            <div class="exp-card">
+                <span class="exp-badge">👨‍🍳 Private Dining</span>
+                <div class="exp-title">Chef's Beach Dinner</div>
+                <div class="exp-desc">7-course Swahili tasting menu on the sand under the stars. Book 48hrs ahead via hotel concierge. $95/person.</div>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 2rem;"><a href="exclusive.html" style="color: var(--primary); font-weight: 600;">Explore All Hidden Gems →</a></p>
+    </section>
+
+    <!-- SECTION 10: CTA to Book -->
+    <section>
+        <div class="cta-section">
+            <h2>Ready to Book Hemingways?</h2>
+            <p>July-September fills fast during whale shark season. Don't miss the giants.</p>
+            <a href="https://www.hemingways-collection.com/watamu/" target="_blank" class="cta-btn">Book Direct at Hemingways →</a>
+        </div>
+    </section>
+
+    <footer>
+        <p><a href="index.html">← Back to All Properties</a> · <a href="exclusive.html">Hidden Gems</a></p>
+        <p style="margin-top: 0.5rem;">Kenya Summer Tides 2025</p>
+    </footer>
+
+    <script>
+        function openLightbox(src) {
+            const lightbox = document.querySelector('.lightbox');
+            lightbox.querySelector('img').src = src;
+            lightbox.classList.add('active');
+        }
+        function closeLightbox() { document.querySelector('.lightbox').classList.remove('active'); }
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+    </script>
+</body>
+</html>

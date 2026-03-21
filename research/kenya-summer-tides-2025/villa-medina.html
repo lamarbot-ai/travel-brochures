@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medina Palms | Kenya Summer Tides 2025</title>
+    <style>
+        :root { --primary: #00d4aa; --secondary: #0099cc; --dark: #0a1628; --card-bg: linear-gradient(145deg, #1a2a44, #0d1929); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--dark); color: #fff; line-height: 1.6; }
+        nav { position: fixed; top: 0; width: 100%; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(10, 22, 40, 0.95); backdrop-filter: blur(10px); }
+        nav a { color: #fff; text-decoration: none; font-weight: 600; }
+        nav a:hover { color: var(--primary); }
+        .hero { padding: 7rem 2rem 3rem; background: linear-gradient(135deg, rgba(10, 22, 40, 0.8), rgba(0, 80, 120, 0.6)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920') center/cover; text-align: center; }
+        .hero-badge { display: inline-block; background: linear-gradient(135deg, #ffd700, #ff8c00); padding: 0.5rem 1.2rem; border-radius: 25px; font-size: 0.85rem; font-weight: 600; color: #000; margin-bottom: 1rem; }
+        .hero h1 { font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 800; margin-bottom: 0.5rem; }
+        .hero-location { opacity: 0.9; font-size: 1.1rem; margin-bottom: 1rem; }
+        .hero-price { font-size: 1.8rem; font-weight: 700; color: var(--primary); }
+        .hero-price span { font-size: 1rem; opacity: 0.8; color: #fff; }
+        section { padding: 4rem 2rem; max-width: 1100px; margin: 0 auto; }
+        .section-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .photo-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        .photo-gallery img { width: 100%; height: 220px; object-fit: cover; border-radius: 12px; cursor: pointer; transition: transform 0.3s; }
+        .photo-gallery img:hover { transform: scale(1.03); }
+        .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center; }
+        .lightbox.active { display: flex; }
+        .lightbox img { max-width: 90%; max-height: 90%; border-radius: 10px; }
+        .lightbox-close { position: absolute; top: 20px; right: 30px; font-size: 2.5rem; color: #fff; cursor: pointer; }
+        .overview-grid { display: grid; grid-template-columns: 1.8fr 1fr; gap: 2rem; }
+        .overview-text p { margin-bottom: 1rem; opacity: 0.9; }
+        .quick-facts { background: var(--card-bg); padding: 1.5rem; border-radius: 15px; height: fit-content; }
+        .fact { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .fact:last-child { border-bottom: none; }
+        .fact-label { opacity: 0.7; }
+        .fact-value { font-weight: 600; color: var(--primary); }
+        .amenities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; }
+        .amenity-card { background: var(--card-bg); padding: 1.2rem; border-radius: 12px; text-align: center; }
+        .amenity-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+        .amenity-name { font-weight: 600; font-size: 0.9rem; }
+        .highlight-box { background: linear-gradient(135deg, var(--primary), var(--secondary)); padding: 2.5rem; border-radius: 20px; text-align: center; }
+        .highlight-box h3 { color: var(--dark); font-size: 1.5rem; margin-bottom: 1rem; }
+        .highlight-box p { color: var(--dark); font-size: 1.1rem; line-height: 1.7; opacity: 0.9; }
+        .itinerary-day { background: var(--card-bg); padding: 1.5rem; border-radius: 15px; margin-bottom: 1rem; }
+        .day-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+        .day-badge { background: var(--primary); color: var(--dark); padding: 0.3rem 0.8rem; border-radius: 20px; font-weight: 600; font-size: 0.85rem; }
+        .day-title { font-weight: 600; font-size: 1.1rem; }
+        .time-slot { display: flex; gap: 1rem; margin: 0.8rem 0; padding-left: 1rem; border-left: 3px solid var(--primary); }
+        .time-badge { background: rgba(0, 212, 170, 0.2); padding: 0.25rem 0.7rem; border-radius: 10px; font-size: 0.8rem; color: var(--primary); font-weight: 600; min-width: 75px; text-align: center; height: fit-content; }
+        .time-activity { flex: 1; }
+        .time-activity a { color: var(--primary); text-decoration: none; }
+        .restaurant-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+        .restaurant-card { background: var(--card-bg); padding: 1.5rem; border-radius: 15px; }
+        .restaurant-name { font-weight: 700; font-size: 1.1rem; margin-bottom: 0.3rem; }
+        .restaurant-cuisine { opacity: 0.7; font-size: 0.9rem; margin-bottom: 0.8rem; }
+        .restaurant-meta { display: flex; gap: 1.5rem; font-size: 0.85rem; margin-bottom: 1rem; }
+        .restaurant-card a { color: var(--primary); text-decoration: none; font-weight: 500; }
+        .activities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+        .activity-card { background: var(--card-bg); padding: 1.5rem; border-radius: 15px; }
+        .activity-name { font-weight: 600; margin-bottom: 0.5rem; font-size: 1.05rem; }
+        .activity-desc { opacity: 0.8; font-size: 0.9rem; line-height: 1.5; margin-bottom: 0.75rem; }
+        .activity-price { color: var(--primary); font-weight: 700; }
+        .budget-table { width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: 15px; overflow: hidden; }
+        .budget-table th, .budget-table td { padding: 1rem 1.2rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .budget-table th { background: rgba(0, 212, 170, 0.15); font-weight: 600; }
+        .budget-table tr:last-child td { border-bottom: none; font-weight: 700; color: var(--primary); font-size: 1.1rem; }
+        .exp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .exp-card { background: var(--card-bg); padding: 1.5rem; border-radius: 15px; border-left: 4px solid var(--primary); }
+        .exp-badge { display: inline-block; background: rgba(0, 212, 170, 0.2); padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.75rem; color: var(--primary); font-weight: 600; margin-bottom: 0.8rem; }
+        .exp-title { font-weight: 700; margin-bottom: 0.5rem; }
+        .exp-desc { opacity: 0.8; font-size: 0.9rem; line-height: 1.5; }
+        .exp-desc a { color: var(--primary); }
+        .cta-section { background: linear-gradient(135deg, var(--primary), var(--secondary)); padding: 3rem; border-radius: 25px; text-align: center; margin: 2rem 0; }
+        .cta-section h2 { color: var(--dark); font-size: 2rem; margin-bottom: 0.75rem; }
+        .cta-section p { color: var(--dark); opacity: 0.85; margin-bottom: 1.5rem; font-size: 1.1rem; }
+        .cta-btn { display: inline-block; padding: 1rem 2.5rem; background: var(--dark); color: var(--primary); border-radius: 30px; font-weight: 700; text-decoration: none; font-size: 1.1rem; transition: transform 0.3s; }
+        .cta-btn:hover { transform: scale(1.05); }
+        footer { text-align: center; padding: 2rem; opacity: 0.6; font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.1); }
+        footer a { color: var(--primary); text-decoration: none; }
+        @media (max-width: 768px) { .overview-grid { grid-template-columns: 1fr; } .photo-gallery { grid-template-columns: repeat(2, 1fr); } }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">← Back to All Properties</a>
+        <span style="color: var(--primary);">🐋 Kenya Summer Tides</span>
+    </nav>
+
+    <header class="hero">
+        <span class="hero-badge">⭐ LUXURY • 👨‍👩‍👧‍👦 Perfect for Groups</span>
+        <h1>Medina Palms</h1>
+        <p class="hero-location">📍 Watamu, Kenya • Watamu Beach</p>
+        <div class="hero-price">$380 <span>/night (1-4 BR villas)</span></div>
+    </header>
+
+    <!-- SECTION 1: Photo Gallery -->
+    <section>
+        <h2 class="section-title">📸 Photo Gallery</h2>
+        <div class="photo-gallery">
+            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800" alt="Villa Exterior" onclick="openLightbox(this.src)">
+            <img src="https://images.unsplash.com/photo-1602002418082-a4443e081dd1?w=800" alt="Private Pool" onclick="openLightbox(this.src)">
+            <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800" alt="Living Area" onclick="openLightbox(this.src)">
+            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800" alt="Bedroom" onclick="openLightbox(this.src)">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800" alt="Beach Access" onclick="openLightbox(this.src)">
+            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800" alt="Ocean View" onclick="openLightbox(this.src)">
+        </div>
+    </section>
+    <div class="lightbox" onclick="closeLightbox()"><span class="lightbox-close">&times;</span><img src="" alt="Full size"></div>
+
+    <!-- SECTION 2: Villa Overview -->
+    <section>
+        <h2 class="section-title">🏨 Property Overview</h2>
+        <div class="overview-grid">
+            <div class="overview-text">
+                <p><strong>Medina Palms</strong> offers the ultimate group experience on Kenya's coast – stunning private residences ranging from 1 to 4 bedrooms, each with its own private pool. These aren't hotel rooms; they're fully-equipped luxury homes where you can spread out, cook together, and enjoy complete privacy.</p>
+                <p>The architecture blends Swahili tradition with contemporary luxury. Hand-carved Lamu doors, makuti-thatched roofs, and local coral stone create an authentic coastal atmosphere, while modern amenities ensure every comfort. Each villa comes with a dedicated housekeeper and optional private chef service.</p>
+                <p>Located just 5 minutes from Watamu's whale shark launching points, Medina Palms is the perfect base for marine adventures. The beach club offers water sports, a stunning infinity pool, and excellent dining with your feet in the sand.</p>
+            </div>
+            <div class="quick-facts">
+                <div class="fact"><span class="fact-label">Villa Types</span><span class="fact-value">1-4 bedrooms</span></div>
+                <div class="fact"><span class="fact-label">Private Pool</span><span class="fact-value">Every villa ✓</span></div>
+                <div class="fact"><span class="fact-label">WiFi Speed</span><span class="fact-value">40+ Mbps</span></div>
+                <div class="fact"><span class="fact-label">Whale Sharks</span><span class="fact-value">5 min drive</span></div>
+                <div class="fact"><span class="fact-label">Chef Service</span><span class="fact-value">Available</span></div>
+                <div class="fact"><span class="fact-label">Beach</span><span class="fact-value">Beach club access</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: Key Amenities -->
+    <section>
+        <h2 class="section-title">✨ Key Amenities</h2>
+        <div class="amenities-grid">
+            <div class="amenity-card"><div class="amenity-icon">🏊</div><div class="amenity-name">Private Pool</div></div>
+            <div class="amenity-card"><div class="amenity-icon">👨‍🍳</div><div class="amenity-name">Chef Service</div></div>
+            <div class="amenity-card"><div class="amenity-icon">🏖️</div><div class="amenity-name">Beach Club</div></div>
+            <div class="amenity-card"><div class="amenity-icon">🎾</div><div class="amenity-name">Tennis Court</div></div>
+            <div class="amenity-card"><div class="amenity-icon">🧹</div><div class="amenity-name">Daily Housekeeping</div></div>
+            <div class="amenity-card"><div class="amenity-icon">📶</div><div class="amenity-name">High-Speed WiFi</div></div>
+            <div class="amenity-card"><div class="amenity-icon">🍳</div><div class="amenity-name">Full Kitchen</div></div>
+            <div class="amenity-card"><div class="amenity-icon">🚗</div><div class="amenity-name">Free Parking</div></div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: Highlight Box -->
+    <section>
+        <div class="highlight-box">
+            <h3>🌟 What Makes This Location Unforgettable</h3>
+            <p>Imagine waking up in your own private villa, stepping onto your terrace, and diving into your personal pool as the sun rises over the Indian Ocean. Your group has the run of a stunning Swahili-style residence – cook breakfast together in the chef's kitchen, lounge by the pool all afternoon, then have a private chef prepare a seafood feast under the stars. At $95/person/night for a group of 4, this is luxury that makes sense.</p>
+        </div>
+    </section>
+
+    <!-- SECTION 5: Sample Week Itinerary -->
+    <section>
+        <h2 class="section-title">📅 Sample Week Itinerary</h2>
+        <div class="itinerary-day">
+            <div class="day-header"><span class="day-badge">Day 1</span><span class="day-title">Arrival & Villa Life</span></div>
+            <div class="time-slot"><span class="time-badge">3:00 PM</span><div class="time-activity">Check-in, villa tour, meet your housekeeper</div></div>
+            <div class="time-slot"><span class="time-badge">5:00 PM</span><div class="time-activity">Private pool session and sunset from your terrace</div></div>
+            <div class="time-slot"><span class="time-badge">7:30 PM</span><div class="time-activity">Dinner at beach club restaurant</div></div>
+        </div>
+        <div class="itinerary-day">
+            <div class="day-header"><span class="day-badge">Day 2</span><span class="day-title">Whale Shark Day</span></div>
+            <div class="time-slot"><span class="time-badge">6:00 AM</span><div class="time-activity">Whale shark expedition (arranged by concierge)</div></div>
+            <div class="time-slot"><span class="time-badge">12:00 PM</span><div class="time-activity">Return, lunch at villa (chef can prepare)</div></div>
+            <div class="time-slot"><span class="time-badge">4:00 PM</span><div class="time-activity">Beach club pool and water sports</div></div>
+            <div class="time-slot"><span class="time-badge">7:00 PM</span><div class="time-activity">Private chef BBQ at your villa</div></div>
+        </div>
+        <div class="itinerary-day">
+            <div class="day-header"><span class="day-badge">Day 3-7</span><span class="day-title">Your Perfect Mix</span></div>
+            <div class="time-slot"><span class="time-badge">Flexible</span><div class="time-activity">Marine park snorkeling, Gede Ruins, cooking class, dhow cruise, tennis, or simply villa relaxation</div></div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: Top Restaurants Nearby -->
+    <section>
+        <h2 class="section-title">🍽️ Top Restaurants Nearby</h2>
+        <div class="restaurant-grid">
+            <div class="restaurant-card">
+                <div class="restaurant-name">Medina Beach Club</div>
+                <div class="restaurant-cuisine">International & Seafood</div>
+                <div class="restaurant-meta"><span>💰 $$</span><span>📍 On-site</span></div>
+                <a href="https://www.google.com/maps/search/Medina+Palms+Watamu" target="_blank">View on Map →</a>
+            </div>
+            <div class="restaurant-card">
+                <div class="restaurant-name">Savannah Restaurant</div>
+                <div class="restaurant-cuisine">Fresh Seafood</div>
+                <div class="restaurant-meta"><span>💰 $$</span><span>📍 5 min drive</span></div>
+                <a href="https://www.google.com/maps/search/Savannah+Restaurant+Watamu" target="_blank">View on Map →</a>
+            </div>
+            <div class="restaurant-card">
+                <div class="restaurant-name">Crab Shack</div>
+                <div class="restaurant-cuisine">Casual Seafood</div>
+                <div class="restaurant-meta"><span>💰 $</span><span>📍 8 min drive</span></div>
+                <a href="https://www.google.com/maps/search/Crab+Shack+Watamu" target="_blank">View on Map →</a>
+            </div>
+            <div class="restaurant-card">
+                <div class="restaurant-name">Private Villa Chef</div>
+                <div class="restaurant-cuisine">Custom Menus</div>
+                <div class="restaurant-meta"><span>💰 $$</span><span>📍 Your villa</span></div>
+                <a href="exclusive.html">Book via Concierge →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 7: Activities & Experiences -->
+    <section>
+        <h2 class="section-title">🎯 Activities & Experiences</h2>
+        <div class="activities-grid">
+            <div class="activity-card">
+                <div class="activity-name">🦈 Whale Shark Snorkeling</div>
+                <div class="activity-desc">Arranged through concierge. 5 min to launch point.</div>
+                <div class="activity-price">$120/person</div>
+            </div>
+            <div class="activity-card">
+                <div class="activity-name">👨‍🍳 Private Chef Service</div>
+                <div class="activity-desc">Full breakfast, lunch, or dinner prepared in your villa.</div>
+                <div class="activity-price">From $50/meal</div>
+            </div>
+            <div class="activity-card">
+                <div class="activity-name">🏄 Water Sports</div>
+                <div class="activity-desc">Kayaks, paddleboards, snorkel gear at beach club.</div>
+                <div class="activity-price">Included</div>
+            </div>
+            <div class="activity-card">
+                <div class="activity-name">🎾 Tennis</div>
+                <div class="activity-desc">On-site court, equipment provided.</div>
+                <div class="activity-price">Included</div>
+            </div>
+            <div class="activity-card">
+                <div class="activity-name">⛵ Sunset Dhow Cruise</div>
+                <div class="activity-desc">Traditional sailing with drinks and snacks.</div>
+                <div class="activity-price">$65/person</div>
+            </div>
+            <div class="activity-card">
+                <div class="activity-name">🧘 In-Villa Yoga</div>
+                <div class="activity-desc">Private instructor comes to your terrace.</div>
+                <div class="activity-price">$40/session</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 8: Budget Breakdown -->
+    <section>
+        <h2 class="section-title">💰 7-Night Budget (4 People Sharing)</h2>
+        <table class="budget-table">
+            <thead><tr><th>Category</th><th>Total</th><th>Per Person</th></tr></thead>
+            <tbody>
+                <tr><td>4-BR Villa (7 nights)</td><td>$2,660</td><td>$665</td></tr>
+                <tr><td>Whale Shark Trips (×2)</td><td>$960</td><td>$240</td></tr>
+                <tr><td>Private Chef (4 dinners)</td><td>$400</td><td>$100</td></tr>
+                <tr><td>Activities & Tours</td><td>$600</td><td>$150</td></tr>
+                <tr><td>Food & Drinks (other meals)</td><td>$800</td><td>$200</td></tr>
+                <tr><td><strong>TOTAL</strong></td><td><strong>$5,420</strong></td><td><strong>~$1,355</strong></td></tr>
+            </tbody>
+        </table>
+        <p style="text-align: center; margin-top: 1.5rem; opacity: 0.8;">💡 That's luxury villa living for the price of a mid-range hotel!</p>
+    </section>
+
+    <!-- SECTION 9: Nearby Exclusive Experiences -->
+    <section>
+        <h2 class="section-title">🔮 Nearby Exclusive Experiences</h2>
+        <div class="exp-grid">
+            <div class="exp-card">
+                <span class="exp-badge">👨‍🍳 Villa Dining</span>
+                <div class="exp-title">Private Chef Seafood Feast</div>
+                <div class="exp-desc">7-course dinner prepared in your villa kitchen. Fresh catch from morning market. Book via concierge 24hrs ahead.</div>
+            </div>
+            <div class="exp-card">
+                <span class="exp-badge">🦈 Early Bird</span>
+                <div class="exp-title">Private Whale Shark Charter</div>
+                <div class="exp-desc">Just your group on the boat. 6 AM departure. <a href="https://wa.me/254722203636" target="_blank">Book via WhatsApp</a>. $600/boat.</div>
+            </div>
+            <div class="exp-card">
+                <span class="exp-badge">🍹 Group Activity</span>
+                <div class="exp-title">Cocktail Masterclass</div>
+                <div class="exp-desc">Learn Swahili-inspired cocktails with resort bartender. In your villa. Great for groups.</div>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 2rem;"><a href="exclusive.html" style="color: var(--primary); font-weight: 600;">Explore All Hidden Gems →</a></p>
+    </section>
+
+    <!-- SECTION 10: CTA to Book -->
+    <section>
+        <div class="cta-section">
+            <h2>Ready to Book Your Private Villa?</h2>
+            <p>Perfect for groups of 2-8. Book direct for best rates.</p>
+            <a href="https://www.medinapalms.com/" target="_blank" class="cta-btn">Book at Medina Palms →</a>
+        </div>
+    </section>
+
+    <footer>
+        <p><a href="index.html">← Back to All Properties</a> · <a href="exclusive.html">Hidden Gems</a></p>
+        <p style="margin-top: 0.5rem;">Kenya Summer Tides 2025</p>
+    </footer>
+
+    <script>
+        function openLightbox(src) { const l = document.querySelector('.lightbox'); l.querySelector('img').src = src; l.classList.add('active'); }
+        function closeLightbox() { document.querySelector('.lightbox').classList.remove('active'); }
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+    </script>
+</body>
+</html>

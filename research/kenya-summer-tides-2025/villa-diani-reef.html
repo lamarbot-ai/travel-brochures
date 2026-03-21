@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diani Reef Beach Resort | Kenya Summer Tides 2025</title>
+    <style>
+        :root { --primary: #00d4aa; --secondary: #0099cc; --dark: #0a1628; --card-bg: linear-gradient(145deg, #1a2a44, #0d1929); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--dark); color: #fff; line-height: 1.6; }
+        nav { position: fixed; top: 0; width: 100%; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(10, 22, 40, 0.95); backdrop-filter: blur(10px); }
+        nav a { color: #fff; text-decoration: none; font-weight: 600; }
+        .hero { padding: 7rem 2rem 3rem; background: linear-gradient(135deg, rgba(10, 22, 40, 0.8), rgba(0, 80, 120, 0.6)), url('https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=1920') center/cover; text-align: center; }
+        .hero-badge { display: inline-block; background: linear-gradient(135deg, var(--primary), var(--secondary)); padding: 0.5rem 1.2rem; border-radius: 25px; font-size: 0.85rem; font-weight: 600; color: #fff; margin-bottom: 1rem; }
+        .hero h1 { font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 800; margin-bottom: 0.5rem; }
+        .hero-location { opacity: 0.9; font-size: 1.1rem; margin-bottom: 1rem; }
+        .hero-price { font-size: 1.8rem; font-weight: 700; color: var(--primary); }
+        .hero-price span { font-size: 1rem; opacity: 0.8; color: #fff; }
+        section { padding: 4rem 2rem; max-width: 1100px; margin: 0 auto; }
+        .section-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 1.5rem; }
+        .photo-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        .photo-gallery img { width: 100%; height: 220px; object-fit: cover; border-radius: 12px; cursor: pointer; transition: transform 0.3s; }
+        .photo-gallery img:hover { transform: scale(1.03); }
+        .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center; }
+        .lightbox.active { display: flex; }
+        .lightbox img { max-width: 90%; max-height: 90%; border-radius: 10px; }
+        .lightbox-close { position: absolute; top: 20px; right: 30px; font-size: 2.5rem; color: #fff; cursor: pointer; }
+        .overview-grid { display: grid; grid-template-columns: 1.8fr 1fr; gap: 2rem; }
+        .overview-text p { margin-bottom: 1rem; opacity: 0.9; }
+        .quick-facts { background: var(--card-bg); padding: 1.5rem; border-radius: 15px; }
+        .fact { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .fact:last-child { border-bottom: none; }
+        .fact-label { opacity: 0.7; }
+        .fact-value { font-weight: 600; color: var(--primary); }
+        .amenities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; }
+        .amenity-card { background: var(--card-bg); padding: 1.2rem; border-radius: 12px; text-align: center; }
+        .amenity-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+        .amenity-name { font-weight: 600; font-size: 0.9rem; }
+        .highlight-box { background: linear-gradient(135deg, var(--primary), var(--secondary)); padding: 2.5rem; border-radius: 20px; text-align: center; }
+        .highlight-box h3 { color: var(--dark); font-size: 1.5rem; margin-bottom: 1rem; }
+        .highlight-box p { color: var(--dark); font-size: 1.1rem; line-height: 1.7; }
+        .itinerary-day { background: var(--card-bg); padding: 1.5rem; border-radius: 15px; margin-bottom: 1rem; }
+        .day-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+        .day-badge { background: var(--primary); color: var(--dark); padding: 0.3rem 0.8rem; border-radius: 20px; font-weight: 600; font-size: 0.85rem; }
+        .day-title { font-weight: 600; font-size: 1.1rem; }
+        .time-slot { display: flex; gap: 1rem; margin: 0.8rem 0; padding-left: 1rem; border-left: 3px solid var(--primary); }
+        .time-badge { background: rgba(0, 212, 170, 0.2); padding: 0.25rem 0.7rem; border-radius: 10px; font-size: 0.8rem; color: var(--primary); font-weight: 600; min-width: 75px; text-align: center; }
+        .time-activity { flex: 1; }
+        .time-activity a { color: var(--primary); }
+        .restaurant-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+        .restaurant-card { background: var(--card-bg); padding: 1.5rem; border-radius: 15px; }
+        .restaurant-name { font-weight: 700; font-size: 1.1rem; margin-bottom: 0.3rem; }
+        .restaurant-cuisine { opacity: 0.7; font-size: 0.9rem; margin-bottom: 0.8rem; }
+        .restaurant-meta { display: flex; gap: 1.5rem; font-size: 0.85rem; margin-bottom: 1rem; }
+        .restaurant-card a { color: var(--primary); }
+        .activities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+        .activity-card { background: var(--card-bg); padding: 1.5rem; border-radius: 15px; }
+        .activity-name { font-weight: 600; margin-bottom: 0.5rem; }
+        .activity-desc { opacity: 0.8; font-size: 0.9rem; margin-bottom: 0.75rem; }
+        .activity-price { color: var(--primary); font-weight: 700; }
+        .budget-table { width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: 15px; overflow: hidden; }
+        .budget-table th, .budget-table td { padding: 1rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .budget-table th { background: rgba(0, 212, 170, 0.15); }
+        .budget-table tr:last-child td { border-bottom: none; font-weight: 700; color: var(--primary); }
+        .exp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .exp-card { background: var(--card-bg); padding: 1.5rem; border-radius: 15px; border-left: 4px solid var(--primary); }
+        .exp-badge { display: inline-block; background: rgba(0, 212, 170, 0.2); padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.75rem; color: var(--primary); font-weight: 600; margin-bottom: 0.8rem; }
+        .exp-title { font-weight: 700; margin-bottom: 0.5rem; }
+        .exp-desc { opacity: 0.8; font-size: 0.9rem; }
+        .cta-section { background: linear-gradient(135deg, var(--primary), var(--secondary)); padding: 3rem; border-radius: 25px; text-align: center; margin: 2rem 0; }
+        .cta-section h2 { color: var(--dark); font-size: 2rem; margin-bottom: 0.75rem; }
+        .cta-section p { color: var(--dark); margin-bottom: 1.5rem; }
+        .cta-btn { display: inline-block; padding: 1rem 2.5rem; background: var(--dark); color: var(--primary); border-radius: 30px; font-weight: 700; text-decoration: none; }
+        footer { text-align: center; padding: 2rem; opacity: 0.6; }
+        footer a { color: var(--primary); text-decoration: none; }
+        @media (max-width: 768px) { .overview-grid { grid-template-columns: 1fr; } .photo-gallery { grid-template-columns: repeat(2, 1fr); } }
+    </style>
+</head>
+<body>
+    <nav><a href="index.html">← Back to All Properties</a><span style="color: var(--primary);">🐋 Kenya Summer Tides</span></nav>
+
+    <header class="hero">
+        <span class="hero-badge">💎 MID-RANGE • 🏖️ Best Beach</span>
+        <h1>Diani Reef Beach Resort</h1>
+        <p class="hero-location">📍 Diani Beach, Kenya • South Coast</p>
+        <div class="hero-price">$180 <span>/night (all-inclusive available)</span></div>
+    </header>
+
+    <!-- 1. Photo Gallery -->
+    <section>
+        <h2 class="section-title">📸 Photo Gallery</h2>
+        <div class="photo-gallery">
+            <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800" alt="Resort" onclick="openLightbox(this.src)">
+            <img src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800" alt="Beach" onclick="openLightbox(this.src)">
+            <img src="https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=800" alt="Pool" onclick="openLightbox(this.src)">
+            <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800" alt="Room" onclick="openLightbox(this.src)">
+            <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?w=800" alt="Dining" onclick="openLightbox(this.src)">
+            <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800" alt="Beach View" onclick="openLightbox(this.src)">
+        </div>
+    </section>
+    <div class="lightbox" onclick="closeLightbox()"><span class="lightbox-close">&times;</span><img src=""></div>
+
+    <!-- 2. Overview -->
+    <section>
+        <h2 class="section-title">🏨 Property Overview</h2>
+        <div class="overview-grid">
+            <div class="overview-text">
+                <p><strong>Diani Reef Beach Resort & Spa</strong> sits on Kenya's most celebrated stretch of sand – the award-winning Diani Beach. This 5-star resort offers the perfect balance of value and luxury, with an all-inclusive option that makes budgeting easy.</p>
+                <p>The resort sprawls across 25 acres of tropical gardens with 5 swimming pools, multiple restaurants, and direct access to the powder-white beach. It's a favorite for families and couples who want everything in one place without the ultra-luxury price tag.</p>
+                <p><strong>Note:</strong> Diani Beach is 2 hours south of Watamu, so this is ideal if you want Kenya's best beach rather than whale shark access. Consider splitting your trip: a few nights in Watamu for whale sharks, then Diani for beach relaxation.</p>
+            </div>
+            <div class="quick-facts">
+                <div class="fact"><span class="fact-label">Rooms</span><span class="fact-value">143 rooms</span></div>
+                <div class="fact"><span class="fact-label">Pools</span><span class="fact-value">5 pools</span></div>
+                <div class="fact"><span class="fact-label">Beach</span><span class="fact-value">Private stretch</span></div>
+                <div class="fact"><span class="fact-label">Whale Sharks</span><span class="fact-value">2hr drive ⚠️</span></div>
+                <div class="fact"><span class="fact-label">All-Inclusive</span><span class="fact-value">Available ✓</span></div>
+                <div class="fact"><span class="fact-label">Airport</span><span class="fact-value">30 min (Ukunda)</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Amenities -->
+    <section>
+        <h2 class="section-title">✨ Key Amenities</h2>
+        <div class="amenities-grid">
+            <div class="amenity-card"><div class="amenity-icon">🏊</div><div class="amenity-name">5 Pools</div></div>
+            <div class="amenity-card"><div class="amenity-icon">🍽️</div><div class="amenity-name">4 Restaurants</div></div>
+            <div class="amenity-card"><div class="amenity-icon">🧖</div><div class="amenity-name">Full Spa</div></div>
+            <div class="amenity-card"><div class="amenity-icon">🏄</div><div class="amenity-name">Water Sports</div></div>
+            <div class="amenity-card"><div class="amenity-icon">🎵</div><div class="amenity-name">Nightlife</div></div>
+            <div class="amenity-card"><div class="amenity-icon">👶</div><div class="amenity-name">Kids Club</div></div>
+            <div class="amenity-card"><div class="amenity-icon">🏋️</div><div class="amenity-name">Fitness Center</div></div>
+            <div class="amenity-card"><div class="amenity-icon">📶</div><div class="amenity-name">Free WiFi</div></div>
+        </div>
+    </section>
+
+    <!-- 4. Highlight -->
+    <section>
+        <div class="highlight-box">
+            <h3>🌟 What Makes This Location Unforgettable</h3>
+            <p>Diani Beach consistently ranks as Africa's best beach. The sand is impossibly white, the water impossibly blue. Unlike Watamu's marine-focused experience, Diani is pure beach bliss – think kite surfing, beach volleyball, sundowners in the sand, and that perfect Instagram shot you've been dreaming of.</p>
+        </div>
+    </section>
+
+    <!-- 5. Itinerary -->
+    <section>
+        <h2 class="section-title">📅 Sample Week Itinerary</h2>
+        <div class="itinerary-day">
+            <div class="day-header"><span class="day-badge">Day 1-2</span><span class="day-title">Beach & Resort</span></div>
+            <div class="time-slot"><span class="time-badge">All Day</span><div class="time-activity">Beach time, pool hopping, water sports, spa treatments</div></div>
+        </div>
+        <div class="itinerary-day">
+            <div class="day-header"><span class="day-badge">Day 3</span><span class="day-title">Excursion Day</span></div>
+            <div class="time-slot"><span class="time-badge">9:00 AM</span><div class="time-activity">Visit <a href="https://www.google.com/maps/search/Colobus+Conservation+Diani" target="_blank">Colobus Conservation</a> – see rare monkeys</div></div>
+            <div class="time-slot"><span class="time-badge">2:00 PM</span><div class="time-activity">Kite surfing lesson on the beach</div></div>
+        </div>
+        <div class="itinerary-day">
+            <div class="day-header"><span class="day-badge">Day 4-7</span><span class="day-title">Your Choice</span></div>
+            <div class="time-slot"><span class="time-badge">Flexible</span><div class="time-activity">Day trip to Shimba Hills, snorkeling, dhow cruise, or pure relaxation</div></div>
+        </div>
+    </section>
+
+    <!-- 6. Restaurants -->
+    <section>
+        <h2 class="section-title">🍽️ Top Restaurants Nearby</h2>
+        <div class="restaurant-grid">
+            <div class="restaurant-card">
+                <div class="restaurant-name">On-Site Restaurants (4)</div>
+                <div class="restaurant-cuisine">International, Swahili, Italian, Asian</div>
+                <div class="restaurant-meta"><span>💰 Included</span><span>📍 On-site</span></div>
+            </div>
+            <div class="restaurant-card">
+                <div class="restaurant-name">Ali Barbour's Cave</div>
+                <div class="restaurant-cuisine">Fine Dining in a Cave</div>
+                <div class="restaurant-meta"><span>💰 $$$</span><span>📍 10 min</span></div>
+                <a href="https://www.google.com/maps/search/Ali+Barbours+Cave+Diani" target="_blank">View on Map →</a>
+            </div>
+            <div class="restaurant-card">
+                <div class="restaurant-name">Sails Beach Bar</div>
+                <div class="restaurant-cuisine">Beach Vibes & Cocktails</div>
+                <div class="restaurant-meta"><span>💰 $$</span><span>📍 5 min</span></div>
+                <a href="https://www.google.com/maps/search/Sails+Beach+Bar+Diani" target="_blank">View on Map →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Activities -->
+    <section>
+        <h2 class="section-title">🎯 Activities & Experiences</h2>
+        <div class="activities-grid">
+            <div class="activity-card"><div class="activity-name">🏄 Kite Surfing</div><div class="activity-desc">Diani is a world-class kite spot. Lessons available.</div><div class="activity-price">$80/lesson</div></div>
+            <div class="activity-card"><div class="activity-name">🤿 Snorkeling Trip</div><div class="activity-desc">Boat trip to coral reefs offshore.</div><div class="activity-price">$40/person</div></div>
+            <div class="activity-card"><div class="activity-name">🐒 Colobus Conservation</div><div class="activity-desc">Meet rare colobus monkeys up close.</div><div class="activity-price">$15/person</div></div>
+            <div class="activity-card"><div class="activity-name">🦁 Shimba Hills Safari</div><div class="activity-desc">Day trip to see elephants, sable antelope.</div><div class="activity-price">$100/person</div></div>
+        </div>
+    </section>
+
+    <!-- 8. Budget -->
+    <section>
+        <h2 class="section-title">💰 7-Night Budget (Per Person, All-Inclusive)</h2>
+        <table class="budget-table">
+            <thead><tr><th>Category</th><th>Cost</th><th>Notes</th></tr></thead>
+            <tbody>
+                <tr><td>All-Inclusive (7 nights)</td><td>$1,260</td><td>$180/night, meals + drinks included</td></tr>
+                <tr><td>Activities</td><td>$200</td><td>Kite surf, snorkel, conservation visit</td></tr>
+                <tr><td>Day Trip (Shimba Hills)</td><td>$100</td><td>Optional safari</td></tr>
+                <tr><td>Spa Treatments</td><td>$100</td><td>2 treatments</td></tr>
+                <tr><td>Transport</td><td>$80</td><td>Airport + local</td></tr>
+                <tr><td><strong>TOTAL</strong></td><td><strong>~$1,740</strong></td><td>7 nights all-inclusive</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- 9. Exclusive Experiences -->
+    <section>
+        <h2 class="section-title">🔮 Nearby Exclusive Experiences</h2>
+        <div class="exp-grid">
+            <div class="exp-card">
+                <span class="exp-badge">🍷 Unique Dining</span>
+                <div class="exp-title">Ali Barbour's Cave Restaurant</div>
+                <div class="exp-desc">Fine dining inside an ancient coral cave. Book 24hrs ahead – it's famous.</div>
+            </div>
+            <div class="exp-card">
+                <span class="exp-badge">🏄 Adventure</span>
+                <div class="exp-title">Sunrise Kite Session</div>
+                <div class="exp-desc">Private lesson at 6 AM when winds are perfect. Arrange through beach shack.</div>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 2rem;"><a href="exclusive.html" style="color: var(--primary);">Explore All Hidden Gems →</a></p>
+    </section>
+
+    <!-- 10. CTA -->
+    <section>
+        <div class="cta-section">
+            <h2>Ready to Book Diani Reef?</h2>
+            <p>Kenya's best beach awaits. All-inclusive makes it easy.</p>
+            <a href="https://www.booking.com/hotel/ke/diani-reef-beach-resort-spa.html" target="_blank" class="cta-btn">Book on Booking.com →</a>
+        </div>
+    </section>
+
+    <footer><p><a href="index.html">← All Properties</a> · <a href="exclusive.html">Hidden Gems</a></p><p style="margin-top:0.5rem;">Kenya Summer Tides 2025</p></footer>
+
+    <script>
+        function openLightbox(src){const l=document.querySelector('.lightbox');l.querySelector('img').src=src;l.classList.add('active');}
+        function closeLightbox(){document.querySelector('.lightbox').classList.remove('active');}
+    </script>
+</body>
+</html>
