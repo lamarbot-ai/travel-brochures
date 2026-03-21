@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Papa Remo Beach Resort | Kenya Summer Tides 2025</title>
+    <style>
+        :root { --primary: #00d4aa; --secondary: #0099cc; --dark: #0a1628; --card-bg: linear-gradient(145deg, #1a2a44, #0d1929); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--dark); color: #fff; line-height: 1.6; }
+        nav { position: fixed; top: 0; width: 100%; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(10, 22, 40, 0.95); backdrop-filter: blur(10px); }
+        nav a { color: #fff; text-decoration: none; font-weight: 600; }
+        .hero { padding: 7rem 2rem 3rem; background: linear-gradient(135deg, rgba(10, 22, 40, 0.8), rgba(0, 80, 120, 0.6)), url('https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=1920') center/cover; text-align: center; }
+        .hero-badge { display: inline-block; background: linear-gradient(135deg, #6c5ce7, #a29bfe); padding: 0.5rem 1.2rem; border-radius: 25px; font-size: 0.85rem; font-weight: 600; color: #fff; margin-bottom: 1rem; }
+        .hero h1 { font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 800; margin-bottom: 0.5rem; }
+        .hero-location { opacity: 0.9; font-size: 1.1rem; margin-bottom: 1rem; }
+        .hero-price { font-size: 1.8rem; font-weight: 700; color: var(--primary); }
+        .hero-price span { font-size: 1rem; opacity: 0.8; color: #fff; }
+        section { padding: 4rem 2rem; max-width: 1100px; margin: 0 auto; }
+        .section-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 1.5rem; }
+        .photo-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        .photo-gallery img { width: 100%; height: 220px; object-fit: cover; border-radius: 12px; cursor: pointer; transition: transform 0.3s; }
+        .photo-gallery img:hover { transform: scale(1.03); }
+        .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center; }
+        .lightbox.active { display: flex; }
+        .lightbox img { max-width: 90%; max-height: 90%; border-radius: 10px; }
+        .lightbox-close { position: absolute; top: 20px; right: 30px; font-size: 2.5rem; color: #fff; cursor: pointer; }
+        .overview-grid { display: grid; grid-template-columns: 1.8fr 1fr; gap: 2rem; }
+        .overview-text p { margin-bottom: 1rem; opacity: 0.9; }
+        .quick-facts { background: var(--card-bg); padding: 1.5rem; border-radius: 15px; }
+        .fact { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .fact:last-child { border-bottom: none; }
+        .fact-label { opacity: 0.7; }
+        .fact-value { font-weight: 600; color: var(--primary); }
+        .amenities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; }
+        .amenity-card { background: var(--card-bg); padding: 1.2rem; border-radius: 12px; text-align: center; }
+        .amenity-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+        .amenity-name { font-weight: 600; font-size: 0.9rem; }
+        .highlight-box { background: linear-gradient(135deg, var(--primary), var(--secondary)); padding: 2.5rem; border-radius: 20px; text-align: center; }
+        .highlight-box h3 { color: var(--dark); font-size: 1.5rem; margin-bottom: 1rem; }
+        .highlight-box p { color: var(--dark); font-size: 1.1rem; line-height: 1.7; }
+        .itinerary-day { background: var(--card-bg); padding: 1.5rem; border-radius: 15px; margin-bottom: 1rem; }
+        .day-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+        .day-badge { background: var(--primary); color: var(--dark); padding: 0.3rem 0.8rem; border-radius: 20px; font-weight: 600; font-size: 0.85rem; }
+        .day-title { font-weight: 600; font-size: 1.1rem; }
+        .time-slot { display: flex; gap: 1rem; margin: 0.8rem 0; padding-left: 1rem; border-left: 3px solid var(--primary); }
+        .time-badge { background: rgba(0, 212, 170, 0.2); padding: 0.25rem 0.7rem; border-radius: 10px; font-size: 0.8rem; color: var(--primary); font-weight: 600; min-width: 75px; text-align: center; }
+        .time-activity { flex: 1; }
+        .time-activity a { color: var(--primary); }
+        .restaurant-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+        .restaurant-card { background: var(--card-bg); padding: 1.5rem; border-radius: 15px; }
+        .restaurant-name { font-weight: 700; font-size: 1.1rem; margin-bottom: 0.3rem; }
+        .restaurant-cuisine { opacity: 0.7; font-size: 0.9rem; margin-bottom: 0.8rem; }
+        .restaurant-meta { display: flex; gap: 1.5rem; font-size: 0.85rem; margin-bottom: 1rem; }
+        .restaurant-card a { color: var(--primary); }
+        .activities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+        .activity-card { background: var(--card-bg); padding: 1.5rem; border-radius: 15px; }
+        .activity-name { font-weight: 600; margin-bottom: 0.5rem; }
+        .activity-desc { opacity: 0.8; font-size: 0.9rem; margin-bottom: 0.75rem; }
+        .activity-price { color: var(--primary); font-weight: 700; }
+        .budget-table { width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: 15px; overflow: hidden; }
+        .budget-table th, .budget-table td { padding: 1rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .budget-table th { background: rgba(0, 212, 170, 0.15); }
+        .budget-table tr:last-child td { border-bottom: none; font-weight: 700; color: var(--primary); }
+        .exp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .exp-card { background: var(--card-bg); padding: 1.5rem; border-radius: 15px; border-left: 4px solid var(--primary); }
+        .exp-badge { display: inline-block; background: rgba(0, 212, 170, 0.2); padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.75rem; color: var(--primary); font-weight: 600; margin-bottom: 0.8rem; }
+        .exp-title { font-weight: 700; margin-bottom: 0.5rem; }
+        .exp-desc { opacity: 0.8; font-size: 0.9rem; }
+        .cta-section { background: linear-gradient(135deg, var(--primary), var(--secondary)); padding: 3rem; border-radius: 25px; text-align: center; margin: 2rem 0; }
+        .cta-section h2 { color: var(--dark); font-size: 2rem; margin-bottom: 0.75rem; }
+        .cta-section p { color: var(--dark); margin-bottom: 1.5rem; }
+        .cta-btn { display: inline-block; padding: 1rem 2.5rem; background: var(--dark); color: var(--primary); border-radius: 30px; font-weight: 700; text-decoration: none; }
+        footer { text-align: center; padding: 2rem; opacity: 0.6; }
+        footer a { color: var(--primary); text-decoration: none; }
+        @media (max-width: 768px) { .overview-grid { grid-template-columns: 1fr; } .photo-gallery { grid-template-columns: repeat(2, 1fr); } }
+    </style>
+</head>
+<body>
+    <nav><a href="index.html">← Back to All Properties</a><span style="color: var(--primary);">🐋 Kenya Summer Tides</span></nav>
+
+    <header class="hero">
+        <span class="hero-badge">💰 BUDGET GEM • 🦈 Whale Shark Walking Distance</span>
+        <h1>Papa Remo Beach Resort</h1>
+        <p class="hero-location">📍 Watamu, Kenya • Watamu Beach</p>
+        <div class="hero-price">$65 <span>/night</span></div>
+    </header>
+
+    <!-- 1. Photo Gallery -->
+    <section>
+        <h2 class="section-title">📸 Photo Gallery</h2>
+        <div class="photo-gallery">
+            <img src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=800" alt="Beach Cottage" onclick="openLightbox(this.src)">
+            <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=800" alt="Beach" onclick="openLightbox(this.src)">
+            <img src="https://images.unsplash.com/photo-1501426026826-31c667bdf23d?w=800" alt="Sunset" onclick="openLightbox(this.src)">
+            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800" alt="Ocean" onclick="openLightbox(this.src)">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800" alt="Palm Trees" onclick="openLightbox(this.src)">
+            <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?w=800" alt="Restaurant" onclick="openLightbox(this.src)">
+        </div>
+    </section>
+    <div class="lightbox" onclick="closeLightbox()"><span class="lightbox-close">&times;</span><img src=""></div>
+
+    <!-- 2. Overview -->
+    <section>
+        <h2 class="section-title">🏨 Property Overview</h2>
+        <div class="overview-grid">
+            <div class="overview-text">
+                <p><strong>Papa Remo Beach Resort</strong> is the local favorite – where backpackers, budget travelers, and in-the-know visitors come for authentic Swahili hospitality without the resort price tag. Simple but clean cottages sit just steps from the beach, and the on-site restaurant serves some of the best seafood on the coast.</p>
+                <p>Don't expect luxury amenities – expect friendly staff who remember your name, fresh crab caught that morning, cold Tuskers at sunset, and the kind of laid-back atmosphere that made Watamu famous before the fancy resorts arrived.</p>
+                <p>The location is unbeatable for whale shark hunters: the main boat launch point is a 10-minute walk, and the Marine Park is even closer. This is budget accommodation that doesn't sacrifice location.</p>
+            </div>
+            <div class="quick-facts">
+                <div class="fact"><span class="fact-label">Style</span><span class="fact-value">Beach cottages</span></div>
+                <div class="fact"><span class="fact-label">Whale Sharks</span><span class="fact-value">10 min walk ⭐</span></div>
+                <div class="fact"><span class="fact-label">Beach</span><span class="fact-value">Direct access</span></div>
+                <div class="fact"><span class="fact-label">Restaurant</span><span class="fact-value">Famous seafood</span></div>
+                <div class="fact"><span class="fact-label">WiFi</span><span class="fact-value">Basic</span></div>
+                <div class="fact"><span class="fact-label">Vibe</span><span class="fact-value">Local & authentic</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Amenities -->
+    <section>
+        <h2 class="section-title">✨ What You Get</h2>
+        <div class="amenities-grid">
+            <div class="amenity-card"><div class="amenity-icon">🏖️</div><div class="amenity-name">Beachfront</div></div>
+            <div class="amenity-card"><div class="amenity-icon">🦐</div><div class="amenity-name">Fresh Seafood</div></div>
+            <div class="amenity-card"><div class="amenity-icon">🎶</div><div class="amenity-name">Live Music</div></div>
+            <div class="amenity-card"><div class="amenity-icon">🍺</div><div class="amenity-name">Beach Bar</div></div>
+            <div class="amenity-card"><div class="amenity-icon">📶</div><div class="amenity-name">Basic WiFi</div></div>
+            <div class="amenity-card"><div class="amenity-icon">🚿</div><div class="amenity-name">Hot Water</div></div>
+            <div class="amenity-card"><div class="amenity-icon">🦎</div><div class="amenity-name">Local Wildlife</div></div>
+            <div class="amenity-card"><div class="amenity-icon">💰</div><div class="amenity-name">Best Value</div></div>
+        </div>
+    </section>
+
+    <!-- 4. Highlight -->
+    <section>
+        <div class="highlight-box">
+            <h3>🌟 What Makes This Location Unforgettable</h3>
+            <p>This is real Kenya. No corporate hospitality training here – just genuine warmth from locals who've been running this place for generations. The grilled lobster at $15 is better than what you'll pay $60 for up the road. The sunset sessions with cold beers and impromptu drumming circles are legendary. And you're literally walking distance from whale sharks at a fraction of the price.</p>
+        </div>
+    </section>
+
+    <!-- 5. Itinerary -->
+    <section>
+        <h2 class="section-title">📅 Sample Week Itinerary</h2>
+        <div class="itinerary-day">
+            <div class="day-header"><span class="day-badge">Day 1</span><span class="day-title">Arrive & Settle In</span></div>
+            <div class="time-slot"><span class="time-badge">2:00 PM</span><div class="time-activity">Check-in, beach walk, choose your sunset spot</div></div>
+            <div class="time-slot"><span class="time-badge">6:00 PM</span><div class="time-activity">Fresh seafood dinner – try the grilled crab</div></div>
+            <div class="time-slot"><span class="time-badge">8:00 PM</span><div class="time-activity">Beach bar, meet fellow travelers</div></div>
+        </div>
+        <div class="itinerary-day">
+            <div class="day-header"><span class="day-badge">Day 2</span><span class="day-title">Whale Shark Hunt</span></div>
+            <div class="time-slot"><span class="time-badge">5:45 AM</span><div class="time-activity">Walk to jetty for whale shark boat</div></div>
+            <div class="time-slot"><span class="time-badge">12:00 PM</span><div class="time-activity">Return, lunch at Papa Remo</div></div>
+            <div class="time-slot"><span class="time-badge">4:00 PM</span><div class="time-activity">Beach nap, snorkeling from shore</div></div>
+        </div>
+        <div class="itinerary-day">
+            <div class="day-header"><span class="day-badge">Day 3-7</span><span class="day-title">Budget Adventures</span></div>
+            <div class="time-slot"><span class="time-badge">Flexible</span><div class="time-activity">Marine Park snorkeling ($15), Gede Ruins by matatu ($2), DIY Mida Creek kayak, second whale shark trip, or pure beach bumming</div></div>
+        </div>
+    </section>
+
+    <!-- 6. Restaurants -->
+    <section>
+        <h2 class="section-title">🍽️ Top Restaurants Nearby</h2>
+        <div class="restaurant-grid">
+            <div class="restaurant-card">
+                <div class="restaurant-name">Papa Remo Restaurant</div>
+                <div class="restaurant-cuisine">Swahili Seafood</div>
+                <div class="restaurant-meta"><span>💰 $</span><span>📍 On-site</span></div>
+                <span style="color: var(--primary);">Famous grilled lobster $15</span>
+            </div>
+            <div class="restaurant-card">
+                <div class="restaurant-name">Crab Shack</div>
+                <div class="restaurant-cuisine">Casual Seafood</div>
+                <div class="restaurant-meta"><span>💰 $</span><span>📍 5 min walk</span></div>
+                <a href="https://www.google.com/maps/search/Crab+Shack+Watamu" target="_blank">View on Map →</a>
+            </div>
+            <div class="restaurant-card">
+                <div class="restaurant-name">Savannah Restaurant</div>
+                <div class="restaurant-cuisine">Seafood & Grill</div>
+                <div class="restaurant-meta"><span>💰 $$</span><span>📍 10 min walk</span></div>
+                <a href="https://www.google.com/maps/search/Savannah+Restaurant+Watamu" target="_blank">View on Map →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Activities -->
+    <section>
+        <h2 class="section-title">🎯 Activities (Budget-Friendly)</h2>
+        <div class="activities-grid">
+            <div class="activity-card"><div class="activity-name">🦈 Whale Shark Trip</div><div class="activity-desc">Same boats as luxury hotels use. Book at jetty.</div><div class="activity-price">$100/person</div></div>
+            <div class="activity-card"><div class="activity-name">🏊 Beach Snorkeling</div><div class="activity-desc">Reef accessible from shore. Bring own gear or rent.</div><div class="activity-price">Free-$10</div></div>
+            <div class="activity-card"><div class="activity-name">🏛️ Gede Ruins</div><div class="activity-desc">Take a matatu there. DIY exploration.</div><div class="activity-price">$5 total</div></div>
+            <div class="activity-card"><div class="activity-name">🐢 Turtle Conservation</div><div class="activity-desc">Walking distance to Local Ocean Trust.</div><div class="activity-price">$10 donation</div></div>
+            <div class="activity-card"><div class="activity-name">🏊 Marine Park</div><div class="activity-desc">Glass-bottom boat or snorkel trip.</div><div class="activity-price">$15-25</div></div>
+            <div class="activity-card"><div class="activity-name">🎶 Sunset Sessions</div><div class="activity-desc">Beach bar, live music some nights.</div><div class="activity-price">Cost of beers</div></div>
+        </div>
+    </section>
+
+    <!-- 8. Budget -->
+    <section>
+        <h2 class="section-title">💰 7-Night Budget (Per Person)</h2>
+        <table class="budget-table">
+            <thead><tr><th>Category</th><th>Cost</th><th>Notes</th></tr></thead>
+            <tbody>
+                <tr><td>Accommodation (7 nights)</td><td>$455</td><td>$65/night (can be cheaper shared)</td></tr>
+                <tr><td>Whale Shark Trips (×2)</td><td>$200</td><td>$100 each (book at jetty)</td></tr>
+                <tr><td>Food & Drinks</td><td>$175</td><td>$25/day eating at Papa Remo</td></tr>
+                <tr><td>Activities</td><td>$50</td><td>Marine Park, ruins, turtle visit</td></tr>
+                <tr><td>Transport</td><td>$40</td><td>Matatus + tuk-tuks</td></tr>
+                <tr><td><strong>TOTAL</strong></td><td><strong>~$920</strong></td><td>Full week including whale sharks!</td></tr>
+            </tbody>
+        </table>
+        <p style="text-align: center; margin-top: 1.5rem; opacity: 0.8;">💡 <strong>Backpacker tip:</strong> Share a cottage with a friend = $32.50/night each!</p>
+    </section>
+
+    <!-- 9. Exclusive -->
+    <section>
+        <h2 class="section-title">🔮 Budget Insider Tips</h2>
+        <div class="exp-grid">
+            <div class="exp-card">
+                <span class="exp-badge">💰 Save Money</span>
+                <div class="exp-title">Book Whale Sharks at Jetty</div>
+                <div class="exp-desc">Walk to the jetty at 5:30 AM. Same boats, same guides as resorts arrange. $100 vs $120-150.</div>
+            </div>
+            <div class="exp-card">
+                <span class="exp-badge">🚌 Local Transport</span>
+                <div class="exp-title">Matatu to Malindi</div>
+                <div class="exp-desc">Local minibus to Malindi costs 100 KES ($1). Use for Gede Ruins and town errands.</div>
+            </div>
+            <div class="exp-card">
+                <span class="exp-badge">🦞 Best Deal</span>
+                <div class="exp-title">Sunday Seafood BBQ</div>
+                <div class="exp-desc">Papa Remo does a legendary Sunday BBQ. Fresh catch, all you can eat vibes. ~$20.</div>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 2rem;"><a href="exclusive.html" style="color: var(--primary);">Explore All Hidden Gems →</a></p>
+    </section>
+
+    <!-- 10. CTA -->
+    <section>
+        <div class="cta-section">
+            <h2>Ready for the Real Watamu Experience?</h2>
+            <p>Best value whale shark base. Fresh seafood. No pretense.</p>
+            <a href="https://www.booking.com/hotel/ke/papa-remo.html" target="_blank" class="cta-btn">Book on Booking.com →</a>
+        </div>
+    </section>
+
+    <footer><p><a href="index.html">← All Properties</a> · <a href="exclusive.html">Hidden Gems</a></p><p style="margin-top:0.5rem;">Kenya Summer Tides 2025</p></footer>
+
+    <script>
+        function openLightbox(src){const l=document.querySelector('.lightbox');l.querySelector('img').src=src;l.classList.add('active');}
+        function closeLightbox(){document.querySelector('.lightbox').classList.remove('active');}
+    </script>
+</body>
+</html>
