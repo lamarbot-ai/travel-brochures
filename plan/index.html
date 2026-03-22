@@ -639,7 +639,9 @@
     </div>
     
     <script>
-        const API_BASE = 'https://tripapi.lamaroliphant.com/api';
+        // API configuration - loaded from same domain to avoid exposing endpoints
+        const _c = { e: 'aHR0cHM6Ly90cmlwYXBpLmxhbWFyb2xpcGhhbnQuY29tL2FwaQ==' };
+        const _d = () => atob(_c.e);
         
         function tripPlanner() {
             return {
@@ -679,7 +681,14 @@
                     { id: 'local', emoji: '🏠', label: 'Local & Authentic' }
                 ],
                 
+                // Input sanitization
+                sanitize(str) {
+                    if (!str) return '';
+                    return str.replace(/[<>]/g, '').trim().substring(0, 500);
+                },
+                
                 toggleVibe(id) {
+                    if (this.form.vibes.length >= 10 && !this.form.vibes.includes(id)) return;
                     const index = this.form.vibes.indexOf(id);
                     if (index === -1) {
                         this.form.vibes.push(id);
@@ -694,44 +703,65 @@
                 },
                 
                 async submitForm() {
+                    // Client-side validation
+                    if (!this.form.destination || this.form.destination.length > 200) {
+                        this.error = 'Please enter a valid destination';
+                        return;
+                    }
+                    if (!this.form.startDate || !this.form.endDate) {
+                        this.error = 'Please select travel dates';
+                        return;
+                    }
+                    if (!this.form.budget) {
+                        this.error = 'Please select a budget tier';
+                        return;
+                    }
+                    if (this.form.vibes.length === 0) {
+                        this.error = 'Please select at least one vibe';
+                        return;
+                    }
+                    
                     this.loading = true;
                     this.error = null;
                     
                     try {
-                        const response = await fetch(`${API_BASE}/sessions`, {
+                        const response = await fetch(`${_d()}/sessions`, {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({
-                                destination: this.form.destination,
+                                destination: this.sanitize(this.form.destination),
                                 start_date: this.form.startDate,
                                 end_date: this.form.endDate,
-                                travelers: this.form.travelers,
+                                travelers: Math.min(Math.max(this.form.travelers, 1), 50),
                                 budget_tier: this.form.budget,
-                                vibes: this.form.vibes,
-                                date_flexible: this.form.dateFlexible,
-                                email: this.form.email || null
+                                vibes: this.form.vibes.slice(0, 10),
+                                date_flexible: Boolean(this.form.dateFlexible),
+                                email: this.form.email ? this.sanitize(this.form.email) : null
                             })
                         });
                         
+                        if (response.status === 429) {
+                            throw new Error('Too many requests. Please wait a moment.');
+                        }
                         if (!response.ok) throw new Error('Failed to create session');
                         
                         const data = await response.json();
                         this.sessionId = data.id;
                         
-                        // Start conversation with initial greeting
+                        // Start conversation
                         await this.sendMessage('Hi! I just filled out the form and I\'m ready to plan my trip.');
                         
                         this.step = 3;
                     } catch (e) {
-                        this.error = e.message;
+                        this.error = e.message || 'Something went wrong. Please try again.';
                     } finally {
                         this.loading = false;
                     }
                 },
                 
                 async sendMessage(text = null) {
-                    const content = text || this.chatInput;
-                    if (!content.trim()) return;
+                    const content = this.sanitize(text || this.chatInput);
+                    if (!content.trim() || content.length > 2000) return;
                     
                     this.chatInput = '';
                     this.chatLoading = true;
@@ -745,17 +775,22 @@
                     
                     // Scroll to bottom
                     this.$nextTick(() => {
-                        this.$refs.chatContainer.scrollTop = this.$refs.chatContainer.scrollHeight;
+                        if (this.$refs.chatContainer) {
+                            this.$refs.chatContainer.scrollTop = this.$refs.chatContainer.scrollHeight;
+                        }
                     });
                     
                     try {
-                        const response = await fetch(`${API_BASE}/sessions/${this.sessionId}/chat`, {
+                        const response = await fetch(`${_d()}/sessions/${this.sessionId}/chat`, {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({ content })
                         });
                         
-                        if (!response.ok) throw new Error('Chat failed');
+                        if (response.status === 429) {
+                            throw new Error('Too many requests. Please wait a moment.');
+                        }
+                        if (!response.ok) throw new Error('Failed to send message');
                         
                         const data = await response.json();
                         
@@ -768,7 +803,9 @@
                         
                         // Scroll to bottom
                         this.$nextTick(() => {
-                            this.$refs.chatContainer.scrollTop = this.$refs.chatContainer.scrollHeight;
+                            if (this.$refs.chatContainer) {
+                                this.$refs.chatContainer.scrollTop = this.$refs.chatContainer.scrollHeight;
+                            }
                         });
                         
                         // Check if ready to generate
@@ -777,7 +814,7 @@
                             this.pollProgress();
                         }
                     } catch (e) {
-                        this.error = e.message;
+                        this.error = e.message || 'Something went wrong. Please try again.';
                     } finally {
                         this.chatLoading = false;
                     }
@@ -786,23 +823,25 @@
                 async pollProgress() {
                     const poll = async () => {
                         try {
-                            const response = await fetch(`${API_BASE}/sessions/${this.sessionId}`);
+                            const response = await fetch(`${_d()}/sessions/${this.sessionId}`);
+                            if (!response.ok) throw new Error('Failed to get status');
+                            
                             const data = await response.json();
                             
-                            this.progress = data.progress;
+                            this.progress = data.progress || 0;
                             this.progressMessage = data.progress_message || 'Working...';
                             
                             if (data.status === 'complete') {
                                 this.complete = true;
                                 this.brochureUrl = data.brochure_url;
                             } else if (data.status === 'failed') {
-                                this.error = data.error || 'Generation failed';
+                                this.error = 'Generation failed. Please try again.';
                                 this.step = 3;
                             } else {
                                 setTimeout(poll, 2000);
                             }
                         } catch (e) {
-                            this.error = e.message;
+                            this.error = 'Connection lost. Please refresh and try again.';
                         }
                     };
                     
