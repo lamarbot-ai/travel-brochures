@@ -639,15 +639,27 @@
         <h2 class="section-title">Where to Stay</h2>
         <p class="section-subtitle">Deep research across Airbnb, VRBO & Booking.com • <strong style="color: var(--gold);">Scored & ranked by proximity to festival</strong></p>
         
-        <!-- Trade-off Guide -->
+        <!-- Scoring Methodology -->
         <div style="background: rgba(212,175,55,0.1); border: 1px solid var(--gold); border-radius: 15px; padding: 1.5rem; margin-bottom: 2rem; max-width: 900px; margin-left: auto; margin-right: auto;">
-            <h4 style="color: var(--gold); margin-bottom: 0.5rem;">🎯 Festival Trip Scoring (100 points max)</h4>
-            <p style="font-size: 0.9rem; opacity: 0.9; margin-bottom: 1rem;">Properties scored on: <strong>Proximity (40pts)</strong> + Price Value (25pts) + Reviews (20pts) + Amenities (15pts)</p>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.8rem; font-size: 0.8rem;">
-                <div><span style="color: #00A86B;">⭐</span> <strong>&lt;5 min walk:</strong> 40 pts</div>
-                <div><span style="color: var(--gold);">◐</span> <strong>5-10 min walk:</strong> 30 pts</div>
-                <div><span style="color: #FF6B35;">○</span> <strong>10-15 min:</strong> 20 pts</div>
-                <div><span style="color: #666;">✗</span> <strong>Drive needed:</strong> 10 pts</div>
+            <h4 style="color: var(--gold); margin-bottom: 0.5rem;">🎯 Festival Trip Scoring (100 points)</h4>
+            <p style="font-size: 0.9rem; opacity: 0.9; margin-bottom: 1rem;">Weights derived from trip context: <strong>3-day festival, 2-4 people, late nights, group budget matters</strong></p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; font-size: 0.85rem;">
+                <div style="background: rgba(0,0,0,0.2); padding: 0.8rem; border-radius: 8px;">
+                    <strong style="color: var(--green);">📍 Location: 35 pts</strong><br>
+                    <span style="opacity: 0.8;">Late nights + surge pricing = walkability critical</span>
+                </div>
+                <div style="background: rgba(0,0,0,0.2); padding: 0.8rem; border-radius: 8px;">
+                    <strong style="color: var(--green);">💰 Cost Value: 35 pts</strong><br>
+                    <span style="opacity: 0.8;">Group trip = per-person cost matters equally</span>
+                </div>
+                <div style="background: rgba(0,0,0,0.2); padding: 0.8rem; border-radius: 8px;">
+                    <strong>⭐ Reviews: 20 pts</strong><br>
+                    <span style="opacity: 0.8;">Booking confidence, proven quality</span>
+                </div>
+                <div style="background: rgba(0,0,0,0.2); padding: 0.8rem; border-radius: 8px;">
+                    <strong>🏊 Amenities: 10 pts</strong><br>
+                    <span style="opacity: 0.8;">Beach is there; pool nice but not critical</span>
+                </div>
             </div>
         </div>
 
@@ -666,87 +678,59 @@
                 </thead>
                 <tbody>
                     <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
-                        <td style="padding: 0.8rem;"><strong>🥇 Rocha Prime Luxury</strong></td>
-                        <td style="padding: 0.8rem; text-align: center; color: var(--green);">2 min ⭐</td>
-                        <td style="padding: 0.8rem; text-align: center;">$4,500</td>
-                        <td style="padding: 0.8rem; text-align: center;">10/10</td>
-                        <td style="padding: 0.8rem; text-align: center; color: var(--gold);"><strong>83</strong></td>
-                        <td style="padding: 0.8rem;">Premium price, unbeatable location</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
-                        <td style="padding: 0.8rem;"><strong>🥈 Rocha Prime C3</strong></td>
+                        <td style="padding: 0.8rem;"><strong>🥇 Rocha Prime C3</strong></td>
                         <td style="padding: 0.8rem; text-align: center; color: var(--green);">4 min ⭐</td>
                         <td style="padding: 0.8rem; text-align: center;">$4,109</td>
-                        <td style="padding: 0.8rem; text-align: center;">10/10</td>
+                        <td style="padding: 0.8rem; text-align: center;">10/10 (1)</td>
                         <td style="padding: 0.8rem; text-align: center; color: var(--gold);"><strong>80</strong></td>
-                        <td style="padding: 0.8rem;">Great value + walk to festival</td>
+                        <td style="padding: 0.8rem;">Best balance: walk + value + modern</td>
                     </tr>
                     <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
-                        <td style="padding: 0.8rem;"><strong>🥉 Lilia's Beachfront</strong></td>
+                        <td style="padding: 0.8rem;"><strong>🥈 3 Quartos Budget</strong></td>
+                        <td style="padding: 0.8rem; text-align: center; color: var(--gold);">8 min</td>
+                        <td style="padding: 0.8rem; text-align: center; color: var(--green);">$1,981 🔥</td>
+                        <td style="padding: 0.8rem; text-align: center;">New</td>
+                        <td style="padding: 0.8rem; text-align: center; color: var(--gold);"><strong>79</strong></td>
+                        <td style="padding: 0.8rem;">$70/person/night! New listing risk</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <td style="padding: 0.8rem;"><strong>🥉 Rocha Prime Luxury</strong></td>
+                        <td style="padding: 0.8rem; text-align: center; color: var(--green);">2 min ⭐</td>
+                        <td style="padding: 0.8rem; text-align: center;">$4,500</td>
+                        <td style="padding: 0.8rem; text-align: center;">10/10 (2)</td>
+                        <td style="padding: 0.8rem; text-align: center; color: var(--gold);"><strong>77</strong></td>
+                        <td style="padding: 0.8rem;">Closest location, premium price</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <td style="padding: 0.8rem;"><strong>4. Lilia's Beachfront</strong></td>
                         <td style="padding: 0.8rem; text-align: center; color: var(--green);">3 min ⭐</td>
                         <td style="padding: 0.8rem; text-align: center;">$6,173</td>
-                        <td style="padding: 0.8rem; text-align: center;">4.87★</td>
-                        <td style="padding: 0.8rem; text-align: center; color: var(--gold);"><strong>80</strong></td>
-                        <td style="padding: 0.8rem;">True beachfront + pool (splurge)</td>
+                        <td style="padding: 0.8rem; text-align: center;">4.87★ (46)</td>
+                        <td style="padding: 0.8rem; text-align: center;"><strong>77</strong></td>
+                        <td style="padding: 0.8rem;">Most reviews, proven but pricey</td>
                     </tr>
                     <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
-                        <td style="padding: 0.8rem;"><strong>🔥 3 Quartos Budget</strong></td>
-                        <td style="padding: 0.8rem; text-align: center; color: var(--gold);">8 min</td>
-                        <td style="padding: 0.8rem; text-align: center; color: var(--green);">$1,981</td>
-                        <td style="padding: 0.8rem; text-align: center;">New</td>
-                        <td style="padding: 0.8rem; text-align: center;"><strong>70</strong></td>
-                        <td style="padding: 0.8rem;">Incredible value, sleeps 15!</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
-                        <td style="padding: 0.8rem;">Prainha Resort Villa</td>
+                        <td style="padding: 0.8rem;">5. Prainha Resort Villa</td>
                         <td style="padding: 0.8rem; text-align: center; color: #FF6B35;">10 min 🚗</td>
-                        <td style="padding: 0.8rem; text-align: center;">$2,969</td>
-                        <td style="padding: 0.8rem; text-align: center;">4.58★</td>
-                        <td style="padding: 0.8rem; text-align: center;"><strong>65</strong></td>
-                        <td style="padding: 0.8rem;">3 pools but need daily transport</td>
+                        <td style="padding: 0.8rem; text-align: center;">$2,969+transport</td>
+                        <td style="padding: 0.8rem; text-align: center;">4.58★ (102)</td>
+                        <td style="padding: 0.8rem; text-align: center;"><strong>61</strong></td>
+                        <td style="padding: 0.8rem;">Great pools, but €200+ transport</td>
                     </tr>
                 </tbody>
             </table>
         </div>
         
         <div class="accommodation-grid">
-            <!-- WINNER: Rocha Prime Luxury -->
+            <!-- #1 WINNER: Rocha Prime C3 -->
             <div class="accommodation-card fade-in">
-                <div class="accommodation-image" style="background-image: url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80')">
-                    <span class="accommodation-badge" style="background: linear-gradient(135deg, #FFD700, #FFA500);">🥇 TOP PICK • 83/100</span>
-                </div>
-                <div class="accommodation-content">
-                    <h3>Rocha Prime Luxury Residence</h3>
-                    <p class="accommodation-location">📍 Praia da Rocha • <strong style="color: var(--green);">2 MIN WALK TO FESTIVAL ⭐</strong></p>
-                    <p>Modern luxury apartment in the Rocha Prime building, steps from the beach. <strong>This is the one.</strong> Walk to festival, stumble home safely, no transport stress.</p>
-                    <div class="accommodation-features">
-                        <span class="feature-tag">2 Bedrooms</span>
-                        <span class="feature-tag">Sleeps 6</span>
-                        <span class="feature-tag">2 Bathrooms</span>
-                        <span class="feature-tag">AC</span>
-                        <span class="feature-tag">Modern</span>
-                    </div>
-                    <div class="accommodation-price">
-                        <span class="price-amount">~$4,500</span>
-                        <span class="price-period">/ 7 nights ($1,125/person for 4)</span>
-                    </div>
-                    <div class="accommodation-rating">
-                        <span class="stars">★★★★★</span>
-                        <span>10/10 (2 reviews) • VRBO</span>
-                    </div>
-                    <a href="https://www.vrbo.com/search?destination=Praia%20da%20Rocha&startDate=2026-06-29&endDate=2026-07-06&adults=4" class="cta-button" target="_blank">Search on VRBO →</a>
-                </div>
-            </div>
-
-            <!-- BEST VALUE: Rocha Prime C3 -->
-            <div class="accommodation-card fade-in" style="animation-delay: 0.1s">
                 <div class="accommodation-image" style="background-image: url('https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&q=80')">
-                    <span class="accommodation-badge" style="background: linear-gradient(135deg, #C0C0C0, #A8A8A8);">🥈 BEST VALUE • 80/100</span>
+                    <span class="accommodation-badge" style="background: linear-gradient(135deg, #FFD700, #FFA500);">🥇 RECOMMENDED • 80/100</span>
                 </div>
                 <div class="accommodation-content">
                     <h3>Rocha Prime C3 Apartment</h3>
                     <p class="accommodation-location">📍 Praia da Rocha • <strong style="color: var(--green);">4 MIN WALK TO FESTIVAL ⭐</strong></p>
-                    <p>Same premium Rocha Prime building, slightly better price. Pool access, modern finishes. <strong>Best balance of price + location.</strong></p>
+                    <p>Best balance of location + value. Walk to festival, pool access, modern finishes. <strong>This is the sweet spot.</strong></p>
                     <div class="accommodation-features">
                         <span class="feature-tag">2 Bedrooms</span>
                         <span class="feature-tag">Sleeps 6</span>
@@ -756,7 +740,7 @@
                     </div>
                     <div class="accommodation-price">
                         <span class="price-amount">$4,109</span>
-                        <span class="price-period">/ 7 nights ($1,027/person for 4)</span>
+                        <span class="price-period">/ 7 nights (<strong>$147/person/night</strong> for 4)</span>
                     </div>
                     <div class="accommodation-rating">
                         <span class="stars">★★★★★</span>
@@ -766,15 +750,71 @@
                 </div>
             </div>
 
-            <!-- LUXURY: Lilia's Beachfront -->
+            <!-- #2 BUDGET KING: 3 Quartos -->
+            <div class="accommodation-card fade-in" style="animation-delay: 0.1s">
+                <div class="accommodation-image" style="background-image: url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&q=80')">
+                    <span class="accommodation-badge" style="background: linear-gradient(135deg, #C0C0C0, #A8A8A8);">🥈 BUDGET KING • 79/100</span>
+                </div>
+                <div class="accommodation-content">
+                    <h3>3 Quartos - Optimal Location</h3>
+                    <p class="accommodation-location">📍 Praia da Rocha • <strong style="color: var(--gold);">8 MIN WALK TO FESTIVAL</strong></p>
+                    <p>Incredible value at $283/night. 3 bedrooms, sleeps 15! <strong>Best $/person for groups.</strong> Trade-off: New listing, less reviews.</p>
+                    <div class="accommodation-features">
+                        <span class="feature-tag">3 Bedrooms</span>
+                        <span class="feature-tag">Sleeps 15</span>
+                        <span class="feature-tag">2+ Baths</span>
+                        <span class="feature-tag">Large</span>
+                        <span class="feature-tag">AC</span>
+                    </div>
+                    <div class="accommodation-price">
+                        <span class="price-amount" style="color: var(--green);">$1,981</span>
+                        <span class="price-period">/ 7 nights (<strong>$70/person/night</strong> for 4!) 🔥</span>
+                    </div>
+                    <div class="accommodation-rating">
+                        <span class="stars">New listing</span>
+                        <span>Free cancellation until Jun 15 • VRBO</span>
+                    </div>
+                    <a href="https://www.vrbo.com/12062012ha?chkin=2026-06-29&chkout=2026-07-06&adults=4" class="cta-button" target="_blank">View on VRBO →</a>
+                </div>
+            </div>
+
+            <!-- #3 CLOSEST: Rocha Prime Luxury -->
             <div class="accommodation-card fade-in" style="animation-delay: 0.2s">
+                <div class="accommodation-image" style="background-image: url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80')">
+                    <span class="accommodation-badge" style="background: linear-gradient(135deg, #CD7F32, #B8860B);">🥉 CLOSEST • 77/100</span>
+                </div>
+                <div class="accommodation-content">
+                    <h3>Rocha Prime Luxury Residence</h3>
+                    <p class="accommodation-location">📍 Praia da Rocha • <strong style="color: var(--green);">2 MIN WALK TO FESTIVAL ⭐⭐</strong></p>
+                    <p>Absolute closest to festival. Modern luxury, same Rocha Prime building. <strong>Pay premium for unbeatable proximity.</strong></p>
+                    <div class="accommodation-features">
+                        <span class="feature-tag">2 Bedrooms</span>
+                        <span class="feature-tag">Sleeps 6</span>
+                        <span class="feature-tag">2 Bathrooms</span>
+                        <span class="feature-tag">AC</span>
+                        <span class="feature-tag">Luxury</span>
+                    </div>
+                    <div class="accommodation-price">
+                        <span class="price-amount">~$4,500</span>
+                        <span class="price-period">/ 7 nights ($161/person/night for 4)</span>
+                    </div>
+                    <div class="accommodation-rating">
+                        <span class="stars">★★★★★</span>
+                        <span>10/10 (2 reviews) • VRBO</span>
+                    </div>
+                    <a href="https://www.vrbo.com/search?destination=Praia%20da%20Rocha&startDate=2026-06-29&endDate=2026-07-06&adults=4" class="cta-button" target="_blank">Search on VRBO →</a>
+                </div>
+            </div>
+
+            <!-- #4 PROVEN: Lilia's Beachfront -->
+            <div class="accommodation-card fade-in" style="animation-delay: 0.3s">
                 <div class="accommodation-image" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80')">
-                    <span class="accommodation-badge" style="background: linear-gradient(135deg, #CD7F32, #B8860B);">🥉 LUXURY • 80/100</span>
+                    <span class="accommodation-badge">⭐ MOST TRUSTED • 77/100</span>
                 </div>
                 <div class="accommodation-content">
                     <h3>Lilia's Beachfront Flat</h3>
                     <p class="accommodation-location">📍 Praia da Rocha • <strong style="color: var(--green);">BEACHFRONT + 3 MIN WALK ⭐</strong></p>
-                    <p>True beachfront with pool and parking. Most reviews (46), proven quality. <strong>The splurge option for those who want it all.</strong></p>
+                    <p>Most reviews (46!), proven quality. True beachfront with pool. <strong>Safest choice if budget allows.</strong></p>
                     <div class="accommodation-features">
                         <span class="feature-tag">2 Bedrooms</span>
                         <span class="feature-tag">4 Beds</span>
@@ -784,41 +824,13 @@
                     </div>
                     <div class="accommodation-price">
                         <span class="price-amount">$6,173</span>
-                        <span class="price-period">/ 7 nights ($1,543/person for 4)</span>
+                        <span class="price-period">/ 7 nights ($220/person/night for 4)</span>
                     </div>
                     <div class="accommodation-rating">
                         <span class="stars">★★★★★</span>
-                        <span>4.87 (46 reviews) • Airbnb</span>
+                        <span>4.87 (46 reviews) • Airbnb - Most Trusted!</span>
                     </div>
                     <a href="https://www.airbnb.com/rooms/1086204346717071276?adults=4&check_in=2026-06-29&check_out=2026-07-06" class="cta-button" target="_blank">View on Airbnb →</a>
-                </div>
-            </div>
-
-            <!-- BUDGET KING: 3 Quartos -->
-            <div class="accommodation-card fade-in" style="animation-delay: 0.3s">
-                <div class="accommodation-image" style="background-image: url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&q=80')">
-                    <span class="accommodation-badge" style="background: var(--green);">🔥 BUDGET KING • 70/100</span>
-                </div>
-                <div class="accommodation-content">
-                    <h3>3 Quartos - Optimal Location</h3>
-                    <p class="accommodation-location">📍 Praia da Rocha • <strong style="color: var(--gold);">8 MIN WALK TO FESTIVAL</strong></p>
-                    <p>3 bedrooms, sleeps up to 15! Perfect for larger groups. <strong>$283/night is insane value.</strong> Trade-off: Newer listing, less reviews.</p>
-                    <div class="accommodation-features">
-                        <span class="feature-tag">3 Bedrooms</span>
-                        <span class="feature-tag">Sleeps 15</span>
-                        <span class="feature-tag">2+ Baths</span>
-                        <span class="feature-tag">Large</span>
-                        <span class="feature-tag">Group</span>
-                    </div>
-                    <div class="accommodation-price">
-                        <span class="price-amount">$1,981</span>
-                        <span class="price-period">/ 7 nights ($495/person for 4, $330 for 6!)</span>
-                    </div>
-                    <div class="accommodation-rating">
-                        <span class="stars">New listing</span>
-                        <span>VRBO • Free cancellation until Jun 15</span>
-                    </div>
-                    <a href="https://www.vrbo.com/12062012ha?chkin=2026-06-29&chkout=2026-07-06&adults=4" class="cta-button" target="_blank">View on VRBO →</a>
                 </div>
             </div>
 
@@ -853,9 +865,21 @@
 
         <!-- Recommendation Box -->
         <div style="background: var(--dark-gray); border-radius: 20px; padding: 2rem; margin-top: 2rem; border: 1px solid var(--gold);">
-            <h4 style="color: var(--gold); margin-bottom: 1rem;">💡 My Recommendation</h4>
-            <p style="margin-bottom: 1rem;">For a <strong>festival trip</strong>, book <strong>Rocha Prime C3</strong> ($4,109) or the <strong>Luxury Residence</strong> (~$4,500). The 2-4 minute walk to the festival is worth every penny - you'll save on transport, can come and go freely, and won't worry about getting home after late nights.</p>
-            <p style="opacity: 0.8; font-size: 0.9rem;">If budget is tight and you have 6+ people, the <strong>3 Quartos</strong> at $1,981 is incredible value at 8 min walk.</p>
+            <h4 style="color: var(--gold); margin-bottom: 1rem;">💡 My Recommendation (Based on Value Score)</h4>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+                <div style="background: rgba(0,168,107,0.1); padding: 1rem; border-radius: 10px; border-left: 3px solid var(--green);">
+                    <strong style="color: var(--green);">Best Overall: Rocha Prime C3</strong>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem;">4 min walk + $147/person/night = best balance. Pool access, modern. This is the sweet spot.</p>
+                </div>
+                <div style="background: rgba(212,175,55,0.1); padding: 1rem; border-radius: 10px; border-left: 3px solid var(--gold);">
+                    <strong style="color: var(--gold);">Best Budget: 3 Quartos</strong>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem;">$70/person/night is insane. 8 min walk still walkable. Risk: new listing. Book with free cancellation.</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 10px; border-left: 3px solid #888;">
+                    <strong>Most Trusted: Lilia's Beachfront</strong>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem;">46 reviews, 4.87★ = proven quality. If budget isn't tight and you want zero risk, this is it.</p>
+                </div>
+            </div>
         </div>
     </section>
 
