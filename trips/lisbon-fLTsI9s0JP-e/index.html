@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lisbon | Travel Brochure</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --gold: #D4AF37;
+            --dark: #1a1a2e;
+            --darker: #16213e;
+            --light: #fff;
+            --gray: rgba(255,255,255,0.7);
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--darker) 100%);
+            color: var(--light);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(212,175,55,0.1) 0%, transparent 100%);
+            border-radius: 20px;
+            margin-bottom: 3rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--light), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+        
+        .hero-meta span { display: flex; align-items: center; gap: 0.5rem; }
+        
+        /* Section Styles */
+        section {
+            margin-bottom: 4rem;
+        }
+        
+        section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--gold);
+            border-bottom: 2px solid rgba(212,175,55,0.3);
+            padding-bottom: 0.5rem;
+        }
+        
+        /* Accommodation Cards */
+        .accommodations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .accommodation-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        
+        .accommodation-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+        }
+        
+        .card-image {
+            height: 200px;
+            background: linear-gradient(135deg, #2a2a4e, #1a1a3e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+        
+        .card-content { padding: 1.5rem; }
+        .card-content h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .card-type { color: var(--gold); font-size: 0.9rem; margin-bottom: 0.5rem; }
+        .card-price { font-size: 1.1rem; margin: 1rem 0; }
+        .card-price strong { color: var(--gold); font-size: 1.3rem; }
+        
+        .amenities {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        
+        .amenity {
+            background: rgba(212,175,55,0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+        
+        .card-cta {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--dark);
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: transform 0.2s;
+        }
+        
+        .card-cta:hover { transform: scale(1.05); }
+        
+        /* Experiences Grid */
+        .experiences-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .experience-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .experience-card h4 { color: var(--gold); margin-bottom: 0.5rem; }
+        .experience-meta { color: var(--gray); font-size: 0.9rem; margin-bottom: 0.5rem; }
+        
+        /* Restaurants */
+        .restaurants-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .restaurant-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .restaurant-card h4 { margin-bottom: 0.5rem; }
+        .cuisine-tag {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--dark);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Map */
+        #map {
+            height: 400px;
+            border-radius: 16px;
+            margin: 2rem 0;
+        }
+        
+        /* Share Section */
+        .share-section {
+            text-align: center;
+            padding: 3rem;
+            background: rgba(212,175,55,0.1);
+            border-radius: 16px;
+        }
+        
+        .share-url {
+            background: rgba(0,0,0,0.3);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-family: monospace;
+            margin: 1rem 0;
+            word-break: break-all;
+        }
+        
+        .copy-btn {
+            background: var(--gold);
+            color: var(--dark);
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        footer a { color: var(--gold); text-decoration: none; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero-meta { flex-direction: column; gap: 0.5rem; }
+            .accommodations-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>✈️ Lisbon</h1>
+            <div class="hero-meta">
+                <span>📅 2026-07-01 → 2026-07-07 (6 nights)</span>
+                <span>👥 2 travelers</span>
+                <span>💰 Mid-Range</span>
+            </div>
+            <p style="margin-top: 1.5rem; max-width: 600px; margin-left: auto; margin-right: auto; color: var(--gray);">
+                A curated collection of accommodations, experiences, and restaurants selected just for you.
+            </p>
+        </section>
+        
+        <!-- Vibes -->
+        <section>
+            <h2>🎯 Your Trip Vibes</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+                <span class="amenity">🍽️ Food</span>
+<span class="amenity">🏛️ History</span>
+            </div>
+        </section>
+        
+        <!-- Accommodations -->
+        <section>
+            <h2>🏠 Where to Stay</h2>
+            <div class="accommodations-grid">
+                
+        <div class="accommodation-card">
+            <div class="card-image">🏨</div>
+            <div class="card-content">
+                <h3>Tivoli Baixa Hotel</h3>
+                <p class="card-type">Hotel • Baixa</p>
+                <p class="card-price">From <strong>$200</strong>/night</p>
+                <div class="amenities"><span class="amenity">pool</span><span class="amenity">wifi</span><span class="amenity">fitness center</span></div>
+                <p style="color: var(--gray); font-size: 0.9rem;">Perfect for couples seeking a boutique hotel in a prime location for exploring Lisbon&#x27;s history and enjoying seafood.</p>
+                <p style="color: var(--gray); font-size: 0.78rem; margin-top: 0.75rem;">Verification: Official</p>
+                <a href="https://www.tivolihotels.com/en/hotels-and-resorts/lisbon/tivoli-baixa-hotel" target="_blank" class="card-cta">View & Book →</a>
+            </div>
+        </div>
+        
+
+        <div class="accommodation-card">
+            <div class="card-image">🏨</div>
+            <div class="card-content">
+                <h3>Lisbon Plaza Hotel</h3>
+                <p class="card-type">Hotel • Chiado</p>
+                <p class="card-price">From <strong>$160</strong>/night</p>
+                <div class="amenities"><span class="amenity">wifi</span><span class="amenity">spa</span></div>
+                <p style="color: var(--gray); font-size: 0.9rem;">A central location in Chiado makes this hotel ideal for exploring historical sites and enjoying the city&#x27;s vibrant seafood scene.</p>
+                <p style="color: var(--gray); font-size: 0.78rem; margin-top: 0.75rem;">Verification: Search Link</p>
+                <a href="https://www.lisbonplazahotel.com/" target="_blank" class="card-cta">View & Book →</a>
+            </div>
+        </div>
+        
+
+        <div class="accommodation-card">
+            <div class="card-image">🏨</div>
+            <div class="card-content">
+                <h3>Hotel Avenida Liberdade by Tivoli</h3>
+                <p class="card-type">Hotel • Lisbon city center</p>
+                <p class="card-price">From <strong>$220</strong>/night</p>
+                <div class="amenities"><span class="amenity">spa</span><span class="amenity">gym</span><span class="amenity">bar/lounge</span></div>
+                <p style="color: var(--gray); font-size: 0.9rem;">Located in the heart of Lisbon, offering easy access to historical landmarks and seafood restaurants.</p>
+                <p style="color: var(--gray); font-size: 0.78rem; margin-top: 0.75rem;">Verification: Official</p>
+                <a href="https://www.tivolihotels.com/en/hotels-and-resorts/lisbon/hotel-avenida-liberdade-by-tivoli" target="_blank" class="card-cta">View & Book →</a>
+            </div>
+        </div>
+        
+
+        <div class="accommodation-card">
+            <div class="card-image">🏨</div>
+            <div class="card-content">
+                <h3>Hotel Bairro Alto</h3>
+                <p class="card-type">Hotel • Bairro Alto</p>
+                <p class="card-price">From <strong>$150</strong>/night</p>
+                <div class="amenities"><span class="amenity">wifi</span><span class="amenity">24-hour front desk</span></div>
+                <p style="color: var(--gray); font-size: 0.9rem;">A boutique hotel in Bairro Alto that offers a charming setting for exploring Lisbon&#x27;s history and seafood.</p>
+                <p style="color: var(--gray); font-size: 0.78rem; margin-top: 0.75rem;">Verification: Search Link</p>
+                <a href="https://www.booking.com/hotel/pt/hotel-bairro-alto.en-gb.html" target="_blank" class="card-cta">View & Book →</a>
+            </div>
+        </div>
+        
+
+        <div class="accommodation-card">
+            <div class="card-image">🏨</div>
+            <div class="card-content">
+                <h3>Hotel Teatro</h3>
+                <p class="card-type">Hotel • Chiado</p>
+                <p class="card-price">From <strong>$180</strong>/night</p>
+                <div class="amenities"><span class="amenity">spa</span><span class="amenity">fitness center</span><span class="amenity">bar/lounge</span></div>
+                <p style="color: var(--gray); font-size: 0.9rem;">A centrally located hotel in Chiado offering easy access to historical sites and seafood restaurants.</p>
+                <p style="color: var(--gray); font-size: 0.78rem; margin-top: 0.75rem;">Verification: Search Link</p>
+                <a href="https://www.booking.com/hotel/pt/teatro.en-gb.html" target="_blank" class="card-cta">View & Book →</a>
+            </div>
+        </div>
+        
+            </div>
+        </section>
+        
+        <!-- Experiences -->
+        <section>
+            <h2>🌟 Things to Do</h2>
+            <div class="experiences-grid">
+                
+        <div class="experience-card">
+            <h4>Lisbon City Walks: Hidden Gems</h4>
+            <p class="experience-meta">
+                ⏱️ 3 hours • 💰 $$
+            </p>
+            <p style="color: var(--gray);">Discover the hidden gems of Lisbon on this guided walking tour. Explore the lesser-known neighborhoods and learn about the city&#x27;s rich history.</p>
+        </div>
+        
+
+        <div class="experience-card">
+            <h4>Santo Amaro Neighborhood Tour</h4>
+            <p class="experience-meta">
+                ⏱️ 2 hours • 💰 $
+            </p>
+            <p style="color: var(--gray);">Join a walking tour through the vibrant Santo Amaro neighborhood. Experience the local culture and history while enjoying a traditional lunch.</p>
+        </div>
+        
+
+        <div class="experience-card">
+            <h4>Alfama Guided Tour</h4>
+            <p class="experience-meta">
+                ⏱️ 2 hours • 💰 $$
+            </p>
+            <p style="color: var(--gray);">Explore the narrow streets and alleys of Lisbon&#x27;s oldest district, Alfama, on this guided tour. Discover the history and traditions of this charming neighborhood.</p>
+        </div>
+        
+
+        <div class="experience-card">
+            <h4>Sintra and Cascais Day Trip</h4>
+            <p class="experience-meta">
+                ⏱️ 8 hours • 💰 $$$
+            </p>
+            <p style="color: var(--gray);">Take a day trip to Sintra and Cascais, just outside Lisbon. Visit the historic town of Sintra and the beautiful beaches of Cascais.</p>
+        </div>
+        
+
+        <div class="experience-card">
+            <h4>Lisbon Food Tour: Chiado</h4>
+            <p class="experience-meta">
+                ⏱️ 3 hours • 💰 $$
+            </p>
+            <p style="color: var(--gray);">Enjoy a culinary journey through the Chiado district on this food tour. Sample local delicacies and learn about the food culture of Lisbon.</p>
+        </div>
+        
+
+        <div class="experience-card">
+            <h4>Jerónimos Monastery and Belém Tower</h4>
+            <p class="experience-meta">
+                ⏱️ 2 hours • 💰 $$
+            </p>
+            <p style="color: var(--gray);">Visit the iconic Jerónimos Monastery and Belém Tower, two of Lisbon&#x27;s most famous landmarks. Discover the history and significance of these sites.</p>
+        </div>
+        
+
+        <div class="experience-card">
+            <h4>Lisbon Tram Tour</h4>
+            <p class="experience-meta">
+                ⏱️ 3 hours • 💰 $
+            </p>
+            <p style="color: var(--gray);">Experience Lisbon from the comfort of a vintage tram. Enjoy panoramic views of the city and learn about its history and culture.</p>
+        </div>
+        
+
+        <div class="experience-card">
+            <h4>Lisbon Hidden History Tour</h4>
+            <p class="experience-meta">
+                ⏱️ 3 hours • 💰 $$
+            </p>
+            <p style="color: var(--gray);">Explore the hidden history of Lisbon on this walking tour. Discover the lesser-known aspects of the city&#x27;s past and learn about its rich cultural heritage.</p>
+        </div>
+        
+
+        <div class="experience-card">
+            <h4>Lisbon Night Tour</h4>
+            <p class="experience-meta">
+                ⏱️ 3 hours • 💰 $$
+            </p>
+            <p style="color: var(--gray);">Experience Lisbon after dark on this guided night tour. Discover the city&#x27;s vibrant nightlife and explore its historic neighborhoods.</p>
+        </div>
+        
+
+        <div class="experience-card">
+            <h4>Bairro Alto Art Walk</h4>
+            <p class="experience-meta">
+                ⏱️ 2 hours • 💰 $
+            </p>
+            <p style="color: var(--gray);">Join an art walk through the Bairro Alto neighborhood. Discover the local art scene and learn about the history and culture of this charming area.</p>
+        </div>
+        
+            </div>
+        </section>
+        
+        <!-- Hidden Gems -->
+        <section>
+            <h2>💎 Hidden Gems</h2>
+            <div class="experiences-grid">
+                <p style="color: var(--gray);">Experience research in progress...</p>
+            </div>
+        </section>
+        
+        <!-- Restaurants -->
+        <section>
+            <h2>🍽️ Where to Eat</h2>
+            <div class="restaurants-grid">
+                
+        <div class="restaurant-card">
+            <span class="cuisine-tag">Portuguese</span>
+            <h4>A Lata</h4>
+            <p style="color: var(--gray); margin: 0.5rem 0;">
+                💰 $$$ • 📍 Lisbon city center
+            </p>
+            <p><strong>Must try:</strong> bacalhau à bras, arroz de tamboril, leitão</p>
+        </div>
+        
+
+        <div class="restaurant-card">
+            <span class="cuisine-tag">Portuguese, International</span>
+            <h4>Mercado da Ribeira</h4>
+            <p style="color: var(--gray); margin: 0.5rem 0;">
+                💰 $ • 📍 Lisbon city center
+            </p>
+            <p><strong>Must try:</strong> pastéis de nata, cheese plates, seafood</p>
+        </div>
+        
+
+        <div class="restaurant-card">
+            <span class="cuisine-tag">Portuguese</span>
+            <h4>Cervejaria Ramiro</h4>
+            <p style="color: var(--gray); margin: 0.5rem 0;">
+                💰 $$$ • 📍 Lisbon city center
+            </p>
+            <p><strong>Must try:</strong> shrimp oysters, shrimp salad, shrimp fritters</p>
+        </div>
+        
+
+        <div class="restaurant-card">
+            <span class="cuisine-tag">Portuguese</span>
+            <h4>Restaurante Martinho da Arcada</h4>
+            <p style="color: var(--gray); margin: 0.5rem 0;">
+                💰 $$$ • 📍 Chiado
+            </p>
+            <p><strong>Must try:</strong> codfish, traditional Portuguese dishes</p>
+        </div>
+        
+
+        <div class="restaurant-card">
+            <span class="cuisine-tag">Portuguese</span>
+            <h4>Os Maridos</h4>
+            <p style="color: var(--gray); margin: 0.5rem 0;">
+                💰 $$$ • 📍 Chiado
+            </p>
+            <p><strong>Must try:</strong> shrimp, octopus, fish stew</p>
+        </div>
+        
+
+        <div class="restaurant-card">
+            <span class="cuisine-tag">Portuguese</span>
+            <h4>Rosa Bistrô</h4>
+            <p style="color: var(--gray); margin: 0.5rem 0;">
+                💰 $$$ • 📍 Baixa
+            </p>
+            <p><strong>Must try:</strong> meat dishes, seafood</p>
+        </div>
+        
+
+        <div class="restaurant-card">
+            <span class="cuisine-tag">Portuguese</span>
+            <h4>O Gulas</h4>
+            <p style="color: var(--gray); margin: 0.5rem 0;">
+                💰 $$$ • 📍 Baixa
+            </p>
+            <p><strong>Must try:</strong> food and wine</p>
+        </div>
+        
+
+        <div class="restaurant-card">
+            <span class="cuisine-tag">Portuguese</span>
+            <h4>Rota dos Peixes</h4>
+            <p style="color: var(--gray); margin: 0.5rem 0;">
+                💰 $$$ • 📍 Chiado
+            </p>
+            <p><strong>Must try:</strong> seafood</p>
+        </div>
+        
+            </div>
+        </section>
+        
+        <!-- Share -->
+        <section class="share-section">
+            <h2 style="border: none; text-align: center;">📤 Share This Trip</h2>
+            <p>Send this link to your travel buddies:</p>
+            <div class="share-url" id="shareUrl">https://travelplanning.lamaroliphant.com/trips/lisbon-fLTsI9s0JP-e/</div>
+            <button class="copy-btn" onclick="copyUrl()">📋 Copy Link</button>
+        </section>
+        
+        <footer>
+            <p>Created with ❤️ by <a href="https://travelplanning.lamaroliphant.com">Trip Planner</a></p>
+            <p style="margin-top: 0.5rem;">Generated May 30, 2026</p>
+        </footer>
+    </div>
+    
+    <script>
+        function copyUrl() {
+            const url = document.getElementById('shareUrl').textContent;
+            navigator.clipboard.writeText(url).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                btn.textContent = '✓ Copied!';
+                setTimeout(() => btn.textContent = '📋 Copy Link', 2000);
+            });
+        }
+    </script>
+</body>
+</html>
