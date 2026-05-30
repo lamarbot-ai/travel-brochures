@@ -557,6 +557,50 @@
                     </template>
                 </div>
             </div>
+
+            <div class="form-section">
+                <h3>🎯 Priorities</h3>
+                <div class="chip-grid">
+                    <template x-for="priority in priorityOptions" :key="priority.id">
+                        <div class="chip" :class="{ 'selected': form.priorities.includes(priority.id) }"
+                             @click="togglePriority(priority.id)">
+                            <span x-text="priority.emoji + ' ' + priority.label"></span>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>🏠 Stay Style</h3>
+                <div class="form-group">
+                    <textarea x-model="form.accommodationStyle" rows="3"
+                              placeholder="Villa, boutique hotel, resort, walkable neighborhood, private pool, workspace, etc."></textarea>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>🧭 Extra Context</h3>
+                <div class="form-group">
+                    <label>Who is going?</label>
+                    <textarea x-model="form.travelerDetails" rows="2"
+                              placeholder="Couple, family, friend group, ages, mobility needs, celebration, etc."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Must-haves</label>
+                    <textarea x-model="form.mustHaves" rows="2"
+                              placeholder="Non-negotiable experiences, areas, amenities, or logistics"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Dealbreakers</label>
+                    <textarea x-model="form.dealbreakers" rows="2"
+                              placeholder="Places, activities, lodging types, travel pace, or constraints to avoid"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Anything else?</label>
+                    <textarea x-model="form.tripNotes" rows="3"
+                              placeholder="Flights, events, dietary needs, accessibility, loyalty programs, preferred airport, etc."></textarea>
+                </div>
+            </div>
             
             <div class="form-section">
                 <h3>📧 Email (optional, for notifications)</h3>
@@ -665,6 +709,12 @@
                     travelers: 2,
                     budget: '',
                     vibes: [],
+                    priorities: [],
+                    travelerDetails: '',
+                    accommodationStyle: '',
+                    mustHaves: '',
+                    dealbreakers: '',
+                    tripNotes: '',
                     email: ''
                 },
                 
@@ -680,6 +730,17 @@
                     { id: 'instagram', emoji: '📸', label: 'Instagram-worthy' },
                     { id: 'local', emoji: '🏠', label: 'Local & Authentic' }
                 ],
+
+                priorityOptions: [
+                    { id: 'budget', emoji: '💵', label: 'Budget' },
+                    { id: 'location', emoji: '📍', label: 'Location' },
+                    { id: 'exclusivity', emoji: '🔐', label: 'Exclusivity' },
+                    { id: 'comfort', emoji: '🛏️', label: 'Comfort' },
+                    { id: 'food', emoji: '🍽️', label: 'Food' },
+                    { id: 'nightlife', emoji: '🎉', label: 'Nightlife' },
+                    { id: 'views', emoji: '🌅', label: 'Views' },
+                    { id: 'ease', emoji: '🚕', label: 'Easy Logistics' }
+                ],
                 
                 // Input sanitization
                 sanitize(str) {
@@ -694,6 +755,15 @@
                         this.form.vibes.push(id);
                     } else {
                         this.form.vibes.splice(index, 1);
+                    }
+                },
+
+                togglePriority(id) {
+                    const index = this.form.priorities.indexOf(id);
+                    if (index === -1) {
+                        this.form.priorities.push(id);
+                    } else {
+                        this.form.priorities.splice(index, 1);
                     }
                 },
                 
@@ -735,6 +805,12 @@
                                 travelers: Math.min(Math.max(this.form.travelers, 1), 50),
                                 budget_tier: this.form.budget,
                                 vibes: this.form.vibes.slice(0, 10),
+                                priorities: this.form.priorities.slice(0, 10),
+                                traveler_details: this.sanitize(this.form.travelerDetails),
+                                accommodation_style: this.sanitize(this.form.accommodationStyle),
+                                must_haves: this.sanitize(this.form.mustHaves),
+                                dealbreakers: this.sanitize(this.form.dealbreakers),
+                                trip_notes: this.sanitize(this.form.tripNotes),
                                 date_flexible: Boolean(this.form.dateFlexible),
                                 email: this.form.email ? this.sanitize(this.form.email) : null
                             })
