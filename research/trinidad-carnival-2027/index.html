@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trinidad Carnival 2027 Group Plan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --ink: #181516;
+      --muted: #665f5d;
+      --paper: #fffaf2;
+      --panel: #ffffff;
+      --line: #e7ddd2;
+      --crimson: #b72235;
+      --teal: #08756f;
+      --gold: #c88719;
+      --green: #21774a;
+      --blue: #1f5d9c;
+      --shadow: 0 18px 55px rgba(44, 26, 18, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.55;
+    }
+    a { color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 250, 242, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .brand {
+      font-weight: 800;
+      letter-spacing: 0;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 8px 10px;
+      border-radius: 6px;
+    }
+    .nav-links a:hover { background: #f3eadf; color: var(--ink); }
+
+    .hero {
+      min-height: 92vh;
+      display: grid;
+      align-items: end;
+      background:
+        linear-gradient(180deg, rgba(24, 21, 22, 0.06), rgba(24, 21, 22, 0.84)),
+        url("https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Trinidad_Carnival.JPG/960px-Trinidad_Carnival.JPG") center 32% / cover;
+      color: white;
+      position: relative;
+    }
+    .hero-inner {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 90px 0 52px;
+    }
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #ffe5ad;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      margin-bottom: 18px;
+    }
+    h1, h2, h3 {
+      font-family: Fraunces, Georgia, serif;
+      line-height: 1.02;
+      letter-spacing: 0;
+      margin: 0;
+    }
+    h1 {
+      max-width: 900px;
+      font-size: clamp(3.2rem, 8vw, 7.5rem);
+      text-wrap: balance;
+    }
+    .hero-copy {
+      max-width: 780px;
+      margin: 22px 0 0;
+      font-size: clamp(1.02rem, 2vw, 1.35rem);
+      color: rgba(255,255,255,0.9);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 34px;
+      max-width: 900px;
+    }
+    .hero-stat {
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.28);
+      border-radius: 8px;
+      padding: 14px;
+    }
+    .hero-stat strong { display: block; font-size: 1.45rem; }
+    .hero-stat span { color: rgba(255,255,255,0.78); font-size: 0.88rem; }
+    .credit {
+      position: absolute;
+      right: 16px;
+      bottom: 12px;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.72rem;
+    }
+
+    main { overflow: hidden; }
+    section {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 76px 0;
+    }
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(280px, 0.58fr);
+      gap: 38px;
+      align-items: end;
+      margin-bottom: 34px;
+    }
+    h2 { font-size: clamp(2.1rem, 4.5vw, 4rem); }
+    .lead { color: var(--muted); font-size: 1.02rem; margin: 0; }
+    .band {
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      background: #f4eadf;
+    }
+    .band > .band-inner {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 76px 0;
+    }
+
+    .notice {
+      border-left: 4px solid var(--gold);
+      background: #fff5df;
+      padding: 16px 18px;
+      border-radius: 0 8px 8px 0;
+      color: #4c3a17;
+      font-weight: 600;
+    }
+
+    .priority-grid,
+    .itinerary-grid,
+    .activity-grid,
+    .source-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .tile,
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+    .tile { padding: 22px; }
+    .tile i { color: var(--crimson); margin-bottom: 18px; font-size: 1.35rem; }
+    .tile h3 { font-size: 1.35rem; margin-bottom: 8px; }
+    .tile p { color: var(--muted); margin: 0; }
+
+    .scenario-tabs,
+    .itinerary-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 24px;
+    }
+    button.tab {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      border-radius: 6px;
+      padding: 10px 13px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    button.tab.active {
+      background: var(--ink);
+      color: white;
+      border-color: var(--ink);
+    }
+
+    .accom-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .accom-card {
+      display: grid;
+      grid-template-columns: 128px minmax(0, 1fr);
+      overflow: hidden;
+      min-height: 236px;
+    }
+    .source-panel {
+      background: linear-gradient(160deg, var(--teal), var(--blue));
+      color: white;
+      padding: 16px 13px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .source-panel i { font-size: 1.55rem; }
+    .rank {
+      font-size: 0.74rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.72);
+    }
+    .score { font-size: 1.85rem; font-weight: 900; }
+    .accom-body { padding: 18px; }
+    .accom-body h3 { font-size: 1.45rem; margin-bottom: 8px; }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 12px 0 14px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 5px 9px;
+      color: var(--muted);
+      background: #fffdf9;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+    .summary { color: var(--muted); margin: 0 0 14px; }
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      border-radius: 6px;
+      padding: 10px 12px;
+      background: var(--ink);
+      color: white;
+      font-weight: 800;
+      font-size: 0.86rem;
+      border: 1px solid var(--ink);
+    }
+    .btn.secondary {
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--line);
+    }
+    .btn:hover { transform: translateY(-1px); }
+
+    .comparison-wrap { overflow-x: auto; border-radius: 8px; box-shadow: var(--shadow); }
+    table {
+      width: 100%;
+      min-width: 850px;
+      border-collapse: collapse;
+      background: white;
+      border: 1px solid var(--line);
+    }
+    th, td {
+      padding: 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    th { background: var(--ink); color: white; font-size: 0.86rem; }
+    td { color: var(--muted); }
+    td strong { color: var(--ink); }
+
+    .map-strip {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+    .photo-panel {
+      min-height: 430px;
+      border-radius: 8px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(24,21,22,0.02), rgba(24,21,22,0.72)),
+        url("https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Port-of-Spain%2C_Trinidad_and_Tobago.JPG/1280px-Port-of-Spain%2C_Trinidad_and_Tobago.JPG") center / cover;
+      display: flex;
+      align-items: end;
+      padding: 24px;
+      color: white;
+    }
+    .photo-panel h3 { font-size: 2rem; margin-bottom: 8px; }
+    .area-list {
+      display: grid;
+      gap: 12px;
+    }
+    .area-item {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .area-item h3 { font-size: 1.1rem; margin-bottom: 6px; }
+    .area-item p { margin: 0; color: var(--muted); }
+
+    .day {
+      padding: 18px;
+      border-left: 4px solid var(--teal);
+    }
+    .day h3 {
+      font-size: 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 10px;
+    }
+    .day h3 span {
+      font-family: Inter, sans-serif;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    .day ul { margin: 0; padding-left: 18px; color: var(--muted); }
+
+    .activity-card {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      min-height: 250px;
+    }
+    .activity-card .tag {
+      align-self: flex-start;
+      background: #f2e1d0;
+      color: #68400d;
+      border-radius: 999px;
+      padding: 5px 9px;
+      font-size: 0.72rem;
+      font-weight: 900;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .activity-card h3 { font-size: 1.38rem; margin-bottom: 10px; }
+    .activity-card p { color: var(--muted); margin: 0 0 18px; flex: 1; }
+
+    .budget-box {
+      display: grid;
+      grid-template-columns: 0.75fr 1.25fr;
+      gap: 22px;
+      align-items: start;
+    }
+    .calculator {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+    .calc-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+    }
+    .calc-row strong { color: var(--ink); }
+    .calc-row.total {
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: var(--ink);
+      border-bottom: 0;
+    }
+    input[type="range"] { width: 100%; accent-color: var(--crimson); }
+    .group-value { font-size: 3rem; font-weight: 900; margin: 10px 0 4px; }
+
+    .timeline {
+      display: grid;
+      gap: 12px;
+    }
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 135px minmax(0, 1fr);
+      gap: 18px;
+      padding: 16px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+    .timeline-date {
+      color: var(--crimson);
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+    }
+    .timeline-item p { margin: 0; color: var(--muted); }
+
+    footer {
+      background: var(--ink);
+      color: white;
+      padding: 34px 20px;
+      margin-top: 40px;
+    }
+    .footer-inner {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      color: rgba(255,255,255,0.76);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 900px) {
+      .nav-inner { align-items: flex-start; flex-direction: column; }
+      .nav-links { justify-content: flex-start; }
+      .hero-grid,
+      .priority-grid,
+      .itinerary-grid,
+      .activity-grid,
+      .source-grid,
+      .accom-grid,
+      .section-head,
+      .map-strip,
+      .budget-box {
+        grid-template-columns: 1fr;
+      }
+      .hero { min-height: 760px; }
+      .photo-panel { min-height: 330px; }
+    }
+    @media (max-width: 620px) {
+      .hero-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .accom-card { grid-template-columns: 1fr; }
+      .source-panel { min-height: 96px; }
+      .timeline-item { grid-template-columns: 1fr; }
+      section, .band > .band-inner { padding: 52px 0; }
+      h1 { font-size: 3.1rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#top">Trinidad Carnival 2027</a>
+      <div class="nav-links">
+        <a href="#plan">Plan</a>
+        <a href="#stay">Stay</a>
+        <a href="#cruise">Cruise</a>
+        <a href="#areas">Areas</a>
+        <a href="#itinerary">Itineraries</a>
+        <a href="#activities">Activities</a>
+        <a href="#budget">Budget</a>
+        <a href="#timeline">Timeline</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="hero-inner">
+      <div class="kicker"><i class="fa-solid fa-drum"></i> Group trip blueprint</div>
+      <h1>Trinidad Carnival for 6 to 15 people</h1>
+      <p class="hero-copy">A practical full-plan website for Carnival week in Port of Spain: lodging strategies, direct accommodation links, Epic Carnival cruise considerations, itinerary options, mas band watchlist, fete links, and booking timing for a group that may shrink or expand.</p>
+      <div class="hero-grid">
+        <div class="hero-stat"><strong>Feb 8-9</strong><span>Carnival Monday and Tuesday</span></div>
+        <div class="hero-stat"><strong>Feb 3-11</strong><span>Land or Epic cruise week</span></div>
+        <div class="hero-stat"><strong>6/10/15</strong><span>Group scenarios</span></div>
+        <div class="hero-stat"><strong>POS</strong><span>Piarco International Airport</span></div>
+      </div>
+    </div>
+    <a class="credit" href="https://commons.wikimedia.org/wiki/File:Trinidad_Carnival.JPG" target="_blank" rel="noreferrer">Carnival image: Wikimedia Commons</a>
+  </header>
+
+  <main>
+    <section id="plan">
+      <div class="section-head">
+        <div>
+          <div class="kicker" style="color: var(--crimson);"><i class="fa-solid fa-location-dot"></i> Trip priorities</div>
+          <h2>Festival logistics first, extras second.</h2>
+        </div>
+        <p class="lead">For Carnival, the winning plan is not the prettiest villa. It is the plan that keeps everyone close to Port of Spain, reduces late-night transport risk, and preserves optionality while the final headcount settles.</p>
+      </div>
+      <div class="priority-grid">
+        <div class="tile">
+          <i class="fa-solid fa-person-walking"></i>
+          <h3>Best base</h3>
+          <p>Woodbrook, St. Clair, Newtown, Cascade, and Savannah-adjacent hotels beat far-flung beach villas during parade and fete days.</p>
+        </div>
+        <div class="tile">
+          <i class="fa-solid fa-people-group"></i>
+          <h3>Group shape</h3>
+          <p>Assume a 10-person core and keep overflow options. A 15-person single house is possible, but a hotel block plus apartment stack is safer.</p>
+        </div>
+        <div class="tile">
+          <i class="fa-solid fa-ticket"></i>
+          <h3>Book order</h3>
+          <p>Hold lodging first, then mas band registration, then fetes. Premium fete tickets and popular costume sections can disappear quickly.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="band">
+      <div class="band-inner" id="stay">
+        <div class="section-head">
+          <div>
+            <div class="kicker" style="color: var(--teal);"><i class="fa-solid fa-bed"></i> Accommodation choices</div>
+            <h2>Many ways to house the group.</h2>
+          </div>
+          <p class="lead">Prices and 2027 availability need live confirmation. I marked source type and best-fit headcount instead of inventing rates. Airbnb cards use direct listing/search links when individual details cannot be reliably extracted.</p>
+        </div>
+
+        <div class="notice" style="margin-bottom: 22px;">
+          Recommended default: hold refundable land-based lodging near Queen's Park Savannah/Woodbrook while also pricing the Epic Carnival cruise. The cruise solves hotel scarcity, but current published material points to Barbados boarding, not Trinidad embarkation.
+        </div>
+
+        <div class="scenario-tabs" aria-label="Accommodation filters">
+          <button class="tab active" data-filter="all">All options</button>
+          <button class="tab" data-filter="hotel">Hotels / room blocks</button>
+          <button class="tab" data-filter="villa">Airbnb / villas</button>
+          <button class="tab" data-filter="package">Packages</button>
+          <button class="tab" data-filter="large">Best for 12-15</button>
+        </div>
+
+        <div class="accom-grid" id="accommodationGrid">
+          <article class="card accom-card" data-kind="hotel large">
+            <div class="source-panel">
+              <div><div class="rank">Top hotel block</div><div class="score">92</div></div>
+              <i class="fa-solid fa-hotel"></i>
+            </div>
+            <div class="accom-body">
+              <h3>The Brix, Autograph Collection</h3>
+              <div class="meta"><span class="pill">Best fit: 6-15</span><span class="pill">Savannah edge</span><span class="pill">Pool + rooftop</span></div>
+              <p class="summary">Strong Carnival base if rooms are available: close to Queen's Park Savannah, polished enough for a mixed group, and used by some 2027 travel packages.</p>
+              <div class="links">
+                <a class="btn" href="https://www.marriott.com/en-us/hotels/posak-the-brix-autograph-collection/overview/" target="_blank" rel="noreferrer">Official site <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                <a class="btn secondary" href="https://purplestartravel.com/trip/trinidad-carnival-2027/" target="_blank" rel="noreferrer">Package using Brix</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card accom-card" data-kind="hotel large">
+            <div class="source-panel">
+              <div><div class="rank">Downtown premium</div><div class="score">86</div></div>
+              <i class="fa-solid fa-building"></i>
+            </div>
+            <div class="accom-body">
+              <h3>Hyatt Regency Trinidad</h3>
+              <div class="meta"><span class="pill">Best fit: 6-15</span><span class="pill">Waterfront</span><span class="pill">Taxi to Savannah</span></div>
+              <p class="summary">Reliable large-hotel choice with event infrastructure and waterfront location. Less walkable to the Savannah than Brix/Kapok, but easier for room blocks.</p>
+              <div class="links">
+                <a class="btn" href="https://www.hyatt.com/hyatt-regency/en-US/trirt-hyatt-regency-trinidad" target="_blank" rel="noreferrer">Official site <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                <a class="btn secondary" href="https://www.hyatt.com/hyatt-regency/en-US/trirt-hyatt-regency-trinidad/events-and-attractions" target="_blank" rel="noreferrer">Carnival area page</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card accom-card" data-kind="hotel">
+            <div class="source-panel">
+              <div><div class="rank">Walkable classic</div><div class="score">84</div></div>
+              <i class="fa-solid fa-person-walking-luggage"></i>
+            </div>
+            <div class="accom-body">
+              <h3>Kapok Hotel</h3>
+              <div class="meta"><span class="pill">Best fit: 4-10</span><span class="pill">St. Clair</span><span class="pill">Pool + parking</span></div>
+              <p class="summary">Practical Savannah-adjacent hotel with complimentary Wi-Fi, pool, sun deck, parking, room service, and taxi support per the hotel site.</p>
+              <div class="links">
+                <a class="btn" href="https://kapokhotel.com/" target="_blank" rel="noreferrer">Official site <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                <a class="btn secondary" href="https://www.tripadvisor.com/HotelsNear-g147389-d150209-Queen_s_Park_Savannah-Port_of_Spain_Trinidad_Trinidad_and_Tobago.html" target="_blank" rel="noreferrer">Nearby hotel list</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card accom-card" data-kind="villa large">
+            <div class="source-panel">
+              <div><div class="rank">Large-house hunt</div><div class="score">83</div></div>
+              <i class="fa-solid fa-house-chimney-window"></i>
+            </div>
+            <div class="accom-body">
+              <h3>Trini Carnival Rentals</h3>
+              <div class="meta"><span class="pill">Best fit: 8-15</span><span class="pill">Carnival specialist</span><span class="pill">Agency support</span></div>
+              <p class="summary">Carnival-specific rental agency that focuses on properties for the Carnival period, including property selection and support. Best lead for one-house or two-house solutions.</p>
+              <div class="links">
+                <a class="btn" href="https://www.trinicarnivalrentals.com/" target="_blank" rel="noreferrer">Agency site <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                <a class="btn secondary" href="https://www.trinicarnivalrentals.com/" target="_blank" rel="noreferrer">Contact via site</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card accom-card" data-kind="villa large">
+            <div class="source-panel">
+              <div><div class="rank">Airbnb large villas</div><div class="score">80</div></div>
+              <i class="fa-brands fa-airbnb"></i>
+            </div>
+            <div class="accom-body">
+              <h3>Port of Spain Airbnb Villa Search</h3>
+              <div class="meta"><span class="pill">Best fit: 8-15</span><span class="pill">Variable</span><span class="pill">Verify location</span></div>
+              <p class="summary">Search result surface for villas, including large-home inventory. Use only if the exact pin, bedroom count, house rules, and Carnival pricing are clear.</p>
+              <div class="links">
+                <a class="btn" href="https://www.airbnb.com/port-of-spain-trinidad-and-tobago/stays/villas" target="_blank" rel="noreferrer">Villa search <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                <a class="btn secondary" href="https://www.airbnb.com/s/Port-of-Spain--Trinidad-and-Tobago/homes?checkin=2027-02-03&checkout=2027-02-11&adults=15" target="_blank" rel="noreferrer">Feb 3-11, 15 adults</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card accom-card" data-kind="villa">
+            <div class="source-panel">
+              <div><div class="rank">Savannah listing</div><div class="score">78</div></div>
+              <i class="fa-brands fa-airbnb"></i>
+            </div>
+            <div class="accom-body">
+              <h3>The Carnival Residence at Queen's Park Savannah</h3>
+              <div class="meta"><span class="pill">Best fit: 2-6/unit</span><span class="pill">Airbnb + Booking</span><span class="pill">Prime area</span></div>
+              <p class="summary">Direct Airbnb/Booking result near the Savannah. Consider stacking units or rooms if the operator has multiple accommodations available.</p>
+              <div class="links">
+                <a class="btn" href="https://www.airbnb.com/rooms/1533458960246564590" target="_blank" rel="noreferrer">Airbnb room <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                <a class="btn secondary" href="https://www.airbnb.com/rooms/1606505850543409113" target="_blank" rel="noreferrer">Airbnb house</a>
+                <a class="btn secondary" href="https://www.booking.com/hotel/tt/the-carnival-residence-at-queens-park-savannah.html" target="_blank" rel="noreferrer">Booking.com</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card accom-card" data-kind="hotel large">
+            <div class="source-panel">
+              <div><div class="rank">Fallback block</div><div class="score">76</div></div>
+              <i class="fa-solid fa-city"></i>
+            </div>
+            <div class="accom-body">
+              <h3>Hilton Trinidad & Conference Centre</h3>
+              <div class="meta"><span class="pill">Best fit: 8-15</span><span class="pill">Room block</span><span class="pill">Requires transport</span></div>
+              <p class="summary">Large-hotel fallback with group capacity. It is not the most walkable choice, but it can absorb a bigger group better than small boutique properties.</p>
+              <div class="links">
+                <a class="btn" href="https://www.hilton.com/en/hotels/postthh-hilton-trinidad-and-conference-centre/" target="_blank" rel="noreferrer">Official site <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                <a class="btn secondary" href="https://www.expedia.com/Queens-Park-Savanah-Hotels.0-l6119456-0.Travel-Guide-Filter-Hotels" target="_blank" rel="noreferrer">Compare nearby</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card accom-card" data-kind="villa large">
+            <div class="source-panel">
+              <div><div class="rank">VRBO inventory</div><div class="score">74</div></div>
+              <i class="fa-solid fa-key"></i>
+            </div>
+            <div class="accom-body">
+              <h3>VRBO Port of Spain Homes</h3>
+              <div class="meta"><span class="pill">Best fit: 6-12</span><span class="pill">Whole homes</span><span class="pill">Check cancellation</span></div>
+              <p class="summary">Good secondary search for whole-home rentals if Airbnb inventory is thin. Prioritize Woodbrook, St. Clair, Cascade, and Maraval over airport suburbs.</p>
+              <div class="links">
+                <a class="btn" href="https://www.vrbo.com/vacation-rentals/caribbean/trinidad/port-of-spain" target="_blank" rel="noreferrer">VRBO search <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                <a class="btn secondary" href="https://www.cozycozy.com/us/port-of-spain-vacation-rentals" target="_blank" rel="noreferrer">Cozycozy scan</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card accom-card" data-kind="package large">
+            <div class="source-panel">
+              <div><div class="rank">Luxury package</div><div class="score">81</div></div>
+              <i class="fa-solid fa-champagne-glasses"></i>
+            </div>
+            <div class="accom-body">
+              <h3>Limin Professionals</h3>
+              <div class="meta"><span class="pill">Best fit: 2-15</span><span class="pill">Concierge</span><span class="pill">VIP style</span></div>
+              <p class="summary">All-inclusive Carnival package operator advertising 2027 accommodations, transfers, fete access, and concierge support. Useful if the group wants less DIY.</p>
+              <div class="links">
+                <a class="btn" href="https://www.liminpros.co/trinidad-carnival-2027-packages" target="_blank" rel="noreferrer">2027 packages <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                <a class="btn secondary" href="https://www.liminpros.co/post/trinidad-carnival-2027-booking-countdown" target="_blank" rel="noreferrer">Booking notes</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card accom-card" data-kind="package">
+            <div class="source-panel">
+              <div><div class="rank">Planner marketplace</div><div class="score">79</div></div>
+              <i class="fa-solid fa-clipboard-list"></i>
+            </div>
+            <div class="accom-body">
+              <h3>We Plan You Jam</h3>
+              <div class="meta"><span class="pill">Best fit: 2-10</span><span class="pill">Local planning</span><span class="pill">Bands + fetes</span></div>
+              <p class="summary">Boutique Trinidad Carnival planning provider with 2027 package/pricing surface and local planning angle. Worth checking for band/fete coordination.</p>
+              <div class="links">
+                <a class="btn" href="https://www.weplanyoujam.com/" target="_blank" rel="noreferrer">Planner site <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                <a class="btn secondary" href="https://www.weplanyoujam.com/carnival-packages" target="_blank" rel="noreferrer">Packages</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card accom-card" data-kind="package large">
+            <div class="source-panel">
+              <div><div class="rank">Budget package</div><div class="score">72</div></div>
+              <i class="fa-solid fa-suitcase-rolling"></i>
+            </div>
+            <div class="accom-body">
+              <h3>Jump & Wine Travel / Eventbrite Packages</h3>
+              <div class="meta"><span class="pill">Best fit: 2-15</span><span class="pill">Budget angle</span><span class="pill">Read fine print</span></div>
+              <p class="summary">Eventbrite-listed 2027 packages include accommodations and Carnival components. Useful comparator, but check operator terms carefully before deposits.</p>
+              <div class="links">
+                <a class="btn" href="https://www.eventbrite.com/e/trinidad-carnival-2027-tickets-1981489890603" target="_blank" rel="noreferrer">Eventbrite listing <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                <a class="btn secondary" href="https://www.eventbrite.com/e/trinidad-carnival-2027-package-w-tribe-biggest-baddest-band-on-the-road-tickets-1982136620991" target="_blank" rel="noreferrer">TRIBE package</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card accom-card" data-kind="villa">
+            <div class="source-panel">
+              <div><div class="rank">Avenue stack</div><div class="score">70</div></div>
+              <i class="fa-solid fa-layer-group"></i>
+            </div>
+            <div class="accom-body">
+              <h3>Woodbrook Apartment Stack</h3>
+              <div class="meta"><span class="pill">Best fit: 6-12</span><span class="pill">Nightlife base</span><span class="pill">Multiple units</span></div>
+              <p class="summary">Instead of one huge villa, rent two or three apartments around Ariapita Avenue/Woodbrook. Best for flexible headcount and late-night food/fete access.</p>
+              <div class="links">
+                <a class="btn" href="https://www.airbnb.com/s/Woodbrook--Port-of-Spain--Trinidad-and-Tobago/homes?checkin=2027-02-03&checkout=2027-02-11&adults=10" target="_blank" rel="noreferrer">Woodbrook Airbnb <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                <a class="btn secondary" href="https://www.booking.com/searchresults.html?ss=Woodbrook%2C+Port+of+Spain%2C+Trinidad+and+Tobago&checkin=2027-02-03&checkout=2027-02-11&group_adults=10" target="_blank" rel="noreferrer">Booking search</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <section id="cruise">
+      <div class="section-head">
+        <div>
+          <div class="kicker" style="color: var(--blue);"><i class="fa-solid fa-ship"></i> Cruise option</div>
+          <h2>Epic Carnival Experience changes the lodging math.</h2>
+        </div>
+        <p class="lead">This is the "board in Barbados or meet in Trinidad" question. Based on current published sources, Epic is a floating hotel for Trinidad Carnival, but the itinerary is sold as a Barbados-boarding cruise.</p>
+      </div>
+
+      <div class="notice" style="margin-bottom: 22px;">
+        Bottom line: plan as if the group must board in Barbados unless Epic confirms partial embarkation in Trinidad in writing. The ship docks in Trinidad and passengers can disembark for Carnival, but I did not find a source saying new guests can first join the cruise in Trinidad.
+      </div>
+
+      <div class="priority-grid">
+        <div class="tile">
+          <i class="fa-solid fa-anchor"></i>
+          <h3>Published boarding</h3>
+          <p>Epic's official site says "BOARDING BARBADOS" and lists February 3-11, 2027. A partner page lists departure from Barbados and disembarkation back in Barbados.</p>
+        </div>
+        <div class="tile">
+          <i class="fa-solid fa-route"></i>
+          <h3>Trinidad access</h3>
+          <p>Epic says that when docked in Trinidad, passengers can leave the ship at any time for Carnival activities. That supports using the ship as lodging while in Port of Spain.</p>
+        </div>
+        <div class="tile">
+          <i class="fa-solid fa-circle-question"></i>
+          <h3>Open question</h3>
+          <p>Can someone skip Barbados and embark in Trinidad? Not proven. This needs a direct operator answer because cruise embarkation is controlled by manifest and port rules.</p>
+        </div>
+      </div>
+
+      <div class="accom-grid" style="margin-top: 18px;">
+        <article class="card accom-card">
+          <div class="source-panel">
+            <div><div class="rank">Floating resort</div><div class="score">85</div></div>
+            <i class="fa-solid fa-ship"></i>
+          </div>
+          <div class="accom-body">
+            <h3>Epic Carnival Experience Cruise</h3>
+            <div class="meta"><span class="pill">Best fit: 6-15</span><span class="pill">Board Barbados</span><span class="pill">Feb 3-11, 2027</span></div>
+            <p class="summary">Includes the cruise cabin as lodging plus unlimited food/drinks, deck parties, room service, island tours, and access/add-ons for Carnival events. Best for the group if flight pricing to Barbados is meaningfully better than flying directly to POS and if everyone is comfortable with a ship as home base.</p>
+            <div class="links">
+              <a class="btn" href="https://myepiccarnival.com/" target="_blank" rel="noreferrer">Official site <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              <a class="btn secondary" href="https://www.caribbeanaffairs.info/epic-carnival-cruise/" target="_blank" rel="noreferrer">Itinerary details</a>
+              <a class="btn secondary" href="https://www.timeout.com/caribbean/things-to-do/i-took-a-seven-day-cruise-to-trinidad-carnival-and-it-was-the-best-way-to-experience-the-celebration" target="_blank" rel="noreferrer">Time Out review</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card accom-card">
+          <div class="source-panel">
+            <div><div class="rank">Decision lens</div><div class="score">?</div></div>
+            <i class="fa-solid fa-scale-balanced"></i>
+          </div>
+          <div class="accom-body">
+            <h3>Cruise vs land stay</h3>
+            <div class="meta"><span class="pill">Cruise: simplest logistics</span><span class="pill">Land: most flexible</span></div>
+            <p class="summary">Cruise wins if the group values bundled food/drinks/events and avoids hotel scarcity. Land wins if some people want shorter dates, independent hotels, easier room changes, or direct Trinidad arrival/departure.</p>
+            <div class="links">
+              <a class="btn" href="https://www.blackenterprise.com/epic-cruise-trinidad-carnival-tourism/" target="_blank" rel="noreferrer">Why it exists <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              <a class="btn secondary" href="https://www.cruisemapper.com/ports/bridgetown-port-28" target="_blank" rel="noreferrer">Bridgetown port</a>
+              <a class="btn secondary" href="https://www.cruisemapper.com/ports/port-of-spain-port-710" target="_blank" rel="noreferrer">Port of Spain port</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="areas">
+      <div class="section-head">
+        <div>
+          <div class="kicker" style="color: var(--blue);"><i class="fa-solid fa-map"></i> Where to stay</div>
+          <h2>Port of Spain area strategy.</h2>
+        </div>
+        <p class="lead">Queen's Park Savannah is the anchor: Visit Trinidad describes it as Port of Spain's largest open green space and home to Carnival parade events, Kings and Queens, and Dimanche Gras.</p>
+      </div>
+      <div class="map-strip">
+        <div class="photo-panel">
+          <div>
+            <h3>Keep the group near the Savannah.</h3>
+            <p>More walking, fewer late-night taxi dependencies, easier regrouping.</p>
+          </div>
+        </div>
+        <div class="area-list">
+          <div class="area-item"><h3>St. Clair / Savannah edge</h3><p>Best blend of access and calm. Prioritize Brix, Kapok, and nearby apartments.</p></div>
+          <div class="area-item"><h3>Woodbrook / Ariapita Avenue</h3><p>Best nightlife and food base. Great for apartment stacking, but vet noise and parking.</p></div>
+          <div class="area-item"><h3>Newtown / Cascade</h3><p>Good middle zone for hotels, guesthouses, and hillside rentals with short rides.</p></div>
+          <div class="area-item"><h3>Maraval</h3><p>Better for larger villas and pools, but transportation planning becomes mandatory.</p></div>
+          <div class="area-item"><h3>Downtown waterfront</h3><p>Hyatt-style room-block option. Useful for groups, less ideal for walking to Savannah events.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="band">
+      <div class="band-inner" id="itinerary">
+        <div class="section-head">
+          <div>
+            <div class="kicker" style="color: var(--green);"><i class="fa-solid fa-calendar-days"></i> Itineraries</div>
+            <h2>Three trip lengths that work.</h2>
+          </div>
+          <p class="lead">The full week is the cleanest first-timer plan. The express plan works for people with limited PTO. The recovery plan adds Tobago or beach downtime after the road.</p>
+        </div>
+        <div class="itinerary-tabs">
+          <button class="tab active" data-itinerary="full">Full Carnival Week</button>
+          <button class="tab" data-itinerary="express">Express 5 Nights</button>
+          <button class="tab" data-itinerary="recovery">Recovery Extension</button>
+        </div>
+
+        <div class="itinerary-grid itinerary-set" data-plan="full">
+          <div class="card day"><h3>Arrive + settle <span>Wed Feb 3</span></h3><ul><li>Airport transfers to Port of Spain.</li><li>Grocery/water run, SIM/eSIM setup, wristband pickup if available.</li><li>Low-stakes dinner around Woodbrook or hotel.</li></ul></div>
+          <div class="card day"><h3>First fete night <span>Thu Feb 4</span></h3><ul><li>Costume fitting or mas band collection window.</li><li>Choose a mid-energy welcome fete or private group dinner.</li><li>Keep this night flexible for delayed arrivals.</li></ul></div>
+          <div class="card day"><h3>Build momentum <span>Fri Feb 5</span></h3><ul><li>Savannah orientation and Magnificent Seven walk.</li><li>Premium all-inclusive fete if the group wants one splurge.</li><li>Hydration and costume logistics before the weekend.</li></ul></div>
+          <div class="card day"><h3>Big weekend <span>Sat Feb 6</span></h3><ul><li>A.M.BUSH / beach / breakfast party type slot.</li><li>Evening fete or Pan/Savannah cultural event.</li><li>Driver on standby for split group returns.</li></ul></div>
+          <div class="card day"><h3>Sunday reset <span>Sun Feb 7</span></h3><ul><li>Maracas Beach half-day or sleep-in.</li><li>Final costume check, road bag prep.</li><li>Early dinner, early night if playing mas.</li></ul></div>
+          <div class="card day"><h3>J'ouvert + road <span>Mon Feb 8</span></h3><ul><li>Pre-dawn J'ouvert if the group is committed.</li><li>Carnival Monday on the road.</li><li>Choose one regroup point and one late-night food plan.</li></ul></div>
+          <div class="card day"><h3>Carnival Tuesday <span>Tue Feb 9</span></h3><ul><li>Full costume day and stage crossing.</li><li>Photo meetups before the group disperses.</li><li>No hard morning plans for Wednesday.</li></ul></div>
+          <div class="card day"><h3>Recovery <span>Wed Feb 10</span></h3><ul><li>Sleep, pool, massage, easy food.</li><li>Pack and settle shared expenses.</li><li>Optional farewell dinner.</li></ul></div>
+          <div class="card day"><h3>Depart <span>Thu Feb 11</span></h3><ul><li>Staggered airport transfers.</li><li>Late checkout plan or luggage hold.</li><li>Capture notes for next Carnival.</li></ul></div>
+        </div>
+
+        <div class="itinerary-grid itinerary-set" data-plan="express" hidden>
+          <div class="card day"><h3>Arrive <span>Fri Feb 5</span></h3><ul><li>Land, transfer, collect costumes.</li><li>Light dinner or one welcome fete.</li></ul></div>
+          <div class="card day"><h3>Premium fete <span>Sat Feb 6</span></h3><ul><li>One marquee all-inclusive.</li><li>Skip daytime over-scheduling.</li></ul></div>
+          <div class="card day"><h3>Prep day <span>Sun Feb 7</span></h3><ul><li>Short beach or Savannah event.</li><li>Early road prep.</li></ul></div>
+          <div class="card day"><h3>Carnival Monday <span>Mon Feb 8</span></h3><ul><li>J'ouvert optional.</li><li>Monday wear or casual road day.</li></ul></div>
+          <div class="card day"><h3>Carnival Tuesday <span>Tue Feb 9</span></h3><ul><li>Full costume day.</li><li>Late farewell food.</li></ul></div>
+          <div class="card day"><h3>Depart <span>Wed Feb 10</span></h3><ul><li>Late flights only if possible.</li><li>Book airport transfer in advance.</li></ul></div>
+        </div>
+
+        <div class="itinerary-grid itinerary-set" data-plan="recovery" hidden>
+          <div class="card day"><h3>Do full week <span>Feb 3-10</span></h3><ul><li>Follow the full Carnival plan through Ash Wednesday.</li><li>Keep luggage organized for a second hotel move.</li></ul></div>
+          <div class="card day"><h3>Tobago hop <span>Thu Feb 11</span></h3><ul><li>Fly or ferry to Tobago.</li><li>Check into beach lodging in Crown Point / Buccoo / Black Rock.</li></ul></div>
+          <div class="card day"><h3>Beach reset <span>Fri Feb 12</span></h3><ul><li>Pigeon Point, Nylon Pool, or no-plan beach day.</li><li>Low-effort seafood dinner.</li></ul></div>
+          <div class="card day"><h3>Optional adventure <span>Sat Feb 13</span></h3><ul><li>Snorkel, rainforest, or boat day.</li><li>Good day for smaller sub-groups.</li></ul></div>
+          <div class="card day"><h3>Return home <span>Sun Feb 14</span></h3><ul><li>Position back to POS if flights require it.</li><li>Pad connection time.</li></ul></div>
+        </div>
+      </div>
+    </div>
+
+    <section id="activities">
+      <div class="section-head">
+        <div>
+          <div class="kicker" style="color: var(--gold);"><i class="fa-solid fa-masks-theater"></i> Carnival links</div>
+          <h2>Activities, bands, fetes, and operators.</h2>
+        </div>
+        <p class="lead">Many 2027 pages are still watchlist items. These links are the sources to monitor for band launches, official culture events, fete calendars, and package inventory.</p>
+      </div>
+      <div class="activity-grid">
+        <article class="card activity-card"><span class="tag">Official</span><h3>National Carnival Commission</h3><p>Use this for official Carnival programming, national competitions, Dimanche Gras, and parade-related announcements.</p><a class="btn" href="https://www.ncctt.org/" target="_blank" rel="noreferrer">Open NCC <i class="fa-solid fa-arrow-up-right-from-square"></i></a></article>
+        <article class="card activity-card"><span class="tag">Official</span><h3>TTCarnival365</h3><p>Official Carnival ecosystem site with galleries and Carnival resources. Good source for culture-forward events beyond fetes.</p><a class="btn" href="https://ttcarnival365.com/" target="_blank" rel="noreferrer">Open TTCarnival365 <i class="fa-solid fa-arrow-up-right-from-square"></i></a></article>
+        <article class="card activity-card"><span class="tag">Mas</span><h3>TRIBE / Bliss / The Lost Tribe</h3><p>Major mas ecosystem to watch for launches and registration. Good for first-timers who want established road support.</p><div class="links"><a class="btn" href="https://www.carnivaltribe.com/" target="_blank" rel="noreferrer">TRIBE</a><a class="btn secondary" href="https://www.blisscarnival.com/" target="_blank" rel="noreferrer">Bliss</a><a class="btn secondary" href="https://thelosttribe.com/" target="_blank" rel="noreferrer">Lost Tribe</a></div></article>
+        <article class="card activity-card"><span class="tag">Mas</span><h3>YUMA / Fantasy / Ronnie & Caro</h3><p>Alternative band watchlist for costume style, route vibe, music trucks, and price comparison once 2027 sections launch.</p><div class="links"><a class="btn" href="https://www.yumavibe.com/" target="_blank" rel="noreferrer">YUMA</a><a class="btn secondary" href="https://fantasycarnival.com/" target="_blank" rel="noreferrer">Fantasy</a><a class="btn secondary" href="https://ronnieandcaro.com/" target="_blank" rel="noreferrer">Ronnie & Caro</a></div></article>
+        <article class="card activity-card"><span class="tag">Fetes</span><h3>Caesar's Army</h3><p>Watch for A.M.BUSH, A.M.BEACH, Bacchanalia-style events, and official 2027 release timing.</p><a class="btn" href="https://www.caesarsarmy.com/festivals-events/" target="_blank" rel="noreferrer">Event page <i class="fa-solid fa-arrow-up-right-from-square"></i></a></article>
+        <article class="card activity-card"><span class="tag">Fetes</span><h3>Soca Brainwash</h3><p>One of the marquee all-inclusive fete slots to monitor. Usually a high-demand ticket if it returns on the 2027 calendar.</p><a class="btn" href="https://socabrainwash.com/" target="_blank" rel="noreferrer">Official site <i class="fa-solid fa-arrow-up-right-from-square"></i></a></article>
+        <article class="card activity-card"><span class="tag">Package</span><h3>Soca Islands 2027</h3><p>Published 2027 itinerary page from Feb 3-10 that is useful for seeing how commercial Carnival week itineraries are sequenced.</p><a class="btn" href="https://socaislands.com/trinidad-carnival-2027/" target="_blank" rel="noreferrer">View itinerary <i class="fa-solid fa-arrow-up-right-from-square"></i></a></article>
+        <article class="card activity-card"><span class="tag">Day trip</span><h3>Maracas Beach</h3><p>Best placed on Sunday reset or Ash Wednesday recovery. Do not put this before a major all-night fete unless the group is low-energy.</p><a class="btn" href="https://visittrinidad.tt/things-to-do/beaches/maracas-beach/" target="_blank" rel="noreferrer">Visit Trinidad <i class="fa-solid fa-arrow-up-right-from-square"></i></a></article>
+        <article class="card activity-card"><span class="tag">Culture</span><h3>Queen's Park Savannah</h3><p>Anchor venue for parade, Kings and Queens, Dimanche Gras, and the Carnival stage ecosystem.</p><a class="btn" href="https://visittrinidad.tt/things-to-do/sites-attractions/queens-park-savannah/" target="_blank" rel="noreferrer">Savannah guide <i class="fa-solid fa-arrow-up-right-from-square"></i></a></article>
+      </div>
+    </section>
+
+    <div class="band">
+      <div class="band-inner" id="budget">
+        <div class="section-head">
+          <div>
+            <div class="kicker" style="color: var(--crimson);"><i class="fa-solid fa-calculator"></i> Budget model</div>
+            <h2>Estimate per-person exposure.</h2>
+          </div>
+          <p class="lead">This is a planning model, not a quote. It helps decide whether the group should pursue DIY lodging, a hotel block, or a concierge package.</p>
+        </div>
+        <div class="budget-box">
+          <div class="calculator">
+            <label for="groupSize"><strong>Group size</strong></label>
+            <input id="groupSize" type="range" min="6" max="15" value="10">
+            <div class="group-value"><span id="groupValue">10</span> people</div>
+            <p class="lead">Assumes 8 nights, shared lodging, two premium fetes, one lower-cost event, costume/mas deposit range, local transfers, food, and buffer. Flights excluded.</p>
+          </div>
+          <div class="calculator" aria-live="polite">
+            <div class="calc-row"><span>Lodging target</span><strong id="lodgingCost">$1,200-$2,200 pp</strong></div>
+            <div class="calc-row"><span>Mas costume / J'ouvert</span><strong>$900-$1,800 pp</strong></div>
+            <div class="calc-row"><span>Fetes and events</span><strong>$650-$1,400 pp</strong></div>
+            <div class="calc-row"><span>Food, drinks, local transport</span><strong>$500-$950 pp</strong></div>
+            <div class="calc-row"><span>Trip buffer</span><strong>$300-$600 pp</strong></div>
+            <div class="calc-row total"><span>Planning range</span><strong id="totalCost">$3,550-$6,950 pp</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section>
+      <div class="section-head">
+        <div>
+          <div class="kicker" style="color: var(--teal);"><i class="fa-solid fa-table"></i> Decision matrix</div>
+          <h2>How I would choose.</h2>
+        </div>
+        <p class="lead">The simplest decision is to pick the lodging strategy by final headcount and appetite for coordination.</p>
+      </div>
+      <div class="comparison-wrap">
+        <table>
+          <thead><tr><th>Scenario</th><th>Best lodging move</th><th>Why</th><th>Main risk</th><th>Backup</th></tr></thead>
+          <tbody>
+            <tr><td><strong>6 people</strong></td><td>Brix/Kapok rooms or 2 apartments</td><td>Easy booking, easy splitting, flexible arrivals.</td><td>Room rates may spike.</td><td>Woodbrook apartment stack.</td></tr>
+            <tr><td><strong>8-10 people</strong></td><td>2-3 apartments near Woodbrook/St. Clair</td><td>Better common space than hotels, still manageable.</td><td>Different cancellation terms and host quality.</td><td>Hotel block plus one apartment.</td></tr>
+            <tr><td><strong>12-15 people</strong></td><td>Specialist rental agency or hotel block</td><td>One owner/agency reduces coordination.</td><td>Large houses may be farther out.</td><td>Hyatt/Hilton/Brix block plus overflow rooms.</td></tr>
+            <tr><td><strong>Low-planning group</strong></td><td>Concierge package</td><td>Transfers, events, and accommodations bundled.</td><td>Less flexibility and higher margin.</td><td>Limin Pros / We Plan You Jam / Purple Star comparison.</td></tr>
+            <tr><td><strong>Cruise-curious group</strong></td><td>Epic Carnival Experience from Barbados</td><td>Solves Port of Spain lodging scarcity and bundles food/drinks/ship programming.</td><td>Published material indicates Barbados boarding; Trinidad embarkation is unconfirmed.</td><td>Hold land lodging until Epic confirms cabin, route, and cancellation terms.</td></tr>
+            <tr><td><strong>Budget-sensitive group</strong></td><td>Apartment stack, fewer fetes, DIY transport</td><td>Spend where it matters: mas and location.</td><td>More admin burden on organizer.</td><td>Shorten to express itinerary.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="band">
+      <div class="band-inner" id="timeline">
+        <div class="section-head">
+          <div>
+            <div class="kicker" style="color: var(--blue);"><i class="fa-solid fa-clock"></i> Booking timeline</div>
+            <h2>What to do next.</h2>
+          </div>
+          <p class="lead">The group does not need every traveler committed before starting. The key is holding cancellable lodging capacity before 2027 demand tightens.</p>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item"><div class="timeline-date">Now - 2 weeks</div><p><strong>Choose lodging strategy.</strong> Ask Brix, Kapok, Hyatt, Hilton, Trini Carnival Rentals, Epic Carnival Experience, and 2-3 Airbnb hosts for Feb 3-11 quotes and cancellation terms for 10 and 15 people.</p></div>
+          <div class="timeline-item"><div class="timeline-date">Before deposits</div><p><strong>Ask Epic directly.</strong> Confirm whether Barbados boarding is mandatory, whether Trinidad embarkation is possible, exact ship/cabin categories, included event access, cancellation terms, and whether mas/fete add-ons are included or separate.</p></div>
+          <div class="timeline-item"><div class="timeline-date">June - Aug 2026</div><p><strong>Watch band launches.</strong> Decide top 2 mas bands before launch day. Popular sections can sell out fast after launch.</p></div>
+          <div class="timeline-item"><div class="timeline-date">Aug - Oct 2026</div><p><strong>Lock road plan.</strong> Pay costume deposits, gather sizing, and set payment deadlines. Split the group only if costume preferences diverge strongly.</p></div>
+          <div class="timeline-item"><div class="timeline-date">Oct - Dec 2026</div><p><strong>Buy fetes in waves.</strong> Pick one marquee all-inclusive, one breakfast/paint/beach event, and keep the rest flexible.</p></div>
+          <div class="timeline-item"><div class="timeline-date">Jan 2027</div><p><strong>Operational plan.</strong> Confirm airport transfers, local driver, WhatsApp group, emergency contacts, costume pickup, and nightly regroup points.</p></div>
+          <div class="timeline-item"><div class="timeline-date">Carnival week</div><p><strong>Protect the group.</strong> Hydration, cash/card redundancy, shared location, and no one travels home alone after late events.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <section>
+      <div class="section-head">
+        <div>
+          <div class="kicker" style="color: var(--green);"><i class="fa-solid fa-link"></i> Research sources</div>
+          <h2>Sources used.</h2>
+        </div>
+        <p class="lead">These are the key pages behind the plan. I used actual source links and avoided quoting unverified 2027 prices where live booking systems or rates were unavailable.</p>
+      </div>
+      <div class="source-grid">
+        <div class="tile"><h3>Dates</h3><p><a href="https://plantnt.com/upcoming-trinidad-carnival-dates/" target="_blank" rel="noreferrer">PLAN TNT</a>, <a href="https://carnivalvibez.com/trinidad-and-tobago-carnival/" target="_blank" rel="noreferrer">Carnival Vibez</a>, <a href="https://socaislands.com/trinidad-carnival-2027/" target="_blank" rel="noreferrer">Soca Islands</a>, and <a href="https://www.liminpros.co/trinidad-carnival-2027-packages" target="_blank" rel="noreferrer">Limin Professionals</a> all point to Feb 8-9, 2027.</p></div>
+        <div class="tile"><h3>Anchor location</h3><p><a href="https://visittrinidad.tt/things-to-do/sites-attractions/queens-park-savannah/" target="_blank" rel="noreferrer">Visit Trinidad</a> describes Queen's Park Savannah as the Carnival parade and cultural event anchor.</p></div>
+        <div class="tile"><h3>Accommodation data</h3><p>Hotel and rental details are linked to official hotel pages, Airbnb/Booking/VRBO search surfaces, Carnival-specialist operators, and the Epic Carnival official cruise site.</p></div>
+        <div class="tile"><h3>Cruise data</h3><p><a href="https://myepiccarnival.com/" target="_blank" rel="noreferrer">Epic Carnival</a> says Barbados boarding for Feb 3-11, 2027; <a href="https://www.caribbeanaffairs.info/epic-carnival-cruise/" target="_blank" rel="noreferrer">Caribbean Affairs</a> mirrors Barbados departure/disembarkation and the Trinidad docked itinerary.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>Trinidad Carnival 2027 group trip plan</div>
+      <div>Last researched: May 30, 2026. Confirm all pricing, availability, and cancellation terms before deposits.</div>
+    </div>
+  </footer>
+
+  <script>
+    const filterButtons = document.querySelectorAll('[data-filter]');
+    const accommodationCards = document.querySelectorAll('.accom-card');
+    filterButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        filterButtons.forEach((item) => item.classList.remove('active'));
+        button.classList.add('active');
+        const filter = button.dataset.filter;
+        accommodationCards.forEach((card) => {
+          card.hidden = filter !== 'all' && !card.dataset.kind.includes(filter);
+        });
+      });
+    });
+
+    const itineraryButtons = document.querySelectorAll('[data-itinerary]');
+    const itineraries = document.querySelectorAll('.itinerary-set');
+    itineraryButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        itineraryButtons.forEach((item) => item.classList.remove('active'));
+        button.classList.add('active');
+        itineraries.forEach((plan) => {
+          plan.hidden = plan.dataset.plan !== button.dataset.itinerary;
+        });
+      });
+    });
+
+    const groupSize = document.getElementById('groupSize');
+    const groupValue = document.getElementById('groupValue');
+    const lodgingCost = document.getElementById('lodgingCost');
+    const totalCost = document.getElementById('totalCost');
+    function updateBudget() {
+      const people = Number(groupSize.value);
+      groupValue.textContent = people;
+      let lodgingLow = 1400;
+      let lodgingHigh = 2500;
+      if (people >= 12) { lodgingLow = 1100; lodgingHigh = 2200; }
+      if (people <= 7) { lodgingLow = 1500; lodgingHigh = 2800; }
+      const low = lodgingLow + 900 + 650 + 500 + 300;
+      const high = lodgingHigh + 1800 + 1400 + 950 + 600;
+      lodgingCost.textContent = '$' + lodgingLow.toLocaleString() + '-$' + lodgingHigh.toLocaleString() + ' pp';
+      totalCost.textContent = '$' + low.toLocaleString() + '-$' + high.toLocaleString() + ' pp';
+    }
+    groupSize.addEventListener('input', updateBudget);
+    updateBudget();
+  </script>
+</body>
+</html>
