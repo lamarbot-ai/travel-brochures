@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kenya Summer Tides 2026 | Booking Plan</title>
+  <style>
+    :root {
+      --ink: #17201c;
+      --muted: #58635d;
+      --line: #dfe6df;
+      --paper: #fbfaf5;
+      --band: #f1f5ed;
+      --leaf: #2f6b4f;
+      --sea: #246b7a;
+      --sand: #d8b56d;
+      --clay: #a24f2d;
+      --white: #fff;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.5;
+    }
+    a { color: var(--sea); }
+    .hero {
+      min-height: 82vh;
+      display: grid;
+      align-items: end;
+      background:
+        linear-gradient(180deg, rgba(10, 20, 18, .2), rgba(10, 20, 18, .78)),
+        url("https://images.unsplash.com/photo-1484318571209-661cf29a69c3?auto=format&fit=crop&w=1800&q=80") center/cover;
+      color: var(--white);
+      padding: 28px;
+    }
+    .hero-inner {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+      padding: 14vh 0 34px;
+    }
+    .kicker {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      padding: 7px 11px;
+      border: 1px solid rgba(255,255,255,.42);
+      background: rgba(255,255,255,.12);
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 18px 0 14px;
+      max-width: 850px;
+      font-size: clamp(46px, 8vw, 92px);
+      line-height: .92;
+      letter-spacing: 0;
+    }
+    .hero p {
+      max-width: 720px;
+      margin: 0 0 28px;
+      font-size: clamp(18px, 2.3vw, 25px);
+      color: rgba(255,255,255,.9);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(120px, 1fr));
+      gap: 12px;
+      max-width: 900px;
+    }
+    .hero-stat {
+      min-height: 104px;
+      padding: 16px;
+      border: 1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.12);
+      backdrop-filter: blur(8px);
+    }
+    .hero-stat b {
+      display: block;
+      font-size: 22px;
+      color: #fff8df;
+    }
+    .hero-stat span { display: block; margin-top: 6px; color: rgba(255,255,255,.78); font-size: 13px; }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(251,250,245,.94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+    .nav-inner {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 62px;
+      gap: 18px;
+    }
+    .brand { font-weight: 800; color: var(--leaf); }
+    .links { display: flex; flex-wrap: wrap; gap: 14px; font-size: 14px; font-weight: 700; }
+    .links a { color: var(--ink); text-decoration: none; }
+    main { overflow: hidden; }
+    section {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 72px 0;
+    }
+    .band {
+      width: 100%;
+      max-width: none;
+      background: var(--band);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .band > .inner {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 72px 0;
+    }
+    h2 { margin: 0 0 10px; font-size: clamp(30px, 4vw, 48px); line-height: 1.02; letter-spacing: 0; }
+    h3 { margin: 0 0 8px; font-size: 21px; }
+    .sub { max-width: 760px; margin: 0 0 28px; color: var(--muted); font-size: 17px; }
+    .grid { display: grid; gap: 16px; }
+    .cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(23,32,28,.05);
+    }
+    .card.accent { border-top: 5px solid var(--leaf); }
+    .card.warn { border-top: 5px solid var(--clay); }
+    .card.good { border-top: 5px solid var(--sea); }
+    .badge {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 5px 8px;
+      border-radius: 999px;
+      background: #eaf1ea;
+      color: var(--leaf);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    .fact-list, .check-list {
+      padding: 0;
+      margin: 14px 0 0;
+      list-style: none;
+    }
+    .fact-list li, .check-list li {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 12px;
+      padding: 10px 0;
+      border-top: 1px solid var(--line);
+    }
+    .check-list li { grid-template-columns: 24px 1fr; }
+    .label { color: var(--muted); font-weight: 700; }
+    .price {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-top: 12px;
+      font-size: 28px;
+      font-weight: 850;
+      color: var(--leaf);
+    }
+    .price small { color: var(--muted); font-size: 13px; font-weight: 700; }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 14px;
+      border-radius: 6px;
+      background: var(--leaf);
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 800;
+    }
+    .button.secondary { background: transparent; color: var(--leaf); border: 1px solid var(--leaf); }
+    .timeline {
+      display: grid;
+      grid-template-columns: 88px 1fr;
+      gap: 14px;
+      padding: 18px 0;
+      border-top: 1px solid var(--line);
+    }
+    .day { font-weight: 850; color: var(--leaf); }
+    .source-list {
+      columns: 2;
+      column-gap: 28px;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+    footer {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 42px 0 60px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      font-size: 14px;
+    }
+    @media (max-width: 780px) {
+      .hero { min-height: 760px; padding: 18px; }
+      .hero-grid, .cols-2, .cols-3 { grid-template-columns: 1fr; }
+      .links { display: none; }
+      section, .band > .inner { padding: 48px 0; }
+      .fact-list li { grid-template-columns: 1fr; gap: 2px; }
+      .source-list { columns: 1; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="kicker">Source-backed refresh | Updated June 5, 2026</div>
+      <h1>Kenya Summer Tides 2026</h1>
+      <p>A booking-forward plan for 2-4 people around Summer Tides at Lost Beach Club, Malindi, with safari and marine days added only where current providers can be verified.</p>
+      <div class="hero-grid">
+        <div class="hero-stat"><b>July 1-7</b><span>recommended trip window</span></div>
+        <div class="hero-stat"><b>July 2-4</b><span>festival dates from official site</span></div>
+        <div class="hero-stat"><b>2-4</b><span>best group size for this version</span></div>
+        <div class="hero-stat"><b>KES 5,000+</b><span>current ticket tier seen</span></div>
+      </div>
+    </div>
+  </header>
+
+  <nav>
+    <div class="nav-inner">
+      <div class="brand">Summer Tides 2026</div>
+      <div class="links">
+        <a href="#book">Book</a>
+        <a href="#stays">Stays</a>
+        <a href="#itinerary">Itinerary</a>
+        <a href="#budget">Budget</a>
+        <a href="#sources">Sources</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section id="book">
+      <h2>Book In This Order</h2>
+      <p class="sub">The festival is the anchor. Lock the event first, then choose accommodation close enough that late-night transport is not the whole trip.</p>
+      <div class="grid cols-3">
+        <article class="card accent">
+          <span class="badge">Step 1</span>
+          <h3>Festival Tickets</h3>
+          <p>Official festival page states July 2-4, 2026 at Lost Beach Club, Malindi, 18+ with strict ID. Tier 2 was listed as current at KES 5,000 after pre-sale and Tier 1 sold out.</p>
+          <div class="price">KES 5,000 <small>current tier seen</small></div>
+          <div class="cta-row">
+            <a class="button" href="https://summertidesfest.com/" target="_blank" rel="noopener">Official site</a>
+            <a class="button secondary" href="https://summertides.co.ke/" target="_blank" rel="noopener">Ticket store</a>
+          </div>
+        </article>
+        <article class="card good">
+          <span class="badge">Step 2</span>
+          <h3>Malindi Stay</h3>
+          <p>Use Malindi, Silversands, Marine Park, or Mayungu/Watamu only if the drive is acceptable. Avoid unsupported villa claims until a live July 1-7 quote is visible.</p>
+          <ul class="check-list">
+            <li><span>-</span><span>Confirm exact distance to Lost Beach Club.</span></li>
+            <li><span>-</span><span>Confirm AC, beds, cancellation, and airport pickup.</span></li>
+            <li><span>-</span><span>Use real listing photos only.</span></li>
+          </ul>
+        </article>
+        <article class="card warn">
+          <span class="badge">Step 3</span>
+          <h3>Flights And eTA</h3>
+          <p>Best route is US to Nairobi, then Nairobi to Malindi. Backup is Mombasa plus road transfer. US travelers use Kenya eTA, not the old visa language.</p>
+          <div class="cta-row">
+            <a class="button" href="https://www.jambojet.com/" target="_blank" rel="noopener">Jambojet</a>
+            <a class="button secondary" href="https://www.etakenya.go.ke/en" target="_blank" rel="noopener">Kenya eTA</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="band" id="stays">
+      <div class="inner">
+        <h2>Stay Shortlist</h2>
+        <p class="sub">These are booking leads, not final quotes. Exact July 1-7, 2026 rates need a live booking-engine check before money moves.</p>
+        <div class="grid cols-2">
+          <article class="card">
+            <span class="badge">Best fit if available</span>
+            <h3>Malindi villa or apartment near Lost Beach / Silversands</h3>
+            <p>Target a 2-bedroom or 3-bedroom place with AC and pool, within a short taxi ride of Lost Beach Club. Airbnb and Booking results surface multiple Malindi villas, but exact festival-week availability must be verified live.</p>
+            <ul class="fact-list">
+              <li><span class="label">Why</span><span>Most flexible for 2-4 people and easiest for a festival schedule.</span></li>
+              <li><span class="label">Risk</span><span>Dynamic listings; do not reuse old prices or photos.</span></li>
+              <li><span class="label">Action</span><span>Filter for July 1-7, 2+ bedrooms, AC, pool, free cancellation.</span></li>
+            </ul>
+            <div class="cta-row">
+              <a class="button" href="https://www.airbnb.com/malindi-kenya/stays/villas" target="_blank" rel="noopener">Airbnb villas</a>
+              <a class="button secondary" href="https://www.booking.com/villas/city/ke/malindi.html" target="_blank" rel="noopener">Booking villas</a>
+            </div>
+          </article>
+          <article class="card">
+            <span class="badge">Resort fallback</span>
+            <h3>Diamonds Malindi</h3>
+            <p>Official resort site confirms a beachfront all-inclusive resort in Malindi with themed restaurants and coastal setting. Use when the group values simplicity over a private villa.</p>
+            <ul class="fact-list">
+              <li><span class="label">Why</span><span>Direct official site, resort infrastructure, easier meals.</span></li>
+              <li><span class="label">Risk</span><span>May cost more than a split villa and may not be closest to the venue.</span></li>
+              <li><span class="label">Action</span><span>Quote 2 rooms for July 1-7 and ask about festival transport.</span></li>
+            </ul>
+            <div class="cta-row"><a class="button" href="https://malindi.diamondsresorts.com/" target="_blank" rel="noopener">Official site</a></div>
+          </article>
+          <article class="card">
+            <span class="badge">Strongest verified lead</span>
+            <h3>Billionaire Beachfront Apartments</h3>
+            <p>Direct accommodation pages list apartment types that fit this group: 1-bedroom sleeps 2, 2-bedroom sleeps 4, and 3-bedroom sleeps 6. The 2-bedroom apartment is the cleanest match for 4 people if July inventory is open.</p>
+            <ul class="fact-list">
+              <li><span class="label">Verified fit</span><span>2-bedroom: sleeps 4 adults, 130 square meters, kitchen, balcony, pool/private beach access.</span></li>
+              <li><span class="label">Risk</span><span>July 1-7 price, cancellation, taxes, and venue drive were not visible in this environment.</span></li>
+              <li><span class="label">Action</span><span>Check the direct booking engine for 1-, 2-, and 3-bedroom options.</span></li>
+            </ul>
+            <div class="cta-row">
+              <a class="button" href="https://billionaireresort.com/accommodation/billionaire-resort/" target="_blank" rel="noopener">Apartment details</a>
+              <a class="button secondary" href="https://www.blastnessbooking.com/premium/index.html?id_albergo=29044&dc=2816&lingua_int=eng&id_stile=21773" target="_blank" rel="noopener">Booking engine</a>
+            </div>
+          </article>
+          <article class="card">
+            <span class="badge">Quiet coastal fallback</span>
+            <h3>Exploreans Malaika Villas and Beach Club</h3>
+            <p>Official site confirms 17 one- to four-bedroom villas, a swimming pool, and sea access about 150 meters from the beach club area in the Malindi/Watamu marine-reserve coast.</p>
+            <ul class="fact-list">
+              <li><span class="label">Why</span><span>Villa sizes fit 2-4 and larger groups.</span></li>
+              <li><span class="label">Risk</span><span>May be farther from Lost Beach Club; verify transport time at night.</span></li>
+              <li><span class="label">Action</span><span>Quote a 2-bedroom villa and ask about private driver support.</span></li>
+            </ul>
+            <div class="cta-row"><a class="button" href="https://www.malaika.exploreans.com/" target="_blank" rel="noopener">Official site</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="itinerary">
+      <h2>Recommended Itinerary</h2>
+      <p class="sub">This keeps the festival nights protected and puts the long safari day after the music, when nobody has to rush back for a headline set.</p>
+      <div class="timeline"><div class="day">Jul 1</div><div><h3>Arrive in Malindi</h3><p>Fly into Nairobi, connect to Malindi if possible, check in, buy water/snacks, and do a low-effort beach dinner.</p></div></div>
+      <div class="timeline"><div class="day">Jul 2</div><div><h3>Festival Day 1</h3><p>Pick up wristbands early. Confirm the return taxi plan before entering the venue.</p></div></div>
+      <div class="timeline"><div class="day">Jul 3</div><div><h3>Festival Day 2</h3><p>Keep daytime plans light: beach, pool, lunch, recharge.</p></div></div>
+      <div class="timeline"><div class="day">Jul 4</div><div><h3>Festival Day 3</h3><p>Final festival day. Do not schedule safari or boat activities this morning.</p></div></div>
+      <div class="timeline"><div class="day">Jul 5</div><div><h3>Marine Park / Boat Day</h3><p>Book a weather-dependent Malindi Marine Park snorkel or Sawa Sawa-style dhow excursion. Confirm marine-park fees, lunch, pickup, and cancellation policy.</p></div></div>
+      <div class="timeline"><div class="day">Jul 6</div><div><h3>Tsavo East Safari</h3><p>Private day safari is feasible but long: about a 5:00 AM departure, roughly 3-3.5 hours each way, game drives, lunch, and late return.</p></div></div>
+      <div class="timeline"><div class="day">Jul 7</div><div><h3>Depart</h3><p>Fly Malindi to Nairobi or transfer to Mombasa. Avoid tight same-day international connections if using road transfer.</p></div></div>
+    </section>
+
+    <section class="band" id="budget">
+      <div class="inner">
+        <h2>Working Budget</h2>
+        <p class="sub">The old $2,500 all-in estimate is not currently strong enough to treat as a promise. This is a live-planning range until flights and lodging are quoted.</p>
+        <div class="grid cols-3">
+          <article class="card">
+            <span class="badge">Lower target</span>
+            <h3>About $2,000-$2,500 per person</h3>
+            <p>Possible if flights are favorable, lodging is split efficiently, and the group uses a simple villa/apartment.</p>
+          </article>
+          <article class="card">
+            <span class="badge">Planning range</span>
+            <h3>About $2,500-$3,300 per person</h3>
+            <p>More realistic until exact July flights, accommodations, transfers, safari, and boat quotes are locked.</p>
+          </article>
+          <article class="card">
+            <span class="badge">Premium path</span>
+            <h3>$3,500+ per person</h3>
+            <p>Likely if using premium resort stays, private transfers throughout, or higher-cost international flights.</p>
+          </article>
+        </div>
+        <ul class="fact-list">
+          <li><span class="label">Festival</span><span>KES 5,000+ current official tier seen; higher tiers may open later.</span></li>
+          <li><span class="label">Safari</span><span>Market range from current sources: roughly USD 170-350+ per person depending on group, vehicle, and inclusions.</span></li>
+          <li><span class="label">Boat day</span><span>Quote before booking; online ranges commonly vary by private vs shared boat and whether park fees/lunch are included.</span></li>
+          <li><span class="label">Health</span><span>Budget for travel clinic visit, malaria prophylaxis, repellent, and travel insurance.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="sources">
+      <h2>Verification Notes</h2>
+      <p class="sub">The old 2025 brochure used generic photos and unsourced claims. This refresh keeps only source-backed details or labels items that need a live quote.</p>
+      <div class="grid cols-2">
+        <article class="card good">
+          <h3>Confirmed enough to plan around</h3>
+          <ul class="check-list">
+            <li><span>-</span><span>Festival official page: July 2-4, 2026, Lost Beach Club, Malindi, 18+, 3 days, 2 stages.</span></li>
+            <li><span>-</span><span>Ticket path exists through official site / ticket store, with Tier 2 shown at KES 5,000 during this refresh.</span></li>
+            <li><span>-</span><span>US travelers should use Kenya eTA via the official eTA site.</span></li>
+            <li><span>-</span><span>Tsavo East day safari from Malindi is feasible but long.</span></li>
+          </ul>
+        </article>
+        <article class="card warn">
+          <h3>Must verify before purchase</h3>
+          <ul class="check-list">
+            <li><span>-</span><span>Festival ticket tier still available at checkout.</span></li>
+            <li><span>-</span><span>Accommodation live quote, cancellation rules, and distance to Lost Beach Club.</span></li>
+            <li><span>-</span><span>Safari and boat operator inclusions: KWS fees, pickup, lunch, vehicle/boat type, weather cancellation.</span></li>
+            <li><span>-</span><span>CDC/travel-clinic guidance close to departure.</span></li>
+          </ul>
+        </article>
+      </div>
+      <h3 style="margin-top: 30px;">Primary Links</h3>
+      <ul class="source-list">
+        <li><a href="https://summertidesfest.com/" target="_blank" rel="noopener">Summer Tides official site</a></li>
+        <li><a href="https://summertides.co.ke/" target="_blank" rel="noopener">Summer Tides ticket store</a></li>
+        <li><a href="https://www.instagram.com/summertides.fest/" target="_blank" rel="noopener">Summer Tides Instagram</a></li>
+        <li><a href="https://www.etakenya.go.ke/en" target="_blank" rel="noopener">Kenya eTA official site</a></li>
+        <li><a href="https://www.jambojet.com/" target="_blank" rel="noopener">Jambojet</a></li>
+        <li><a href="https://www.flysafarilink.com/destinations/flights-to-malindi" target="_blank" rel="noopener">Safarilink Malindi</a></li>
+        <li><a href="https://africanspicesafaris.com/tour/malindi-tsavo-east-national-park-safari-day-trip/" target="_blank" rel="noopener">African Spice Safaris Tsavo East day trip</a></li>
+        <li><a href="https://www.kitanotours.com/tours/1-day-tour-to-tsavo-east-park-from-watamumalindi---kenya-safaris" target="_blank" rel="noopener">Kitano Tours Tsavo East day trip</a></li>
+        <li><a href="https://africanspicesafaris.com/tour/sawa-sawa-dhow-excursion-malindi-day-trip/" target="_blank" rel="noopener">Sawa Sawa dhow excursion lead</a></li>
+        <li><a href="https://wwwnc.cdc.gov/travel/destinations/traveler/none/kenya" target="_blank" rel="noopener">CDC Kenya traveler page</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    Updated June 5, 2026. Placeholder hero photo is scenic only; accommodation/operator photos should be viewed on the linked source pages before booking.
+  </footer>
+</body>
+</html>
